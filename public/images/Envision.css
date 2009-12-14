@@ -148,18 +148,18 @@ label {
 }
 input {
 	padding:2px;
-	border:1px solid #eee;
+	/*border:1px solid #eee;*/
 	font: normal 1em Verdana, sans-serif;
-	color:#777;
+	/*color:#777;*/
 }
 textarea {
 	width:400px;
 	padding:2px;
 	font: normal 1em Verdana, sans-serif;
-	border:1px solid #eee;
+	/*border:1px solid #eee;*/
 	height:100px;
 	display:block;
-	color:#777;
+	/*color:#777;*/
 }
 input.button { 
 	font: bold 16px Arial, Sans-serif; 
