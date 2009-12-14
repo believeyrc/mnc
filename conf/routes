@@ -1,0 +1,42 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+GET /family/{family}/meme    Memez.index
+
+# Home page
+GET     /family/{family}/posts	Postz.index
+GET     /family/{family}/{offset}-{pageSize}                    Postz.history
+
+GET    	/family/{family}/posts/{<[0-9]+>id}                    Postz.show
+GET     /family/{family}/posts/tag/{tag}                           Postz.listTagged
+POST    /family/{family}/posts/{postId}/comments               Postz.postComment
+GET     /captcha                                Postz.captcha
+#GET	/nextimg			Photoz.nextPicture
+#GET	/preimg				Photoz.previousPicture
+#GET	/photos				Photoz.photos
+#GET	/gallery				Photoz.gallery
+GET		/family/{family}/galleria	Photoz.galleria
+POST	/normalize				Photoz.normalize
+
+GET /family/{family}/?	Memez.index
+GET /family/{family}/neighbours	Familyz.neighbours
+
+GET /    Homez.index
+
+
+GET     /admin/?                            Admin.index
+GET     /admin/new/{id}                     Admin.form
+GET     /admin/new                          Admin.form
+GET     /admin/myPosts/{id}                 Admin.form
+POST    /admin/new                          Admin.save
+POST    /admin/myPosts/{id}                 Admin.save
+POST    /admin/new                          Admin.save
+
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}
+*       /admin                                  module:crud

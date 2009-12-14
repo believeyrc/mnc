@@ -1,0 +1,70 @@
+#{extends 'main.html' /}
+#{set title:post.title /}
+
+#{isMine}
+<p id="newPost" class='float-right'>
+    <a href="@{Postz.form().add('family',family.code).add('id',post.id)}"><span>+</span>&{'EditPost'}</a>
+</p>
+#{/isMine}
+
+#{if flash.success}
+    <p class="success">${flash.success}</p>
+#{/if}
+ 
+#{display post:post, as:'full' /}
+
+<ul id="pagination">
+    #{if post.previous()}
+        <li id="previous">
+            <a href="@{Postz.show(post.previous().id,post.author.family.code)}">
+                ${post.previous().title}
+            </a>
+        </li>
+    #{/if}
+    #{if post.next()}
+        <li id="next">
+            <a href="@{Postz.show(post.next().id,post.author.family.code)}">
+                ${post.next().title}
+            </a>
+        </li>
+    #{/if}
+</ul>
+
+&{'PostAComment'} 
+#{form @Postz.postComment().add('postId',post.id).add('family',family.code)}
+    #{ifErrors}
+        <p class="error">
+            ${errors[0]}
+        </p>
+    #{/ifErrors}
+    <p>
+        <label for="author">&{'YourName'} </label>
+        <input type="text" name="author" id="author" value="${author}"/>
+           <label for="content">&{'YourMessage'} </label>
+        <textarea name="content" id="content">${content}</textarea>
+   
+        <label for="code">&{'PleaseTypeTheCodeBelow'} </label>
+        <img src="@{Postz.captcha(randomID)}" />
+        <br />
+        <input type="text" name="code" id="code" size="18" value="" />
+        <input type="hidden" name="randomID" value="${randomID}" />
+    </p>
+    <p>
+        <input class='button' type="submit" value="&{'SubmitYourComment'}" />
+    </p>
+#{/form}
+<script type="text/javascript" charset="utf-8">
+    $(function() {         
+        // Expose the form 
+        $('form').click(function() { 
+            $('form').expose({api: true}).load(); 
+        }); 
+        
+        // If there is an error, focus to form
+        if($('form .error').size()) {
+            $('form').expose({api: true, loadSpeed: 0}).load(); 
+            $('form input').get(0).focus();
+        }
+    });
+</script>
+

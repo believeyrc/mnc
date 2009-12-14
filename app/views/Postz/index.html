@@ -1,0 +1,35 @@
+#{extends 'main.html' /}
+#{set 'title'}
+	 &{'Home'}
+#{/set}
+
+#{isMine}
+<p id="newPost" class='float-right'>
+    <a href="@{Postz.form().add('family',family.code)}"><span>+</span>&{'WriteANewPost'}</a>
+</p>
+#{/isMine}
+
+#{if frontPost}
+    #{display post:frontPost, as:'home' /}
+#{/if}
+#{if olderPosts.size() > 0 }
+	<div class="older-posts">    
+	   &{'OlderPosts'}
+	
+		#{list items:olderPosts, as:'oldPost'}
+			 #{display post:oldPost, as:'teaser' /}
+		#{/list}
+	</div>
+	
+#{/if}
+    
+
+#{if totalCount == 0}
+    <div class="empty">
+        &{'NoPost'}
+    </div>
+#{/if}
+<br/>
+
+#{pagination/}
+ 

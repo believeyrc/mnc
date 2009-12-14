@@ -1,0 +1,103 @@
+# You can specialize this file for each language.
+# For exemple, for french create a messages.fr file
+#
+title=标题
+content=内容
+postedAt=发表于
+author=作者
+post=相关
+tags=标签
+name=名称
+email=电邮
+password=密码
+fullname=全名
+isAdmin=是管理员
+logo=穆念慈
+
+secure.remember=保持登录
+secure.username=您的电邮：
+secure.password=您的密码：
+secure.signin=登录
+
+Login=登录
+AboutThisBlog=这个跟金庸小说没有什么关系
+
+OlderPosts=<h3>历史 <span class="from">记录</span></h3>
+NoPost=暂时没有文章
+
+AdminWelcome=<h3>欢迎回来 %s <span>你已经写了 %s 文章了，继续努力哦</span></h3>
+WriteANewPost=开始新文章
+EditPost=修改文章
+ViewBlog=查看首页
+Logout=退出
+MyPosts=我的文章
+AllPosts=所有文章
+TagsManage=标签管理
+CommentsManage=评论管理
+UsersManage=用户管理
+PhotosManage=照片管理
+
+Posts=文章
+Users=用户
+Comments=评论
+Tags=标签
+Tagged=标签：
+
+PublishThisPost=发布
+EnterSomeTags=输入标签：
+WriteHere=正文：
+PostTitle=标题：
+PleaseCorrectTheseErrors=请检查这些错误
+InfoWriteANewPost=<h3>开始, <span>一篇新的文章</span></h3>
+InfoEditThisPost=<h3>修改, <span>文章</span></h3>
+
+PostAComment=<h3>我来发表一下看法</h3>
+YourName=您的大名：
+YourMessage=您的看法：
+PleaseTypeTheCodeBelow=需要输入下边的验证码：
+SubmitYourComment=发表吧！
+
+btOlderPosts=更旧的
+btNewerPosts=更新的
+
+crud.help.required=必须填写
+
+Photo=我的照片
+pictures=照片
+track=历程
+Home=首页
+Administration=管理
+
+
+###Meme
+MemeManage=Meme管理
+Meme=近况
+
+updatedAt=于
+
+SiteforyourFamily=关注你最亲密的人
+
+
+
+NextPicture=下一张 &raquo;
+PreviousPicture=&laquo; 上一张
+
+photo.normalize=标准化
+
+meme.newpostnotify= 发表了 <a href="/entity/%s">%s</a>。
+
+myHome=%s之家
+
+Neighbours=邻居
+Followings=你关注的
+Followers=关注你的
+OK=确定
+UploadImage=上传新照片
+RemoveImage=删除照片
+
+unfollow=取消关注
+follow=关注TA
+
+familyLogoImage=public/home/home.jpg
+
+TagListInfo=<h3>共有 %s 文章标记为 '%s'</h3>

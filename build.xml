@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="GB2312"?>
+
+<project name="Numen" default="dist" basedir=".">
+	<target name="dist">
+    <copy todir="dist">
+      <fileset dir="${basedir}">
+        <exclude name="**/.svn/**" />
+        <exclude name="db/**" />
+		<exclude name="tmp/**" />
+		<exclude name="logs/**" />
+      	<exclude name="dist/**" />
+      </fileset>
+    </copy>
+  </target>
+</project>
+

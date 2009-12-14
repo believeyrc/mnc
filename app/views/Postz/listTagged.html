@@ -1,0 +1,20 @@
+#{extends 'main.html' /}
+#{set title:'Posts tagged with ' + tag /}
+
+#{if posts.size() > 1}
+   &{'TagListInfo',posts.size(), tag}  
+#{/if} 
+#{elseif posts}
+	&{'TagListInfo',posts.size(), tag}
+#{/elseif}
+#{else}
+    <h3>No post tagged '${tag}'</h3>
+#{/else}
+ 
+*{********* Posts list *********}*
+ 
+<div class="older-posts">    
+    #{list items:posts, as:'post'}
+        #{display post:post, as:'teaser' /}
+    #{/list}
+</div> 

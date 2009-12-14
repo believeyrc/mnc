@@ -1,0 +1,48 @@
+#{extends 'CRUD/layout.html' /}
+#{script 'ajaxupload.js'/} 
+
+
+<div id="crudShow" class="${type.name}">
+	
+<h2 id="crudShowTitle">&{'crud.show.title', type.modelName}</h2>
+
+#{form @save(object?.id)} 
+<div class="objectForm">
+#{crud.form}
+    #{crud.custom 'image'}
+        <label >image</label><input id="object_image" type="hidden" name="object.image" value="${object.image}"/>
+        <img id='home_img' src='${object.image}'/>
+        <div id="upload_button">Upload</div>
+    #{/crud.custom}
+#{/crud.form}
+    <p class="crudButtons">
+			<input type="submit" name="_save" value="&{'crud.save', type.modelName}" />
+			<input type="submit" name="_saveAndContinue" value="&{'crud.saveAndContinue', type.modelName}" />
+	</p>
+</div>
+#{/form}
+ 
+#{form @delete(object.id)}
+    <p class="crudDelete">
+        <input type="submit" value="&{'crud.delete', type.modelName}" />
+    </p>
+#{/form}
+ 
+</div>
+<script>
+$(function(){
+	new AjaxUpload('upload_button', {
+		action: '@{Photoz.upload()}',
+		name: 'upload',
+		responseType: 'json',
+		onSubmit : function(file, ext){
+			$('#upload_button').text('Uploading');			
+		},
+		onComplete: function(file, response){
+			$('#home_img').attr('src',response.thumb);						
+			$('#upload_button').text('Upload');
+			$('#object_image').val(response.thumb);
+		}
+		});
+});
+</script>

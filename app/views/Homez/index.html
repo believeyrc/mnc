@@ -1,0 +1,7 @@
+#{extends 'home.html' /}
+#{list items:families, as:'family'}
+<div class='family-block' >
+	<a href="/family/${family.code}"><img src="/${family.image?:'public/home/home.jpg'}"/></a>
+	<div><a href="/family/${family.code}">${family.name}</a></div>	
+</div>
+#{/list}

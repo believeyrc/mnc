@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>#{get 'title' /}</title>		
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<link rel="stylesheet" href="@{'/public/images/Envision.css'}" type="text/css" />
+        <link rel="shortcut icon" type="image/png" 
+            href="@{'/public/images/favicon.png'}" />
+        <script src="@{'/public/javascripts/jquery-1.3.2.min.js'}"></script>
+        <script src="@{'/public/javascripts/jquery.tools.min.js'}"></script>
+		#{isMine} 
+			#{script 'jquery.jeditable.js'/}
+			#{script 'ajaxupload.js'/} 
+			<script>
+		 		$(function(){ 
+		 			$('#logo-text').editable('@{Familyz.updateName().add('family',family.code)}',{
+		 				submit  : '&{'OK'}',width: '300px'
+		 			});
+		 			$('#slogan').editable('@{Familyz.updateSlogan().add('family',family.code)}',{
+		 				submit  : '&{'OK'}',width: '200px'
+		 			});
+		 		});
+		 		
+		 		$(function(){
+					new AjaxUpload('home_img', {
+						action: '@{Familyz.updateImage().add('family',family.code)}',
+						name: 'upload',
+						responseType: 'json',
+						onSubmit : function(file, ext){
+							$('#upload_button').text('Uploading');			
+						},
+						onComplete: function(file, response){
+							$('#home_img').attr('src',response.thumb);						
+						}
+						});
+				});
+		 	</script>
+		#{/isMine}
+	
+    </head>
+    <body>
+<div id="wrap">        
+	<div id="header">
+		<h1 id='logo'><img id="home_img" src="/${family?.image?:'public/home/home.jpg'}"/></h1>
+		<h1 id="logo-text">${blogTitle}</h1>
+		<h2 id="slogan">${blogBaseline} #{followbutton/} </h2>
+		#{top/}
+	</div>
+	<div id="menu">
+		<ul>
+			<li><a href="#{url a:'Memez.index'/}">&{'Meme'}</a></li>
+			<li><a href="#{url a:'Postz.index'/}">&{'track'}</a></li>
+			<li><a href="#{url a:'Photoz.galleria'/}">&{'pictures'}</a></li>
+		</ul>
+	</div>
+	<div id="content-wrap">
+        #{doLayout /} 
+    </div>    
+    <div id="footer">
+       <p>&{'SiteforyourFamily'}</p>
+    </div>
+</div>        
+    </body>
+</html>
+

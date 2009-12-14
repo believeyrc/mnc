@@ -1,0 +1,9 @@
+#{extends 'Memez/memebase.html' /}
+#{if olderPosts.size() > 0 }
+	<div class="older-posts">    
+		#{list items:olderPosts, as:'oldPost'}
+			 #{showmeme post:oldPost /}
+		#{/list}
+	</div>
+	
+#{/if}

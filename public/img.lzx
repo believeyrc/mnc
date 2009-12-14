@@ -1,0 +1,91 @@
+<canvas  debug="false" proxied="false" width="650" height="450" bgcolor="#314660">  
+  <include href="rpc/ajax.lzx"/>
+  <script src="json.js"/>
+
+  <script>    
+	var current = {id:0};
+    function processReqChange(request) {
+        Debug.debug("processReqChange: req.readyState %w %w", request.readyState,request.status);
+        if (request.readyState == 4) {
+            if (request.status == 200) {
+				var res = JSON.parse(request.responseText);				
+				current = res;
+				var url = "http://localhost:9000/"+current.path;
+				Debug.debug(url);
+				mainview.cliparea.thumbView.setSource(url); 
+            }
+        }
+    } 
+    function loadXMLDoc(path) {
+		Debug.debug(path);
+        var req = new lz.XMLHttpRequest();
+		req.parsexml=false;
+        req.onreadystatechange = processReqChange;
+		var url = '';
+		url = "http://localhost:9000/"+path+"?id="+current.id;
+		Debug.debug(url);
+        req.open("GET", url , true);      
+        req.send(null);
+    }    
+	function updateImage(imgview){
+				Debug.write("width: " + imgview.width + " | height: " + imgview.height);  
+				var scaleH = 450/imgview.resourceheight;
+				var scaleW = 650/imgview.resourcewidth;
+				var scale = scaleH>scaleW ? scaleW : scaleH;
+				var fw = imgview.resourcewidth * scale;
+				var fh = imgview.resourceheight * scale;
+				imgview.setAttribute("width",fw);  
+				imgview.setAttribute("height",fh);  
+				imgview.setAttribute("x",(650-fw)/2);
+				imgview.setAttribute("y",(450-fh)/2);	
+				imgview.reevaluateSize();
+				//imgview.animate("x",0,650,false,{motion:'easeout'});
+	}
+  </script>
+  
+<view id="mainview" width="450" x="0" y="0"> 		
+	<view id="cliparea" name="cliparea" clip="true" width="650" height="450" >  		
+		<image id="thumbView" name="thumbView" forcereload="true" stretches="both">
+		<handler name="onload">  
+			<![CDATA[  
+				updateImage(this);
+			]]>  
+		</handler>
+		</image>
+	</view>  
+
+	<view id="leftbutton" width="200" height="450" bgcolor="blue"  opacity="0.0001" >
+		<handler name="onmouseenter" >
+			this.setAttribute("opacity" , 1.0);
+		</handler>
+		<handler name="onclick" >
+			loadXMLDoc('preimg');
+		</handler>
+		<handler name="onmouseout">
+			this.setAttribute("opacity" , 0.0001);
+		</handler>
+	</view>
+	<view id="rightbutton" width="200" x="450" height="450" bgcolor="yellow"  opacity="0.0001" >
+		<handler name="onmouseenter"  >
+			this.setAttribute("opacity" , 1.0);
+		</handler>
+		<handler name="onclick"  >
+			loadXMLDoc('nextimg');
+		</handler>
+		<handler name="onmouseout" >
+			this.setAttribute("opacity" , 0.0001);
+		</handler>
+	</view>
+<!--
+	<button onclick="loadXMLDoc('preimg')" x="20" y="455">pre</button>
+	<button onclick="loadXMLDoc('nextimg')" x="500" y="455">next</button>
+-->
+</view>  
+<handler name="oninit">  
+    <![CDATA[  
+        //var d = canvas.datasets.dset;  
+        //d.doRequest('nextimg');  
+		loadXMLDoc('nextimg');
+    ]]>  
+</handler>
+</canvas>

@@ -1,0 +1,25 @@
+#{extends 'main.html' /}
+#{set 'title'}
+	 &{'pictures'}
+#{/set}
+<link rel="stylesheet" type="text/css" media="screen" href="@{'/public/demo/css/960.css'}" />
+<link rel="stylesheet" type="text/css" media="screen" href="@{'/public/demo/css/main.css'}" />
+<script type="text/javascript" src="@{'/public/demo/js/demo.js'}"></script>
+<div class="grid_6 prefix_1 suffix_1" id="gallery" >
+  <div id="pictures">
+	#{list items:photos, as:'photo'}
+		<img src="/${photo.filePath}" alt=""/>
+	#{/list}
+  </div>
+  
+  <div class="grid_3 alpha" id="prev">
+	<a href="#previous">&{'PreviousPicture'}</a>
+  </div>
+  <div class="grid_3 omega" id="next">
+	<a href="#next">&{'NextPicture'}</a>
+  </div>
+  <br/>
+  <br/>
+  <br/>
+</div>
+

@@ -1,0 +1,24 @@
+#{extends 'main.html' /}
+#{set 'title'}
+	 &{'Neighbours'}
+#{/set}
+
+#{if followings.size() > 0 }
+&{'Followings'}
+<ul>
+#{list items:followings, as:'f'}
+	#{displayFamily family:f, as:'following'/}
+#{/list}
+</ul>
+#{/if}
+    
+
+#{if followers.size() > 0 }
+&{'Followers'}
+<ul>
+#{list items:followers, as:'f'}
+	#{displayFamily family:f/}
+#{/list}
+</ul>
+#{/if}
+    

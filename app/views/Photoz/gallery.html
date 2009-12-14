@@ -1,0 +1,84 @@
+#{extends 'main.html' /}
+#{set 'title'}
+	 &{'pictures'}
+#{/set}
+<link rel="stylesheet" href="@{'/public/gallery/css/picture-slides.css'}" type="text/css">
+<script type="text/javascript" src="@{'/public/gallery/js/PictureSlides-jquery-2.0.js'}"></script>
+<script type="text/javascript">
+		
+		var items = new Array();
+		#{list items:photos, as:'photo'}
+			items.push({image:"/${photo.prefPath}",alt:"",text:""});
+		#{/list}
+		
+		jQuery.PictureSlides.set({
+			// Switches to decide what features to use
+			useFadingIn : true,
+			useFadingOut : true,
+			useFadeWhenNotSlideshow : true,
+			useFadeForSlideshow : true,
+			useDimBackgroundForSlideshow : true,
+			loopSlideshow : false,
+			usePreloading : true,
+			useAltAsTooltip : true,
+			useTextAsTooltip : false,
+			
+			// Fading settings
+			fadeTime : 500, // Milliseconds	
+			timeForSlideInSlideshow : 2000, // Milliseconds
+
+			// At page load
+			startIndex : 1,	
+			startSlideShowFromBeginning : true,
+			startSlideshowAtLoad : false,
+			dimBackgroundAtLoad : false,
+
+			// Large images to use and thumbnail settings
+			images : items,
+			thumbnailActivationEvent : "click",
+
+			// Classes of HTML elements to use
+			mainImageClass : "picture-slides-image", // Mandatory
+			mainImageFailedToLoadClass : "picture-slides-image-load-fail",
+			imageLinkClass : "picture-slides-image-link",
+			fadeContainerClass : "picture-slides-fade-container",
+			imageTextContainerClass : "picture-slides-image-text",
+			previousLinkClass : "picture-slides-previous-image",
+			nextLinkClass : "picture-slides-next-image",
+			imageCounterClass : "picture-slides-image-counter",
+			startSlideShowClass : "picture-slides-start-slideshow",
+			stopSlideShowClass : "picture-slides-stop-slideshow",
+			thumbnailContainerClass: "picture-slides-thumbnails",
+			dimBackgroundOverlayClass : "picture-slides-dim-overlay"
+		});
+	</script>
+<div id="container">
+	<div class="picture-slides-container">
+			<div class="picture-slides-fade-container">
+				<a class="picture-slides-image-link">
+					<span class="picture-slides-image-load-fail">The image failed to load:</span>
+					<img class="picture-slides-image" src="pictures/1.jpg" alt="This is picture 1" />
+				</a>
+			</div>
+			
+			<div class="picture-slides-image-text">This is picture 1</div>
+		
+			<div class="navigation-controls">
+				<a href="index.html" class="picture-slides-previous-image">Previous</a>
+				<span class="picture-slides-image-counter"></span>
+				<a href="index.html" class="picture-slides-next-image">Next</a>
+		
+				<a href="index.html" class="picture-slides-start-slideshow">Start slideshow</a>
+				<a href="index.html" class="picture-slides-stop-slideshow">Stop slideshow</a>
+			</div>
+			
+			<ul class="picture-slides-thumbnails">
+				#{list items:photos, as:'photo'}
+					<li><a href="/${photo.prefPath}"><img src="/${photo.thumbPath}" alt="" /></a></li>
+				#{/list}
+			</ul>
+		</div>
+	</div>
+	
+	<div class="picture-slides-dim-overlay"></div>
+

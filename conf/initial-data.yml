@@ -1,0 +1,7 @@
+# Test data
+
+User(bob):
+    email:          nile.black@gmail.com
+    password:       lucumu
+    fullname:       Nile
+    isAdmin:        true
