@@ -2,11 +2,16 @@ package controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import jobs.ResizeImageJob;
 import models.Photo;
@@ -14,17 +19,19 @@ import models.User;
 
 import org.apache.commons.io.FileUtils;
 
+import play.Play;
 import play.libs.Codec;
+import play.libs.Crypto;
 
 public class Photoz extends Basez {
 
-	public static void photos() {
-		List<Photo> photos = Photo.all().fetch();
+	public static void photos(String family) {
+		List<Photo> photos = Photo.find(" author.family.code = ? order by uploadAt desc", family).fetch();
 		render(photos);
 	}
 
-	public static void gallery() {
-		List<Photo> photos = Photo.all().fetch();
+	public static void carousel(String family) {
+		List<Photo> photos = Photo.find(" author.family.code = ? order by uploadAt desc", family).fetch();
 		render(photos);
 	}
 
@@ -88,9 +95,11 @@ public class Photoz extends Basez {
 			photo.delete();
 		}
 	}
-
+	static Pattern sessionParser = Pattern.compile("\u0000([^:]*):([^\u0000]*)\u0000");
+	@Check("ROLE_USER")
 	public static void upload(String id, File upload) {
 		try {
+			restroreSession();
 			String uuid = Codec.UUID();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 			String tDate = sdf.format(new Date());
@@ -118,6 +127,21 @@ public class Photoz extends Basez {
 			e.printStackTrace();
 		} catch (ExecutionException e) {
 			e.printStackTrace();
+		}
+	}
+
+	private static void restroreSession() throws UnsupportedEncodingException {
+		String checkuser = params.get("checkuser");
+		checkuser = checkuser.replaceAll("##", "\u0000");
+		checkuser = URLEncoder.encode(checkuser, "utf-8");
+		String sign = checkuser.substring(0, checkuser.indexOf("-"));
+		String data = checkuser.substring(checkuser.indexOf("-") + 1);
+		if (sign.equals(Crypto.sign(data, Play.secretKey.getBytes()))) {
+		    String sessionData = URLDecoder.decode(data, "utf-8");
+		    Matcher matcher = sessionParser.matcher(sessionData);
+		    while (matcher.find()) {
+		        session.put(matcher.group(1), matcher.group(2));
+		    }
 		}
 	}
 }
