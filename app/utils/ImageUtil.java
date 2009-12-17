@@ -37,6 +37,8 @@ public class ImageUtil {
 		int ow = img.getWidth();
 		int oh = img.getHeight();
 		float scale = Math.min(1.0f * width / ow, 1.0f * height / oh);
+		if(scale >1.0)
+			return img;
 		ResampleOp resampleOp = new ResampleOp((int) (ow * scale), (int) (oh * scale));
 		BufferedImage rescaledTomato = resampleOp.filter(img, null);
 		return rescaledTomato;
