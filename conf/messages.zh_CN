@@ -101,3 +101,15 @@ follow=关注TA
 familyLogoImage=public/home/home.jpg
 
 TagListInfo=<h3>共有 %s 文章标记为 '%s'</h3>
+
+selectFileToUpload=添加照片
+
+msgPending=等待
+msgFileTooBig=文件太大
+msgZeroFile=文件大小为0.
+msgIvalidType=无效类型
+msgFilesCompleted=图片上传完成。
+msgUploading = 正在上传
+msgComplete=上传完成。
+msgCancelled=已取消
+uploadCancel=取消上传

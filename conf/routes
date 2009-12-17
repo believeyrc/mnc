@@ -17,8 +17,8 @@ POST    /family/{family}/posts/{postId}/comments               Postz.postComment
 GET     /captcha                                Postz.captcha
 #GET	/nextimg			Photoz.nextPicture
 #GET	/preimg				Photoz.previousPicture
-#GET	/photos				Photoz.photos
-#GET	/gallery				Photoz.gallery
+GET	/family/{family}/photos				Photoz.photos
+GET	/family/{family}/carousel				Photoz.carousel
 GET		/family/{family}/galleria	Photoz.galleria
 POST	/normalize				Photoz.normalize
 

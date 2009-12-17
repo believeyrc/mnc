@@ -23,7 +23,7 @@ public class Security extends Secure.Security {
     }
     static boolean check(String profile) {
         if(profile.startsWith("ROLE_")) {
-            User user = User.find("byEmail", connected()).<User>first();
+            User user = User.find("byEmail", connected()).first();
             if(user.isAdmin) return true;
             for(Role role : user.roles){
                 if(role.code.equals(profile))
