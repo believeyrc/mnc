@@ -1,10 +1,12 @@
 package models;
 
-import java.util.*;
-import javax.persistence.*;
- 
-import play.db.jpa.*;
-import play.data.validation.*;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+
+import play.data.validation.Required;
+import play.db.jpa.Model;
 
 @Entity
 public class Photo extends Model {
@@ -23,6 +25,7 @@ public class Photo extends Model {
 	
 	public String caption;
 	public Date uploadAt;
+	public String thumb2Path;
 	public String toString(){
 		return this.caption + ":" +filePath;
 	}

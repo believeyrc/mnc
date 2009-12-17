@@ -1,3 +1,3 @@
-#{if session.username}
+#{if session.username !=null}
  #{doBody /}
 #{/if}

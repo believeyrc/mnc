@@ -25,9 +25,12 @@ import play.libs.Crypto;
 
 public class Photoz extends Basez {
 
-	public static void photos(String family) {
-		List<Photo> photos = Photo.find(" author.family.code = ? order by uploadAt desc", family).fetch();
-		render(photos);
+	public static void photos(String family, int offset) {
+		if(offset<=0) offset = 0;
+		int pageSize = 20;
+		long totalCount = Photo.count(" author.family.code = ? order by uploadAt desc", family);
+		List<Photo> photos = Photo.find(" author.family.code = ? order by uploadAt desc", family).from(offset).fetch(pageSize);
+		render(photos,offset,totalCount,pageSize);
 	}
 
 	public static void carousel(String family) {
@@ -49,7 +52,12 @@ public class Photoz extends Basez {
 		Photo photo = Photo.find("id > ? order by id asc", id).first();
 		renderText("{ \"more\":%s, \"id\":%s, \"path\":\"%s\" }", more > 1, photo.id, photo.filePath);
 	}
-
+	public static void caption(Long id,String caption) {
+		Photo photo = Photo.findById(id);
+		photo.caption = caption;
+		photo.save();
+		renderText(caption);
+	}
 	public static void previousPicture(Long id) {
 		if (id == null)
 			id = 0L;
@@ -66,21 +74,30 @@ public class Photoz extends Basez {
 		List<Photo> photos = Photo.all().fetch();
 		for (Photo photo : photos) {
 			try {
+				System.out.println("start normalize "+photo.filePath);
 				File ofile = new File(photo.filePath);
 				ResizeImageJob pref = new ResizeImageJob(ofile, 700, 440);
 				ResizeImageJob thumb = new ResizeImageJob(ofile, 80, 60);
+				ResizeImageJob thumb2 = new ResizeImageJob(ofile, 140, 90);
 				Future<File> prefFuture = pref.now();
 				Future<File> thumbFuture = thumb.now();
+				Future<File> thumb2Future = thumb2.now();
 				File preffile = prefFuture.get();
 				File thumbfile = thumbFuture.get();
+				File thumb2file = thumb2Future.get();
 				String preffilepath = preffile.getPath().replaceAll("\\\\", "/");
 				String thumbfilepath = thumbfile.getPath().replaceAll("\\\\", "/");
+				String thumb2filepath = thumb2file.getPath().replaceAll("\\\\", "/");
 				photo.prefPath = preffilepath;
 				photo.thumbPath = thumbfilepath;
+				photo.thumb2Path = thumb2filepath;
 				photo.save();
+				System.out.println("normalize "+photo.filePath);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			} catch (ExecutionException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
@@ -91,6 +108,7 @@ public class Photoz extends Basez {
 		if (photo != null) {
 			FileUtils.deleteQuietly(new File(photo.filePath));
 			FileUtils.deleteQuietly(new File(photo.thumbPath));
+			FileUtils.deleteQuietly(new File(photo.thumb2Path));
 			FileUtils.deleteQuietly(new File(photo.prefPath));
 			photo.delete();
 		}
@@ -108,16 +126,21 @@ public class Photoz extends Basez {
 			FileUtils.moveFile(upload, ofile);
 			ResizeImageJob pref = new ResizeImageJob(ofile, 700, 440);
 			ResizeImageJob thumb = new ResizeImageJob(ofile, 80, 60);
+			ResizeImageJob thumb2 = new ResizeImageJob(ofile, 140, 90);
 			Future<File> prefFuture = pref.now();
 			Future<File> thumbFuture = thumb.now();
+			Future<File> thumb2Future = thumb2.now();
 			File preffile = prefFuture.get();
 			File thumbfile = thumbFuture.get();
+			File thumb2file = thumb2Future.get();
 			String preffilepath = preffile.getPath().replaceAll("\\\\", "/");
 			String thumbfilepath = thumbfile.getPath().replaceAll("\\\\", "/");
+			String thumb2filepath = thumb2file.getPath().replaceAll("\\\\", "/");
 
 			Photo photo = new Photo(upload.getName(), new Date(), filePath);
 			photo.prefPath = preffilepath;
 			photo.thumbPath = thumbfilepath;
+			photo.thumb2Path = thumb2filepath;
 			photo.author = User.find("byEmail", Security.connected()).first();
 			photo.save();
 			renderText("{'err':'','msg':'/%s','original':'/%s','thumb':'/%s','pref':'/%s'}", preffilepath, filePath, thumbfilepath, preffilepath);

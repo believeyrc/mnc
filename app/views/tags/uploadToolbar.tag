@@ -1,3 +1,4 @@
+
 #{script "../swfupload/swfupload.js"/}
 #{script "../swfupload/swfupload.queue.js"/}
 #{script "../swfupload/fileprogress.js"/}
@@ -20,7 +21,7 @@ var msgCancelled='&{"msgCancelled"}'
 				flash_url : "@{'/public/swfupload/swfupload.swf'}",
 				upload_url: "@{Photoz.upload().add('family',_caller.family.code)}",
 				file_post_name: "upload",
-				post_params: {"checkuser" : "${request.cookies.PLAY_SESSION?.value.replaceAll("%00","##")}"},
+				post_params: {"checkuser" : "${request.cookies.PLAY_SESSION?.value?.replaceAll("%00","##")}"},
 				file_size_limit : "2 MB",
 				file_types : "*.jpg;*.jpeg;*.png;*.gif",
 				file_types_description : "Image Files",
@@ -70,3 +71,4 @@ var msgCancelled='&{"msgCancelled"}'
 			</tr></table>
 		</div>
 </form>
+

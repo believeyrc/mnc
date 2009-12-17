@@ -53,7 +53,7 @@ h3 {
 /* images */
 img {
 	background: #FAFAFA;
-   border: 1px solid #E5E5E5;
+   	border: 1px solid #E5E5E5;
 	padding: 5px;
 }
 img.float-right {
@@ -244,9 +244,8 @@ input.button {
 	background: none;
 	margin-left: 20px;
 	margin-top: 10px;
-	/*width: 50px;
-	height: 80px;*/
-	
+	/*width: 50px;*/
+	height:60px;
 }
 
 /* header links */
@@ -406,9 +405,45 @@ input.button {
 
 .family-block{
 	display:inline-block;
+	float:left;
 	height:100px;
 	width:120px;
 	text-align:center;
 	/*position:relative;
 	border: 1px solid #f00;*/
+}
+.photo-block{
+ 	display:block;
+ 	float:left;
+ 	width:142px;
+ 	height:100px;
+ 	text-align:center;
+ 	background: #FAFAFA;
+   	border: 1px solid #E5E5E5;
+	padding: 2px;
+	margin: 2px;
+	line-height: 100px; 
+	vertical-align: bottom;
+	overflow:hide;
+}
+.photo-block img{
+	background: none;
+   	border: 0px solid #E5E5E5;
+	padding: 0px;
+}
+.photo-block .caption{
+	color:red;
+	width:142px;
+	height:0px;
+	position:relative;
+	text-align:center;
+	top:98px;
+	line-height: 20px;
+	font-size: 16px; 
+	overflow: hide;
+}
+#lightbox-container-image img{
+	background: none;
+   	border: 0px solid #E5E5E5;
+	padding: 0px;
 }

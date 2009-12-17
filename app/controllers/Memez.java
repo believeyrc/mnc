@@ -3,6 +3,8 @@ package controllers;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import jobs.PostThingJob;
 
 import models.Family;
@@ -40,9 +42,11 @@ public class Memez extends Basez {
 	}
 
 	static void saveMeme(@Required(message = "Content is required") @MinSize(10) String content) {
-		User user = User.find("byEmail", Security.connected()).first();
-		Meme meme = new Meme(content, new Date(), user);
-		meme.save();
+		if(StringUtils.isNotEmpty(content)&&content.length()>1) {
+			User user = User.find("byEmail", Security.connected()).first();
+			Meme meme = new Meme(content, new Date(), user);
+			meme.save();
+		}
 	}
 
 	@Check("login")
