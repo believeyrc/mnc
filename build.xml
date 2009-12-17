@@ -11,6 +11,8 @@
       	<exclude name="dist/**" />
       </fileset>
     </copy>
+	<copy tofile="${basedir}/dist/conf/application.conf" file="${basedir}/conf/application.conf.prod" overwrite="true">
+	</copy>
   </target>
 </project>
 

@@ -143,5 +143,3 @@ mail.smtp=mock
 
 # Configuration of the blog engine
 # ~~~~~
-blog.title=其乐也融融
-blog.baseline=平平淡淡才是真
