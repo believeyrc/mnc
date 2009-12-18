@@ -113,3 +113,11 @@ msgUploading = 正在上传
 msgComplete=上传完成。
 msgCancelled=已取消
 uploadCancel=取消上传
+
+prevLinkText=&laquo; 上一张
+nextLinkText=下一张 &raquo;
+pauseLinkText=暂停
+playLinkText=自动播放
+NextPage=下一页 &raquo;
+PreviousPage=&laquo; 上一页
+DownloadOriginal=下载原始图片

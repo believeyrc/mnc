@@ -9,7 +9,7 @@ import utils.ImageUtil;
  *
  * @author Administrator
  */
-public class ResizeImageJob extends Job{
+public class ResizeImageJob extends Job<File>{
 	private File file;
 	private int width,height;
 	public ResizeImageJob(File file){

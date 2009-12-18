@@ -16,6 +16,7 @@ import models.User;
 import org.apache.commons.io.FileUtils;
 
 import play.libs.Codec;
+import utils.PhotoUploaderUtil;
 
 public class Familyz extends Basez {
 	public static void neighbours(String family) {
@@ -40,40 +41,18 @@ public class Familyz extends Basez {
 	}
 
 	public static void updateImage(String family, File upload) {
-		try {
-			String uuid = Codec.UUID();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-			String tDate = sdf.format(new Date());
-			String filePath = "public/upload/" + tDate + "/" + uuid;
-			File ofile = new File(filePath);
-			FileUtils.moveFile(upload, ofile);
-			ResizeImageJob pref = new ResizeImageJob(ofile, 700, 440);
-			ResizeImageJob thumb = new ResizeImageJob(ofile, 80, 60);
-			Future<File> prefFuture = pref.now();
-			Future<File> thumbFuture = thumb.now();
-			File preffile = prefFuture.get();
-			File thumbfile = thumbFuture.get();
-			String preffilepath = preffile.getPath().replaceAll("\\\\", "/");
-			String thumbfilepath = thumbfile.getPath().replaceAll("\\\\", "/");
-
-			Photo photo = new Photo(upload.getName(), new Date(), filePath);
-			photo.prefPath = preffilepath;
-			photo.thumbPath = thumbfilepath;
+		String uuid = Codec.UUID();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		String tDate = sdf.format(new Date());
+		String filePath = "public/upload/" + tDate + "/" + uuid;
+		Photo photo = PhotoUploaderUtil.processPhoto(upload);
+		if (photo != null) {
 			photo.author = User.find("byEmail", Security.connected()).first();
 			photo.save();
-			
 			Family f = Family.find("code = ?", family).first();
-			f.image = thumbfilepath;
+			f.image = photo.thumbPath;
 			f.save();
-			
-			renderText("{'err':'','msg':'/%s','original':'/%s','thumb':'/%s','pref':'/%s'}", preffilepath, filePath, thumbfilepath, preffilepath);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
+			renderText("{'err':'','msg':'/%s','original':'/%s','thumb':'/%s','pref':'/%s'}", photo.prefPath, photo.filePath, photo.thumbPath, photo.prefPath);
 		}
-
 	}
 }
