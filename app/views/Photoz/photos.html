@@ -6,92 +6,126 @@
 #{isMine}
 	#{uploadToolbar/}
 #{/isMine}
+#{script '../lightbox/js/jquery.lightbox-0.5.min.js'/}
+#{stylesheet '../lightbox/css/jquery.lightbox-0.5.css'/}
+<style type="text/css">
+td{
+	text-align:center;
+	width: 154px;
+}
+textarea{
+	width:100%;
+	height:26px;
+}
+.imgtd {
+}
+.captd {
+}
+</style>
 
-#{script '../galleriffic-2.0/js/jquery.galleriffic.js'/}
-#{stylesheet '../galleriffic-2.0/css/galleriffic-4.css'/}
-
-
-<div id="gallery" class="content">
-	<div id="loading"></div>
-	<div id="slideshow"></div>
-	<div id="caption"></div>
-
-	
-	<div id="controls">
-		#{if offset > 0 }
-		  <div class="" style="display:inline;" id="prev">
-			<a href="@{Photoz.photos().add('family',family.code).add('offset',offset-35>0?offset-35:0)}">&{'PreviousPage'}</a>
-		  </div>
-		#{/if}
-		#{if totalCount> offset+pageSize}
-		  <div class="" style="display:inline;"  id="next">
-			<a href="@{Photoz.photos().add('family',family.code).add('offset',offset+pageSize)}">&{'NextPage'}</a>
-		  </div>
-		#{/if}
-	</div>
+<div style="clear:both">  
+#{if offset > 0 }
+  <div class="grid_3 alpha" style="display:inline;" id="prev">
+	<a href="@{Photoz.photos().add('family',family.code).add('offset',offset-pageSize > 0? offset-pageSize:0)}">&{'PreviousPage'}</a>
+  </div>
+#{/if}
+#{if totalCount> offset+pageSize}
+  <div class="grid_3 omega float-right" style="display:inline;"  id="next">
+	<a href="@{Photoz.photos().add('family',family.code).add('offset',offset+pageSize)}">&{'NextPage'}</a>
+  </div>
+#{/if}
 </div>
 
+<script>
+function doedit(div){
+	$(div).hide();
+	$(div).parent().append("<div id='editor'><textarea width='100%'>"+$(div).text()+"</textarea><input type='button' value='save' onclick='doSave(this)'/><input onclick='cancelEdit(this)' type='button' value='cancel'/></div>");
+}
+function cancelEdit(bt){	
+	$(bt).closest("div").hide();
+	$(bt).closest("div").siblings("#cap").show()
+}
+function doSave(bt){
+	var cap = $(bt).closest("div").find("textarea").val();
+	divcap = $(bt).closest("div").siblings("#cap")
+	divcap.show()
+	divcap.html('updating')
+	$.post('@{Photoz.caption()}', {id:divcap.attr('pid'),caption:cap}, function(ret){				
+		$('div[pid='+ret.id+']').html(ret.caption)
+	}, "json");	
+	$(bt).closest("div").hide();
+}
+function deletePhoto(a){
+	var pid = $(a).closest('div').attr('vpid');
+	$.post('@{Photoz.remove()}', {id:pid,family:'${family.code}'}, function(ret){				
+		window.location.reload();
+	}, "json");	
+}
+</script>
 
-
-
-<div id="thumbs" class="navigation">
-	<ul class="thumbs noscript">
-		#{list items:photos, as:'photo'}
-		<li>
-			<a class="thumb" href="/${photo.prefPath}" title="${photo.caption}">
-				<img src="/${photo.thumb2Path}" alt="${photo.caption}" />
-			</a>
-			<div class="caption">
-				<div class="download">
-					<a href="/${photo.filePath}">&{'DownloadOriginal'}</a>
-				</div>
-				<div class="image-title">${photo.caption}</div>
-				<div class="image-desc">${photo.caption}</div>
-			</div>
-		</li>		
-		#{/list}
-	</ul>
- 
-	<div style="clear:both">  
-	</div>
-</div>
-
-
+<table>
+%{
+	def imgrow = ""
+	def caprow = ""
+	def inforow = ""	
+	def cols = 4
+	photos.eachWithIndex(){photo,i->
+		//println(i+":"+photo.id)
+		if( i%cols ==0 ){
+			imgrow+="<tr valign='bottom' >"
+			caprow+="<tr valign='top'>"
+			inforow+="<tr valign='top'>"
+		}	
+		imgrow += "<td class='imgtd'><div class='imgbock'><a href='/${photo.prefPath}'><img src='/${photo.thumb2Path}' alt='${photo.caption}'/></a></div></td>"
+		caprow += "<td class='captd'><div id='cap' onclick='doedit(this)' pid='${photo.id}'>${photo.caption}</div></td>"
+		inforow += ("<td class='infotd'><div id='info' vpid='${photo.id}'>"
+			+play.i18n.Messages.get('updatedAt')
+			+"${photo.uploadAt.format('yyyy/mm/dd')}"
+			+"<br/>"
+			+"<a onclick='deletePhoto(this)' >"
+			+play.i18n.Messages.get('deletePhoto')
+			+"</a>"
+			+"<a href='"
+			+ actionBridge.Photoz.viewPhoto().add('family',family.code).add('id',photo.id)
+			+"'> "
+			+play.i18n.Messages.get('viewPhoto')
+			+"</a>"
+			+"</div></td>")
+		
+		if((i+1) == photos.size()){
+			if (i % cols != cols - 1){
+				def lack = cols - ( i % cols ) - 1
+				for( j = 0; j < lack; j++) {
+					imgrow +="<td>&nbsp;</td>"
+					caprow +="<td>&nbsp;</td>"
+					inforow +="<td>&nbsp;</td>"			
+				}
+			} 
+		}
+		
+		if( i%cols == cols - 1 || (i+1) == photos.size()){
+			out.print(imgrow)
+			out.print(caprow)
+			out.print(inforow)
+			imgrow = ""
+			caprow = ""
+			inforow = ""
+		}
+	}	
+}%
+</table>
 
 <script type="text/javascript">
-			
-
-			
-			
-			$(document).ready(function() {				
-				// We only want these styles applied when javascript is enabled
-				$('div.navigation').css({'width' : '100%', 'float' : 'left'});
-				$('div.content').css('display', 'block');
-				var captionOpacity = 0.0;
-				$('#captionToggle a').click(function(e) {
-					var link = $(this);
-					
-					var isOff = link.hasClass('off');
-					var removeClass = isOff ? 'off' : 'on';
-					var addClass = isOff ? 'on' : 'off';
-					var linkText = isOff ? 'Hide Caption' : 'Show Caption';
-					captionOpacity = isOff ? 0.7 : 0.0;
-
-					link.removeClass(removeClass).addClass(addClass).text(linkText).attr('title', linkText);
-					$('#caption span.image-caption').fadeTo(1000, captionOpacity);
-					
-					e.preventDefault();
-				});
-				// Initialize Minimal Galleriffic Gallery
-				$('#thumbs').galleriffic({
-					imageContainerSel:         '#slideshow',
-					controlsContainerSel:      '#controls',
-					captionContainerSel:       '#caption',
-					loadingContainerSel:       '#loading',
-					prevLinkText: '&{'prevLinkText'}',
-					nextLinkText: '&{'nextLinkText'}',
-					pauseLinkText: '&{'pauseLinkText'}',
-					playLinkText: '&{'playLinkText'}'
-				});
-			});
+    $(function() {
+        $('.imgbock a').lightBox({
+        	overlayBgColor: '#FFF',
+			overlayOpacity: 0.6,
+			imageLoading: '/public/lightbox/images/lightbox-ico-loading.gif',
+			imageBtnClose: '/public/lightbox/images/lightbox-btn-close.gif',
+			imageBtnPrev: '/public/lightbox/images/lightbox-btn-prev.gif',
+			imageBtnNext: '/public/lightbox/images/lightbox-btn-next.gif',
+			imageBlank: '/public/lightbox/images/lightbox-blank.gif',
+			containerResizeSpeed: 350
+        });
+    });
 </script>

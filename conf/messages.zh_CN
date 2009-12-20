@@ -73,7 +73,7 @@ Administration=管理
 MemeManage=Meme管理
 Meme=近况
 
-updatedAt=于
+updatedAt=更新
 
 SiteforyourFamily=关注你最亲密的人
 
@@ -121,3 +121,9 @@ playLinkText=自动播放
 NextPage=下一页 &raquo;
 PreviousPage=&laquo; 上一页
 DownloadOriginal=下载原始图片
+deletePhoto=删除
+viewPhoto=查看
+returnToList=返回
+rotateLeft=顺时针
+rotateRight=逆时针
+sayHello=哈罗

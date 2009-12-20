@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -15,6 +16,7 @@ import org.apache.commons.io.FileUtils;
 
 import play.Play;
 import play.libs.Crypto;
+import utils.ImageUtil;
 import utils.PhotoUploaderUtil;
 
 public class Photoz extends Basez {
@@ -22,19 +24,19 @@ public class Photoz extends Basez {
 	public static void photos(String family, int offset) {
 		if (offset <= 0)
 			offset = 0;
-		int pageSize = 20;
-		long totalCount = Photo.count(" author.family.code = ? order by uploadAt desc", family);
-		List<Photo> photos = Photo.find(" author.family.code = ? order by uploadAt desc", family).from(offset).fetch(pageSize);
+		int pageSize = 12;
+		long totalCount = Photo.count(" author.family.code = ? ", family);
+		List<Photo> photos = Photo.find(" author.family.code = ? order by id desc", family).from(offset).fetch(pageSize);
 		render(photos, offset, totalCount, pageSize);
 	}
 
 	public static void carousel(String family) {
-		List<Photo> photos = Photo.find(" author.family.code = ? order by uploadAt desc", family).fetch();
+		List<Photo> photos = Photo.find(" author.family.code = ? order by id desc", family).fetch();
 		render(photos);
 	}
 
 	public static void galleria(String family) {
-		List<Photo> photos = Photo.find(" author.family.code = ? order by uploadAt desc", family).fetch();
+		List<Photo> photos = Photo.find(" author.family.code = ? order by id desc", family).fetch();
 		render(photos);
 	}
 
@@ -48,11 +50,38 @@ public class Photoz extends Basez {
 		renderText("{ \"more\":%s, \"id\":%s, \"path\":\"%s\" }", more > 1, photo.id, photo.filePath);
 	}
 
+	public static void rotateRight(Long id) throws IOException {
+		Photo photo = Photo.findById(id);
+		String file = photo.prefPath;
+		ImageUtil.saveJPEG(ImageUtil.roate(ImageUtil.load(new File(file)), (float) (Math.PI/2)),new File(file));
+		PhotoUploaderUtil.updateThumb(photo);
+	}
+
+	public static void rotateLeft(Long id) throws IOException {
+		Photo photo = Photo.findById(id);
+		String file = photo.prefPath;
+		ImageUtil.saveJPEG(ImageUtil.roate(ImageUtil.load(new File(file)), -(float) (Math.PI/2)),new File(file));
+		PhotoUploaderUtil.updateThumb(photo);
+	}
+	public static void sayHello(Long id,String content,int x,int y) throws IOException {
+		Photo photo = Photo.findById(id);
+		String file = photo.prefPath;
+		PhotoUploaderUtil.updateThumb(photo);
+	}
+
 	public static void caption(Long id, String caption) {
 		Photo photo = Photo.findById(id);
 		photo.caption = caption;
 		photo.save();
-		renderText(caption);
+		Photo temp = new Photo();
+		temp.caption = photo.caption;
+		temp.id = photo.id;
+		renderJSON(photo);
+	}
+
+	public static void viewPhoto(Long id) {
+		Photo photo = Photo.findById(id);
+		render(photo);
 	}
 
 	public static void previousPicture(Long id) {
@@ -93,6 +122,7 @@ public class Photoz extends Basez {
 			FileUtils.deleteQuietly(new File(photo.prefPath));
 			photo.delete();
 		}
+		renderJSON("{msg:'ok'}");
 	}
 
 	static Pattern sessionParser = Pattern.compile("\u0000([^:]*):([^\u0000]*)\u0000");

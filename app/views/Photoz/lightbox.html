@@ -1,0 +1,51 @@
+#{extends 'main.html' /}
+#{set 'title'}
+	 &{'pictures'}
+#{/set}
+
+#{isMine}
+	#{uploadToolbar/}
+#{/isMine}
+
+#{script '../lightbox/js/jquery.lightbox-0.5.min.js'/}
+#{stylesheet '../lightbox/css/jquery.lightbox-0.5.css'/}
+
+<div class="grid_6 prefix_1 suffix_1" id="gallery" >
+  <div id="pictures" style="height:">
+	#{list items:photos, as:'photo'}
+		<div class="photo-block">
+		<a href="/${photo.prefPath}"><img src="/${photo.thumb2Path}" alt="${photo.caption}"/></a>
+		</div>
+	#{/list}
+  </div>
+
+ 
+  
+<div style="clear:both">  
+#{if offset > 0 }
+  <div class="grid_3 alpha" style="display:inline;" id="prev">
+	<a href="@{Photoz.photos().add('family',family.code).add('offset',offset-35>0?offset-35:0)}">&{'PreviousPicture'}</a>
+  </div>
+#{/if}
+#{if totalCount> offset+pageSize}
+  <div class="grid_3 omega float-right" style="display:inline;"  id="next">
+	<a href="@{Photoz.photos().add('family',family.code).add('offset',offset+pageSize)}">&{'NextPicture'}</a>
+  </div>
+#{/if}
+</div>
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $('.photo-block a').lightBox({
+        	overlayBgColor: '#FFF',
+			overlayOpacity: 0.6,
+			imageLoading: '/public/lightbox/images/lightbox-ico-loading.gif',
+			imageBtnClose: '/public/lightbox/images/lightbox-btn-close.gif',
+			imageBtnPrev: '/public/lightbox/images/lightbox-btn-prev.gif',
+			imageBtnNext: '/public/lightbox/images/lightbox-btn-next.gif',
+			imageBlank: '/public/lightbox/images/lightbox-blank.gif',
+			containerResizeSpeed: 350
+        });
+    });
+</script>

@@ -43,6 +43,14 @@ public class PhotoUploaderUtil {
 		return null;
 	}
 
+	public static void updateThumb(Photo photo) {
+		File ofile = new File(photo.prefPath);
+		ResizeImageJob thumb = new ResizeImageJob(ofile, 80, 60,new File(photo.thumbPath));
+		ResizeImageJob thumb2 = new ResizeImageJob(ofile, 140, 90,new File(photo.thumb2Path));
+		Future<File> thumbFuture = thumb.in(1);
+		Future<File> thumb2Future = thumb2.in(1);
+	}
+
 	public static Photo processPhoto(File upload) {
 		try {
 			String uuid = Codec.UUID();
@@ -57,5 +65,7 @@ public class PhotoUploaderUtil {
 			e.printStackTrace();
 		}
 		return null;
+
 	}
+
 }

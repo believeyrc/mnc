@@ -10,6 +10,9 @@ import play.db.jpa.Model;
 
 @Entity
 public class Photo extends Model {
+	public Photo(){
+		
+	}
 	public Photo(String caption,Date uploadAt,String filePath){
 		this.caption = caption;
 		this.uploadAt = uploadAt;

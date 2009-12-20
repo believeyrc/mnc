@@ -1,20 +1,13 @@
 package controllers;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 
-import jobs.ResizeImageJob;
 import models.Family;
 import models.Photo;
 import models.User;
-
-import org.apache.commons.io.FileUtils;
-
 import play.libs.Codec;
 import utils.PhotoUploaderUtil;
 

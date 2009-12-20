@@ -1,0 +1,97 @@
+#{extends 'main.html' /}
+#{set 'title'}
+	 &{'pictures'}
+#{/set}
+
+#{isMine}
+	#{uploadToolbar/}
+#{/isMine}
+
+#{script '../galleriffic-2.0/js/jquery.galleriffic.js'/}
+#{stylesheet '../galleriffic-2.0/css/galleriffic-4.css'/}
+
+
+<div id="gallery" class="content">
+	<div id="loading"></div>
+	<div id="slideshow"></div>
+	<div id="caption"></div>
+
+	
+	<div id="controls">
+		#{if offset > 0 }
+		  <div class="" style="display:inline;" id="prev">
+			<a href="@{Photoz.photos().add('family',family.code).add('offset',offset-35>0?offset-35:0)}">&{'PreviousPage'}</a>
+		  </div>
+		#{/if}
+		#{if totalCount> offset+pageSize}
+		  <div class="" style="display:inline;"  id="next">
+			<a href="@{Photoz.photos().add('family',family.code).add('offset',offset+pageSize)}">&{'NextPage'}</a>
+		  </div>
+		#{/if}
+	</div>
+</div>
+
+
+
+
+<div id="thumbs" class="navigation">
+	<ul class="thumbs noscript">
+		#{list items:photos, as:'photo'}
+		<li>
+			<a class="thumb" href="/${photo.prefPath}" title="${photo.caption}">
+				<img src="/${photo.thumb2Path}" alt="${photo.caption}" />
+			</a>
+			<div class="caption">
+				<div class="download">
+					<a href="/${photo.filePath}">&{'DownloadOriginal'}</a>
+				</div>
+				<div class="image-title">${photo.caption}</div>
+				<div class="image-desc">${photo.caption}</div>
+			</div>
+		</li>		
+		#{/list}
+	</ul>
+ 
+	<div style="clear:both">  
+	</div>
+</div>
+
+
+
+<script type="text/javascript">
+			
+
+			
+			
+			$(document).ready(function() {				
+				// We only want these styles applied when javascript is enabled
+				$('div.navigation').css({'width' : '100%', 'float' : 'left'});
+				$('div.content').css('display', 'block');
+				var captionOpacity = 0.0;
+				$('#captionToggle a').click(function(e) {
+					var link = $(this);
+					
+					var isOff = link.hasClass('off');
+					var removeClass = isOff ? 'off' : 'on';
+					var addClass = isOff ? 'on' : 'off';
+					var linkText = isOff ? 'Hide Caption' : 'Show Caption';
+					captionOpacity = isOff ? 0.7 : 0.0;
+
+					link.removeClass(removeClass).addClass(addClass).text(linkText).attr('title', linkText);
+					$('#caption span.image-caption').fadeTo(1000, captionOpacity);
+					
+					e.preventDefault();
+				});
+				// Initialize Minimal Galleriffic Gallery
+				$('#thumbs').galleriffic({
+					imageContainerSel:         '#slideshow',
+					controlsContainerSel:      '#controls',
+					captionContainerSel:       '#caption',
+					loadingContainerSel:       '#loading',
+					prevLinkText: '&{'prevLinkText'}',
+					nextLinkText: '&{'nextLinkText'}',
+					pauseLinkText: '&{'pauseLinkText'}',
+					playLinkText: '&{'playLinkText'}'
+				});
+			});
+</script>

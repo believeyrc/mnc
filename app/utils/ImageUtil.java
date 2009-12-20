@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 
 import play.Logger;
 
+import com.jhlabs.image.RotateFilter;
 import com.mortennobel.imagescaling.ResampleOp;
 
 public class ImageUtil {
@@ -37,10 +38,18 @@ public class ImageUtil {
 		int ow = img.getWidth();
 		int oh = img.getHeight();
 		float scale = Math.min(1.0f * width / ow, 1.0f * height / oh);
-		if(scale >1.0)
+		if (scale > 1.0)
 			return img;
 		ResampleOp resampleOp = new ResampleOp((int) (ow * scale), (int) (oh * scale));
 		BufferedImage rescaledTomato = resampleOp.filter(img, null);
 		return rescaledTomato;
 	}
+
+	public static BufferedImage roate(BufferedImage src, float angle) {
+		BufferedImage dst = new BufferedImage(src.getHeight(), src.getWidth(), src.getType());
+		RotateFilter rotateFilter = new RotateFilter(angle);
+		rotateFilter.filter(src, dst);
+		return dst;
+	}
+	
 }
