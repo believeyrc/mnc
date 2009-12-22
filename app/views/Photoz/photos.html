@@ -100,16 +100,18 @@ function deletePhoto(a){
 			inforow+="<tr valign='top' class='inforow'>"
 		}	
 		imgrow += "<td class='imgtd'><div class='imgbock'><a href='/${photo.prefPath}'><img src='/${photo.thumb2Path}' alt='${photo.caption}'/></a></div></td>"
-		caprow += "<td class='captd'><div id='cap' onclick='doedit(this)' pid='${photo.id}'>${photo.caption}</div></td>"
+		caprow += "<td class='captd'><div id='cap' " 
+		}% 
+			#{isMine} %{ caprow += "onclick='doedit(this)' " }% #{/isMine}
+		%{ 
+		caprow += " pid='${photo.id}'>${photo.caption}</div></td>"
 		inforow += ("<td class='infotd'><div id='info' vpid='${photo.id}'>"
 			+play.i18n.Messages.get('updatedAt')
 			+"${photo.uploadAt.format('yyyy/mm/dd')}" )
 			//+"<br/>"
 }%
-#{isMine}			
-			#{set 'inforow'}
-				${inforow}<a href='#' onclick='deletePhoto(this)' >&{'deletePhoto'}</a>
-			#{/set}
+#{isMine}
+	%{inforow+=("<a href='#' onclick='deletePhoto(this)' >"+play.i18n.Messages.get('deletePhoto')+"</a>")}%
 #{/isMine}
 %{
 			 
