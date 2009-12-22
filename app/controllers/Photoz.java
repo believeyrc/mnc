@@ -9,13 +9,17 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import jobs.PostThingJob;
+
 import models.Photo;
 import models.Responses;
 import models.User;
+import models.Thing.TYPE;
 
 import org.apache.commons.io.FileUtils;
 
 import play.Play;
+import play.i18n.Messages;
 import play.libs.Crypto;
 import utils.ImageUtil;
 import utils.PhotoUploaderUtil;
@@ -142,6 +146,7 @@ public class Photoz extends Basez {
 			if (photo != null) {
 				photo.author = User.find("byEmail", Security.connected()).first();
 				photo.save();
+					new PostThingJob(Security.connected(), Messages.get("uploadNewImage", getCurrentUser().fullname,photo.id,getCurrentUser().family.code), TYPE.PHOTO).in(1);
 				renderText("{'err':'','msg':'/%s','original':'/%s','thumb':'/%s','pref':'/%s'}", photo.prefPath, photo.filePath, photo.thumbPath, photo.prefPath);
 			}
 		} catch (Exception e) {
