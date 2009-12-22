@@ -58,43 +58,49 @@ public class Photoz extends Basez {
 	public static void rotateRight(Long id) throws IOException {
 		Photo photo = Photo.findById(id);
 		String file = photo.prefPath;
-		ImageUtil.saveJPEG(ImageUtil.roate(ImageUtil.load(new File(file)), (float) (Math.PI/2)),new File(file));
+		ImageUtil.saveJPEG(ImageUtil.roate(ImageUtil.load(new File(file)), (float) (Math.PI / 2)), new File(file));
 		PhotoUploaderUtil.updateThumb(photo);
 	}
 
 	public static void rotateLeft(Long id) throws IOException {
 		Photo photo = Photo.findById(id);
 		String file = photo.prefPath;
-		ImageUtil.saveJPEG(ImageUtil.roate(ImageUtil.load(new File(file)), -(float) (Math.PI/2)),new File(file));
+		ImageUtil.saveJPEG(ImageUtil.roate(ImageUtil.load(new File(file)), -(float) (Math.PI / 2)), new File(file));
 		PhotoUploaderUtil.updateThumb(photo);
 	}
-	public static void sayHello(Long id,String content,int x,int y) throws IOException {
+
+	public static void sayHello(Long id, String content, int x, int y) throws IOException {
 		Photo photo = Photo.findById(id);
 		String file = photo.prefPath;
 		PhotoUploaderUtil.updateThumb(photo);
 	}
 
+	@Check("ROLE_USER")
 	public static void caption(Long id, String caption) {
-		Photo photo = Photo.findById(id);
-		photo.caption = caption;
-		photo.save();
-		Photo temp = new Photo();
-		temp.caption = photo.caption;
-		temp.id = photo.id;
-		renderJSON(photo);
+		Photo photo = Photo.find("id = ? and author = ? ", id, getCurrentUser()).first();
+		if (photo != null) {
+			photo.caption = caption;
+			photo.save();
+			Photo temp = new Photo();
+			temp.caption = photo.caption;
+			temp.id = photo.id;
+			renderJSON(photo);
+		}
 	}
 
 	public static void viewPhoto(Long id) {
 		Photo photo = Photo.findById(id);
 		List<Responses> responses = Responses.find(" photo = ? order by postedAt asc", photo).fetch();
-		render(photo,responses);
+		render(photo, responses);
 	}
-	public static void responses(Long id,String content) {
+
+	public static void responses(Long id, String content) {
 		Photo photo = Photo.findById(id);
 		User user = getCurrentUser();
 		Responses responses = new Responses(photo, user, content);
 		responses.save();
 	}
+
 	public static void previousPicture(Long id) {
 		if (id == null)
 			id = 0L;
@@ -124,16 +130,21 @@ public class Photoz extends Basez {
 		}
 	}
 
+	@Check("ROLE_USER")
 	public static void remove(String family, Long id) {
-		Photo photo = Photo.find("byId", id).first();
+		Photo photo = Photo.find("id = ? and author = ? ", id, getCurrentUser()).first();
 		if (photo != null) {
-			FileUtils.deleteQuietly(new File(photo.filePath));
-			FileUtils.deleteQuietly(new File(photo.thumbPath));
-			FileUtils.deleteQuietly(new File(photo.thumb2Path));
-			FileUtils.deleteQuietly(new File(photo.prefPath));
+			if (photo.filePath != null)
+				FileUtils.deleteQuietly(new File(photo.filePath));
+			if (photo.thumbPath != null)
+				FileUtils.deleteQuietly(new File(photo.thumbPath));
+			if (photo.thumb2Path != null)
+				FileUtils.deleteQuietly(new File(photo.thumb2Path));
+			if (photo.prefPath != null)
+				FileUtils.deleteQuietly(new File(photo.prefPath));
 			photo.delete();
+			renderJSON("{msg:'ok'}");
 		}
-		renderJSON("{msg:'ok'}");
 	}
 
 	static Pattern sessionParser = Pattern.compile("\u0000([^:]*):([^\u0000]*)\u0000");
@@ -146,7 +157,7 @@ public class Photoz extends Basez {
 			if (photo != null) {
 				photo.author = User.find("byEmail", Security.connected()).first();
 				photo.save();
-					new PostThingJob(Security.connected(), Messages.get("uploadNewImage", getCurrentUser().fullname,photo.id,getCurrentUser().family.code), TYPE.PHOTO).in(1);
+				new PostThingJob(Security.connected(), Messages.get("uploadNewImage", getCurrentUser().fullname, photo.id, getCurrentUser().family.code), TYPE.PHOTO).in(1);
 				renderText("{'err':'','msg':'/%s','original':'/%s','thumb':'/%s','pref':'/%s'}", photo.prefPath, photo.filePath, photo.thumbPath, photo.prefPath);
 			}
 		} catch (Exception e) {

@@ -103,12 +103,17 @@ function deletePhoto(a){
 		caprow += "<td class='captd'><div id='cap' onclick='doedit(this)' pid='${photo.id}'>${photo.caption}</div></td>"
 		inforow += ("<td class='infotd'><div id='info' vpid='${photo.id}'>"
 			+play.i18n.Messages.get('updatedAt')
-			+"${photo.uploadAt.format('yyyy/mm/dd')}"
+			+"${photo.uploadAt.format('yyyy/mm/dd')}" )
 			//+"<br/>"
-			+"<a href='#' onclick='deletePhoto(this)' >"
-			+play.i18n.Messages.get('deletePhoto')
-			+"</a>"
-			+"<a href='"
+}%
+#{isMine}			
+			#{set 'inforow'}
+				${inforow}<a href='#' onclick='deletePhoto(this)' >&{'deletePhoto'}</a>
+			#{/set}
+#{/isMine}
+%{
+			 
+			inforow += ( "<a href='"
 			+ actionBridge.Photoz.viewPhoto().add('family',family.code).add('id',photo.id)
 			+"'> "
 			+play.i18n.Messages.get('viewPhoto')
