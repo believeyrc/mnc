@@ -2,12 +2,15 @@
 #{set 'title'}
 	 &{'pictures'}
 #{/set}
+
+#{isMine}
 #{script 'jquery.imgareaselect.comments.js'/}
 #{script 'ui.core.js'/}
 #{script 'ui.draggable.js'/}
 #{script 'ui.resizable.js'/}
 #{stylesheet 'imgareaselect-default.css'/}
 #{stylesheet 'themes/base/ui.all.css'/}
+
 
 <style type="text/css">
 td{
@@ -31,6 +34,7 @@ textarea{
 	background:none;
 }
 </style>
+
 <script>
 	function rotateLeft(id){
 		$.post('@{Photoz.rotateLeft()}',{id:id},function(){			
@@ -64,22 +68,27 @@ textarea{
 		
 	}
 </script>
+
 <div id='sayHello' class='sayHello' style='display:none;position:absolute;width:100px;height:122px;'>	
 	<div id='hello-img'>
-		<img src='/public/images/hello2.gif' style='width:100%;height:100%'/>
+		<img src='/public/images/hello2.gif' style='width:100%;height:100%;'/>
 	</div>
 	<table width="100px;height:62px;margin:0px;border:0px;">
 		<tr style="height:40px"><td style="border:0px;padding:0px"><textarea id="content"></textarea></td></tr>
 		<tr style="height:22px;"><td style="border:0px;padding:0px"><a onclick="saveHello(this)">save</a><a onclick="cancelHello(this)"> cancel</a></td></tr>
 	</table>	
 </div>
+#{/isMine}
 
 <div style="clear:both">
-	<a onclick="history.go(-1)">&{'returnToList'}</a>
-	<a onclick="rotateRight((${photo.id}))">&{'rotateRight'}</a>
-	<a onclick="rotateLeft((${photo.id}))">&{'rotateLeft'}</a>
-	<a onclick="sayHello((${photo.id}))">&{'sayHello'}</a>
+	<a onclick="return fasle;" href='javascript:history.go(-1)'>&{'returnToList'}</a>
+#{isMine}
+	<a href='#' onclick="rotateRight((${photo.id}))">&{'rotateRight'}</a>
+	<a href='#' onclick="rotateLeft((${photo.id}))">&{'rotateLeft'}</a>
+	<a href='#' onclick="sayHello((${photo.id}))">&{'sayHello'}</a>
+#{/isMine}	
 </div>
+
 <table>
 <tr>
 <td id='imgtd'>

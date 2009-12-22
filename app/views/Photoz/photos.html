@@ -20,6 +20,26 @@ textarea{
 .imgtd {
 }
 .captd {
+	font-size:12px;
+}
+.infotd{
+	font-size:11px;
+}
+#editor a,
+.infotd a{	
+	/*float:right;*/
+}
+#editor a:hover,
+.infotd a:hover{
+	background:#0ff;
+}
+.imgrow{
+}
+tr.caprow{
+	height:12px;
+}
+tr.inforow{
+	color:#212121;
 }
 </style>
 
@@ -39,7 +59,7 @@ textarea{
 <script>
 function doedit(div){
 	$(div).hide();
-	$(div).parent().append("<div id='editor'><textarea width='100%'>"+$(div).text()+"</textarea><input type='button' value='save' onclick='doSave(this)'/><input onclick='cancelEdit(this)' type='button' value='cancel'/></div>");
+	$(div).parent().append("<div id='editor'><textarea width='100%'>"+$(div).text()+"</textarea><a href='#' onclick='doSave(this)'>&{'save'}</a><a onclick='cancelEdit(this)' href='#'>&{'cancel'}</a></div>");
 }
 function cancelEdit(bt){	
 	$(bt).closest("div").hide();
@@ -56,10 +76,13 @@ function doSave(bt){
 	$(bt).closest("div").hide();
 }
 function deletePhoto(a){
-	var pid = $(a).closest('div').attr('vpid');
-	$.post('@{Photoz.remove()}', {id:pid,family:'${family.code}'}, function(ret){				
-		window.location.reload();
-	}, "json");	
+	if(confirm('&{'AreYouSure'}')){
+		var pid = $(a).closest('div').attr('vpid');
+		$.post('@{Photoz.remove()}', {id:pid,family:'${family.code}'}, function(ret){				
+			window.location.reload();
+		}, "json");	
+	}
+	return false;
 }
 </script>
 
@@ -72,17 +95,17 @@ function deletePhoto(a){
 	photos.eachWithIndex(){photo,i->
 		//println(i+":"+photo.id)
 		if( i%cols ==0 ){
-			imgrow+="<tr valign='bottom' >"
-			caprow+="<tr valign='top'>"
-			inforow+="<tr valign='top'>"
+			imgrow+="<tr valign='bottom' class='imgrow'>"
+			caprow+="<tr valign='top' class='caprow'>"
+			inforow+="<tr valign='top' class='inforow'>"
 		}	
 		imgrow += "<td class='imgtd'><div class='imgbock'><a href='/${photo.prefPath}'><img src='/${photo.thumb2Path}' alt='${photo.caption}'/></a></div></td>"
 		caprow += "<td class='captd'><div id='cap' onclick='doedit(this)' pid='${photo.id}'>${photo.caption}</div></td>"
 		inforow += ("<td class='infotd'><div id='info' vpid='${photo.id}'>"
 			+play.i18n.Messages.get('updatedAt')
 			+"${photo.uploadAt.format('yyyy/mm/dd')}"
-			+"<br/>"
-			+"<a onclick='deletePhoto(this)' >"
+			//+"<br/>"
+			+"<a href='#' onclick='deletePhoto(this)' >"
 			+play.i18n.Messages.get('deletePhoto')
 			+"</a>"
 			+"<a href='"

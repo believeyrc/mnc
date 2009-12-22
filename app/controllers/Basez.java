@@ -1,7 +1,5 @@
 package controllers;
 
-import java.util.List;
-
 import models.Family;
 import models.RelationShip;
 import models.User;
@@ -34,7 +32,9 @@ public abstract class Basez extends Controller {
 			renderArgs.put("isFollowed", isFollowed);
 		}
 	}
-
+	protected static User getCurrentUser() {
+		return (User) renderArgs.get("user");
+	}
 	protected static String getFamilyCode() {
 		return params.get("family");
 	}

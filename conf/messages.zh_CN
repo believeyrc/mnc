@@ -127,3 +127,6 @@ returnToList=返回
 rotateLeft=顺时针
 rotateRight=逆时针
 sayHello=哈罗
+save=保存
+cancel=取消
+AreYouSure=确定么？

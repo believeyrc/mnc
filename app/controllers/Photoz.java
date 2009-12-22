@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import models.Photo;
+import models.Responses;
 import models.User;
 
 import org.apache.commons.io.FileUtils;
@@ -81,9 +82,15 @@ public class Photoz extends Basez {
 
 	public static void viewPhoto(Long id) {
 		Photo photo = Photo.findById(id);
-		render(photo);
+		List<Responses> responses = Responses.find(" photo = ? order by postedAt asc", photo).fetch();
+		render(photo,responses);
 	}
-
+	public static void responses(Long id,String content) {
+		Photo photo = Photo.findById(id);
+		User user = getCurrentUser();
+		Responses responses = new Responses(photo, user, content);
+		responses.save();
+	}
 	public static void previousPicture(Long id) {
 		if (id == null)
 			id = 0L;
