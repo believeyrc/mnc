@@ -1,5 +1,6 @@
 package controllers;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -21,6 +22,7 @@ import org.apache.commons.io.FileUtils;
 import play.Play;
 import play.i18n.Messages;
 import play.libs.Crypto;
+import utils.BalloonUtil;
 import utils.ImageUtil;
 import utils.PhotoUploaderUtil;
 
@@ -59,20 +61,27 @@ public class Photoz extends Basez {
 		Photo photo = Photo.findById(id);
 		String file = photo.prefPath;
 		ImageUtil.saveJPEG(ImageUtil.roate(ImageUtil.load(new File(file)), (float) (Math.PI / 2)), new File(file));
-		PhotoUploaderUtil.updateThumb(photo);
+		PhotoUploaderUtil.updateThumbFrom(photo,photo.prefPath);
 	}
 
 	public static void rotateLeft(Long id) throws IOException {
 		Photo photo = Photo.findById(id);
 		String file = photo.prefPath;
 		ImageUtil.saveJPEG(ImageUtil.roate(ImageUtil.load(new File(file)), -(float) (Math.PI / 2)), new File(file));
-		PhotoUploaderUtil.updateThumb(photo);
+		PhotoUploaderUtil.updateThumbFrom(photo,photo.prefPath);
 	}
 
-	public static void sayHello(Long id, String content, int x, int y) throws IOException {
-		Photo photo = Photo.findById(id);
-		String file = photo.prefPath;
-		PhotoUploaderUtil.updateThumb(photo);
+	public static void sayHello(Long id, String content, int x, int y,int w,int h) throws IOException {
+		Photo photo = Photo.find("id = ? and author = ? ", id, getCurrentUser()).first();
+		if (photo != null) {
+			System.out.println(content);
+			String path = photo.prefPath;
+			File file = new File(path);
+			BufferedImage img = ImageUtil.load(file);
+			BalloonUtil.addEllipseBalloon(img, x, y, w, h, utils.BalloonUtil.EllipseBalloon.TYPE.LB, content);
+			ImageUtil.saveJPEG(img, file);
+			PhotoUploaderUtil.updateThumbFrom(photo,photo.prefPath);
+		}
 	}
 
 	@Check("ROLE_USER")
@@ -87,7 +96,12 @@ public class Photoz extends Basez {
 			renderJSON(photo);
 		}
 	}
-
+	public static void revert(Long id) {
+		Photo photo = Photo.find("id = ? and author = ? ", id, getCurrentUser()).first();
+		if (photo != null) {
+			PhotoUploaderUtil.updateThumbFrom(photo,photo.filePath);
+		}
+	}
 	public static void viewPhoto(Long id) {
 		Photo photo = Photo.findById(id);
 		List<Responses> responses = Responses.find(" photo = ? order by postedAt asc", photo).fetch();

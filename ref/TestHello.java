@@ -45,7 +45,7 @@ public class TestHello {
 		ImageIO.write(bi, "jpeg", new File("hello.jpg"));
 	}
 
-	static abstract class AreaCreate {
+	public static abstract class AreaCreate {
 		public Map params = new HashMap();
 
 		public abstract Area create();

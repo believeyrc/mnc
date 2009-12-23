@@ -59,24 +59,42 @@ textarea{
 		editor.find("#hello-img").resizable();
 	}
 	function cancelHello(a){
-		$(a).closest('div').remove();
-	}
-	function saveHello(a){		
 		var editor = $(a).closest('div')
-		var pos = editor.find('#hello-img').offsetParent();
+		editor.hide();
+		//editor.remove();		
+		$('#hiddendiv').append(editor);
+	}
+	function saveHello(a,id){		
+		var editor = $(a).closest('div')
+		var helloimg = editor.find('#hello-img');		
+		var epos = editor.position();
+		//var ipos = helloimg.position();
+		var td = $('#imgtd');
+		var img = td.find('#photo');
+		var tdpos = td.position();
 		var content = editor.find("#content").val();
-		
+		$.post('@{Photoz.sayHello()}',{id:id,
+			x:(epos.left-tdpos.left - (td.width()-img.width())/2),
+			y:(epos.top-tdpos.top - 5),
+			w:helloimg.width(),h:helloimg.height(),
+			content:content},function(){			
+			window.location.reload();
+		});
+	}
+	function revert(id){
+		$.post('@{Photoz.revert()}',{id:id},function(){
+			window.location.reload();
+		});
 	}
 </script>
-
-<div id='sayHello' class='sayHello' style='display:none;position:absolute;width:100px;height:122px;'>	
-	<div id='hello-img'>
-		<img src='/public/images/hello2.gif' style='width:100%;height:100%;'/>
+<div id='hiddendiv' style='display:none'>
+	<div id='sayHello' class='sayHello' style='display:none;position:absolute;width:100px;height:122px;'>		
+		<img id='hello-img' src='/public/images/hello.lt.png' style='width:100px;height:44px;'/>	
+		<table width="100px;height:62px;margin:0px;border:0px;">
+			<tr style="height:40px"><td style="border:0px;padding:0px"><textarea id="content"></textarea></td></tr>
+			<tr style="height:22px;"><td style="border:0px;padding:0px"><a href='#' onclick="saveHello(this,'${photo.id}')">save</a><a  href='#' onclick="cancelHello(this)"> cancel</a></td></tr>
+		</table>	
 	</div>
-	<table width="100px;height:62px;margin:0px;border:0px;">
-		<tr style="height:40px"><td style="border:0px;padding:0px"><textarea id="content"></textarea></td></tr>
-		<tr style="height:22px;"><td style="border:0px;padding:0px"><a onclick="saveHello(this)">save</a><a onclick="cancelHello(this)"> cancel</a></td></tr>
-	</table>	
 </div>
 #{/isMine}
 
@@ -86,6 +104,7 @@ textarea{
 	<a href='#' onclick="rotateRight((${photo.id}))">&{'rotateRight'}</a>
 	<a href='#' onclick="rotateLeft((${photo.id}))">&{'rotateLeft'}</a>
 	<a href='#' onclick="sayHello((${photo.id}))">&{'sayHello'}</a>
+	<a href='#' onclick="revert((${photo.id}))">&{'revert'}</a>
 #{/isMine}	
 </div>
 

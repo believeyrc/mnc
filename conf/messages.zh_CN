@@ -131,3 +131,4 @@ save=保存
 cancel=取消
 AreYouSure=确定么？
 uploadNewImage=%s 上传了新的照片,<a href='/photoz/viewphoto?id=%s&family=%s'>去看看吧</a>
+revert=还原

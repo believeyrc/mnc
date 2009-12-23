@@ -11,6 +11,7 @@ import jobs.ResizeImageJob;
 import models.Photo;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 
 import play.libs.Codec;
 
@@ -43,8 +44,10 @@ public class PhotoUploaderUtil {
 		return null;
 	}
 
-	public static void updateThumb(Photo photo) {
-		File ofile = new File(photo.prefPath);
+	public static void updateThumbFrom(Photo photo,String from ) {
+		File ofile = new File(from);
+		if(!StringUtils.equals(photo.prefPath,from))
+			new ResizeImageJob(ofile, 700, 440,new File(photo.prefPath)).in(1);
 		ResizeImageJob thumb = new ResizeImageJob(ofile, 80, 60,new File(photo.thumbPath));
 		ResizeImageJob thumb2 = new ResizeImageJob(ofile, 140, 90,new File(photo.thumb2Path));
 		Future<File> thumbFuture = thumb.in(1);
