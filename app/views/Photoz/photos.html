@@ -59,7 +59,7 @@ tr.inforow{
 <script>
 function doedit(div){
 	$(div).hide();
-	$(div).parent().append("<div id='editor'><textarea width='100%'>"+$(div).text()+"</textarea><a href='#' onclick='doSave(this)'>&{'save'}</a><a onclick='cancelEdit(this)' href='#'>&{'cancel'}</a></div>");
+	$(div).parent().append("<div id='editor'><textarea width='100%'>"+$(div).text()+"</textarea><a onclick='doSave(this)'>&{'save'}</a><a onclick='cancelEdit(this)' >&{'cancel'}</a></div>");
 }
 function cancelEdit(bt){	
 	$(bt).closest("div").hide();
@@ -111,7 +111,7 @@ function deletePhoto(a){
 			//+"<br/>"
 }%
 #{isMine}
-	%{inforow+=("<a href='#' onclick='deletePhoto(this)' >"+play.i18n.Messages.get('deletePhoto')+"</a>")}%
+	%{inforow+=("<a onclick='deletePhoto(this)' >"+play.i18n.Messages.get('deletePhoto')+"</a>")}%
 #{/isMine}
 %{
 			 

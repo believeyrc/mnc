@@ -25,6 +25,7 @@ a, a:visited {
 	text-decoration: none;
 	color: #2180BC;
 	background: inherit;
+	cursor:pointer;
 }
 a:hover {
 	color: #88ac0b;

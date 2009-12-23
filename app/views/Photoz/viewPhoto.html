@@ -13,6 +13,9 @@
 
 
 <style type="text/css">
+a{
+	cursor:pointer;
+}
 td{
 	text-align:center;
 	width: 154px;
@@ -32,6 +35,9 @@ textarea{
 	padding:0px;
 	border:0px;
 	background:none;
+}
+#sayHello a:hover{
+	background:#0ff;
 }
 </style>
 
@@ -91,8 +97,8 @@ textarea{
 	<div id='sayHello' class='sayHello' style='display:none;position:absolute;width:100px;height:122px;'>		
 		<img id='hello-img' src='/public/images/hello.lt.png' style='width:100px;height:44px;'/>	
 		<table width="100px;height:62px;margin:0px;border:0px;">
-			<tr style="height:40px"><td style="border:0px;padding:0px"><textarea id="content"></textarea></td></tr>
-			<tr style="height:22px;"><td style="border:0px;padding:0px"><a href='#' onclick="saveHello(this,'${photo.id}')">save</a><a  href='#' onclick="cancelHello(this)"> cancel</a></td></tr>
+			<tr style="height:40px"><td style="border:0px;padding:0px"><textarea id="content">&{'sayHello'}</textarea></td></tr>
+			<tr style="height:22px;"><td style="border:0px;padding:0px"><a onclick="saveHello(this,'${photo.id}')">&{'save'}</a><a  onclick="cancelHello(this)">&{'cancel'}</a></td></tr>
 		</table>	
 	</div>
 </div>
@@ -101,10 +107,10 @@ textarea{
 <div style="clear:both">
 	<a onclick="return fasle;" href='javascript:history.go(-1)'>&{'returnToList'}</a>
 #{isMine}
-	<a href='#' onclick="rotateRight((${photo.id}))">&{'rotateRight'}</a>
-	<a href='#' onclick="rotateLeft((${photo.id}))">&{'rotateLeft'}</a>
-	<a href='#' onclick="sayHello((${photo.id}))">&{'sayHello'}</a>
-	<a href='#' onclick="revert((${photo.id}))">&{'revert'}</a>
+	<a  onclick="rotateRight((${photo.id}))">&{'rotateRight'}</a>
+	<a  onclick="rotateLeft((${photo.id}))">&{'rotateLeft'}</a>
+	<a  onclick="sayHello((${photo.id}))">&{'sayHello'}</a>
+	<a  onclick="revert((${photo.id}))">&{'revert'}</a>
 #{/isMine}	
 </div>
 
