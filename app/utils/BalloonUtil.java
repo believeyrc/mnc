@@ -25,23 +25,29 @@ public class BalloonUtil {
 		ac.params.put("h", h);
 		ac.params.put("type", type);
 		Graphics2D g2 = bi.createGraphics();
-		g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+		g2.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
+		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g2.setStroke(new BasicStroke(1.2f));
+
+		Color background = new Color(0xe1,0xe1,0xe1,0x91);
+		Color borderCorlor = Color.WHITE;
+		Color textColor = Color.BLACK.brighter();
 		Area shape = ac.create();
 		if (shape != null) {
-			g2.setColor(new Color(122, 122,122,100));
+			g2.setColor(background);
 			g2.fill(shape);
-			g2.setStroke(new BasicStroke(2f));
-			g2.setColor(Color.GREEN.brighter());
+			g2.setStroke(new BasicStroke(1.2f));
+			g2.setColor(borderCorlor);
 			g2.draw(shape);
 			if (text != null) {
 				g2.setStroke(new BasicStroke(1.0f));
-				g2.setColor(Color.ORANGE);
+				g2.setColor(textColor);
 				g2.setFont(new Font("Song", Font.PLAIN, 14));
 				GlyphVector gv = g2.getFont().createGlyphVector(g2.getFontRenderContext(), text);
 				Rectangle2D vb = gv.getVisualBounds();
 				g2.translate(x + (w - vb.getWidth()) / 2, y + (h - vb.getHeight()) / 2 + vb.getHeight());
-				g2.draw(gv.getOutline());
+				g2.drawString(text, 0, 0);				
 			}
 		}
 		g2.dispose();
