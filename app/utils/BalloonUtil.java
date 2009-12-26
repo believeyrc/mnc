@@ -19,8 +19,8 @@ import utils.BalloonUtil.EllipseBalloon.TYPE;
 
 public class BalloonUtil {
 	public static void addEllipseBalloon(String file, int x, int y, int w, int h, TYPE type, String text) {
-//		ImageMagick.drawMVG(file, file, "mvg/hello-lt.mvg", text, x, y, w, h);
-		useJ2D(file,x,y,w,h,type,text);
+		ImageMagick.drawMVG(file, file, "mvg/hello-lt.mvg", text, x, y, w, h);
+//		useJ2D(file,x,y,w,h,type,text);
 	}
 
 	private static void useJ2D(String file, int x, int y, int w, int h, TYPE type, String text) {

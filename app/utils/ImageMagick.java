@@ -67,7 +67,7 @@ public class ImageMagick {
 			int textidx = stro.indexOf("SampleText");
 			int textlineBegin = stro.lastIndexOf("\n", textidx);
 			
-			stro =( stro.substring(0,textlineBegin) +"font 'res\\SIMFANG.TTF'\n" + stro.substring(textlineBegin));
+			stro =( stro.substring(0,textlineBegin) +" font 'res\\SIMFANG.TTF'\n" + stro.substring(textlineBegin));
 			
 			stro = StringUtils.replaceChars(stro, '\r', '\n');
 			stro = StringUtils.replaceChars(stro, '\n', ' ');
