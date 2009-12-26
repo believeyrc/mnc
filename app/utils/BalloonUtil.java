@@ -11,6 +11,7 @@ import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,10 +19,12 @@ import utils.BalloonUtil.EllipseBalloon.TYPE;
 
 public class BalloonUtil {
 	public static void addEllipseBalloon(String file, int x, int y, int w, int h, TYPE type, String text) {
-		ImageMagick.drawMVG(file, file, "mvg/hello-lt.mvg", text, x, y, w, h);
+//		ImageMagick.drawMVG(file, file, "mvg/hello-lt.mvg", text, x, y, w, h);
+		useJ2D(file,x,y,w,h,type,text);
 	}
 
-	private static void useJ2D(BufferedImage bi, int x, int y, int w, int h, TYPE type, String text) {
+	private static void useJ2D(String file, int x, int y, int w, int h, TYPE type, String text) {
+		BufferedImage bi =ImageUtil.load(new File(file)); 
 		AreaCreate ac = new EllipseBalloon();
 		ac.params.put("x", x);
 		ac.params.put("y", y);
@@ -55,6 +58,7 @@ public class BalloonUtil {
 			}
 		}
 		g2.dispose();
+		ImageUtil.saveJPEG(bi, new File(file));
 	}
 
 	public static abstract class AreaCreate {
