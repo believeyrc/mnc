@@ -11,6 +11,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 
 import play.Logger;
+import play.Play;
 
 public class ImageMagick {
 	public static void thumbnail(String in, String out, int width, int height) {
@@ -102,7 +103,11 @@ public class ImageMagick {
 	private static void invokeCommand(String command) {
 		try {
 			Logger.debug(command);
-			Process e = Runtime.getRuntime().exec("cmd");
+			String shell = "cmd";
+			if(Play.configuration.get("shell")!=null) {
+				Play.configuration.get("shell");
+			}
+			Process e = Runtime.getRuntime().exec(shell);
 			final BufferedReader br = new BufferedReader(new InputStreamReader(e.getInputStream(), "GBK"));
 			final BufferedReader berrr = new BufferedReader(new InputStreamReader(e.getErrorStream(), "GBK"));
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(e.getOutputStream()));
