@@ -103,10 +103,7 @@ public class ImageMagick {
 	private static void invokeCommand(String command) {
 		try {
 			Logger.debug(command);
-			String shell = "cmd";
-			if(Play.configuration.get("shell")!=null) {
-				Play.configuration.get("shell");
-			}
+			String shell = Play.configuration.getProperty("shell","cmd");
 			Process e = Runtime.getRuntime().exec(shell);
 			final BufferedReader br = new BufferedReader(new InputStreamReader(e.getInputStream(), "GBK"));
 			final BufferedReader berrr = new BufferedReader(new InputStreamReader(e.getErrorStream(), "GBK"));
