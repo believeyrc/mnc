@@ -1,0 +1,6 @@
+translate 200,200
+scale 10,2
+fill green   circle 41,39 44,57
+fill blue    circle 59,39 56,57
+fill red     circle 50,21 50,3
+text 0,0 'text'

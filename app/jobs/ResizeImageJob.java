@@ -3,7 +3,7 @@ package jobs;
 import java.io.File;
 
 import play.jobs.Job;
-import utils.ImageUtil;
+import utils.ImageMagick;
 
 /**
  * 
@@ -37,7 +37,8 @@ public class ResizeImageJob extends Job<File> {
 		File ofile = outputFile;
 		if (outputFile == null)
 			ofile = new File(this.file.getParent(), String.format("%1s%2sx%3s.jpg", this.file.getName(), this.width, this.height));
-		ImageUtil.saveJPEG(ImageUtil.scale(ImageUtil.load(file), width, height), ofile);
+//		ImageUtil.saveJPEG(ImageUtil.scale(ImageUtil.load(file), width, height), ofile);
+		ImageMagick.thumbnail(file.getPath(), outputFile.getPath(), width, height);
 		return ofile;
 	}
 }

@@ -4,14 +4,21 @@
 #{/set}
 
 #{isMine}
-	#{uploadToolbar/}
+	#{uploadifybar/}
 #{/isMine}
 #{script '../lightbox/js/jquery.lightbox-0.5.min.js'/}
 #{stylesheet '../lightbox/css/jquery.lightbox-0.5.css'/}
 <style type="text/css">
+table{
+	margin:4px;
+	border:0px;
+	border-collapse:auto;
+}
 td{
 	text-align:center;
 	width: 154px;
+	padding-left: 2px;
+	padding-right: 2px;
 }
 textarea{
 	width:100%;
@@ -35,6 +42,11 @@ textarea{
 }
 .imgrow{
 }
+.imgrow img{
+	/*width:180px;*/
+	padding:1px;
+}
+
 tr.caprow{
 	height:12px;
 }

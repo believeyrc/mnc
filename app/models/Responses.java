@@ -13,6 +13,7 @@ import play.db.jpa.Model;
 @Entity
 public class Responses extends Model {
     @Required
+    @ManyToOne
     public User author;
     @Required
     public Date postedAt;

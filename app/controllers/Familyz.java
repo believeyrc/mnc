@@ -1,14 +1,16 @@
 package controllers;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
 import models.Family;
 import models.Photo;
 import models.User;
-import play.libs.Codec;
+
+import org.apache.commons.io.FileUtils;
+
 import utils.PhotoUploaderUtil;
 
 public class Familyz extends Basez {
@@ -34,18 +36,24 @@ public class Familyz extends Basez {
 	}
 
 	public static void updateImage(String family, File upload) {
-		String uuid = Codec.UUID();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		String tDate = sdf.format(new Date());
-		String filePath = "public/upload/" + tDate + "/" + uuid;
-		Photo photo = PhotoUploaderUtil.processPhoto(upload);
-		if (photo != null) {
+		try {
+			String pathForPhoto = PhotoUploaderUtil.getPathForPhoto();
+			File ofile = new File(pathForPhoto);
+			FileUtils.moveFile(upload, ofile);
+			Photo photo = new Photo(upload.getName(), new Date(), pathForPhoto);
+			photo.prefPath = PhotoUploaderUtil.getPathForLarge(pathForPhoto);
+			photo.thumbPath = PhotoUploaderUtil.getPathForSmall(pathForPhoto);
+			photo.thumb2Path = PhotoUploaderUtil.getPathForMidle(pathForPhoto);
 			photo.author = User.find("byEmail", Security.connected()).first();
 			photo.save();
+			PhotoUploaderUtil.updateThumbnails(photo);
+
 			Family f = Family.find("code = ?", family).first();
 			f.image = photo.thumbPath;
 			f.save();
 			renderText("{'err':'','msg':'/%s','original':'/%s','thumb':'/%s','pref':'/%s'}", photo.prefPath, photo.filePath, photo.thumbPath, photo.prefPath);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }
