@@ -42,18 +42,68 @@
     <body>
 <div id="wrap">        
 	<div id="header">
-		<h1 id='logo'><img id="home_img" src="/${family?.image?:'public/home/home.jpg'}"/></h1>
-		<h1 id="logo-text">${blogTitle}</h1>
-		<h2 id="slogan">${blogBaseline} #{followbutton/} </h2>
-		#{top/}
+		<table class="Header" style='min-width:820px;width:820px' border="0" cellspacing="0">
+		<tr>
+			<td class="FlickrLogo">
+				<a href="/"><img src="http://l.yimg.com/g/images/zh-hk/flickr-yahoo-logo.png.v2" id="FlickrLogo" alt="Flickr 標誌。按一下會返回首頁" height="30" width="180"></a>
+			</td>
+			<td class="Status" style='text-align:right;font-size:11px;'>
+				#{isLogin}
+					以 <a href="/account" class="Pale">${user?.fullname}</a> 登入					
+				#{/isLogin}
+				#{notLogin}
+					你还没有登入
+					<a href="@{Secure.login()}">&{'Login'}</a> 
+				#{/notLogin}
+				<a href="/help/">newete 小帮手</a> 
+				#{isLogin}
+					<a href="@{Secure.logout}">登出</a>
+				#{/isLogin}
+				</td>
+		</tr>
+		</table>
+	<table class="NavBar"  style='min-width:820px;width:820px'  border="0" cellspacing="0">
+		<tr>
+			<td class="Primary">
+			<div id="menu" class="candy_button_bar">
+				<ul class="site_nav_menu_buttons">
+					<li class="no_menu_li"><span><a href="/">首頁</a></span></li>
+					<li class="menu_li" id="candy_nav_button_you"><span><a href="@{Photoz.photos}">你的足跡</a> 
+					<img src="http://l.yimg.com/g/images/site_nav_caret_split_default.png" class="nav_button_caret" alt="更多選項" height="15" width="18"></span>
+					</li>
+						<li class="menu_li" id="candy_nav_button_organize"><span><a href="/photos/organize/">管理與建立</a> <img src="http://l.yimg.com/g/images/site_nav_caret_split_default.png" class="nav_button_caret" alt="更多選項" height="15" width="18"></span>
+						</li>
+					<li class="menu_li" id="candy_nav_button_contacts"><span><a href="/photos/89555424@N00/friends/">自己人</a> <img src="http://l.yimg.com/g/images/site_nav_caret_split_default.png" class="nav_button_caret" alt="更多選項" height="15" width="18"></span>
+					</li>
+					<li class="menu_li" id="candy_nav_button_groups"><span><a href="/groups/">社群</a> <img src="http://l.yimg.com/g/images/site_nav_caret_split_default.png" class="nav_button_caret" alt="更多選項" height="15" width="18"></span>
+					</li>
+					<li class="menu_li" id="candy_nav_button_explore"><span><a href="/explore/" alt="發掘 Flickr 奇趣事">發掘</a> <img src="http://l.yimg.com/g/images/site_nav_caret_split_default.png" class="nav_button_caret" alt="更多選項" height="15" width="18"></span>
+					</li>
+				</ul>
+			</div>
+			</td>
+			<td style="padding-bottom: 2px;" id="search_header_form_td">
+				<form action="/search/" method="get" onsubmit="_do_header_search('89555424@N00', '', '/search/', '', '');return false;" id="headersearchform">
+					<input style="color: rgb(153, 153, 153);" name="q" id="header_search_q" class="Box" value="搜尋你的所有相片" type="text">
+					<input name="w" value="89555424@N00" type="hidden">
+					<input name="m" value="" type="hidden">
+					<input name="s" value="" type="hidden">
+					<input name="mt" value="" type="hidden">
+					<input name="referer_searched" value="" type="hidden">
+				</form>
+			</td>
+			<td id="search_header_button_td" width="82">
+				<div id="menu" class="candy_button_bar">
+					<ul class="site_nav_menu_buttons">
+					<li class="menu_li" id="candy_nav_button_search"><span><a href="/search/" onclick="_do_header_search('89555424@N00', '', '/search/', '', '');return false;">搜尋</a> <img src="http://l.yimg.com/g/images/site_nav_caret_split_default.png" class="nav_button_caret" alt="更多選項" height="15" width="18"></span>
+					</li>
+					</ul>
+				</div>
+			</td>	
+		</tr>		
+	</table>
 	</div>
-	<div id="menu">
-		<ul>
-			<li><a href="#{url a:'Memez.index'/}">&{'Meme'}</a></li>
-			<li><a href="#{url a:'Postz.index'/}">&{'track'}</a></li>
-			<li><a href="#{url a:'Photoz.photos'/}">&{'pictures'}</a></li>
-		</ul>
-	</div>
+	
 	<div id="content-wrap">
         #{doLayout /} 
     </div>    
