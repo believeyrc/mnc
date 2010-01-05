@@ -14,7 +14,7 @@
 * { margin: 0; padding: 0; }
 
 body {
-	background: #CCC;
+	background: #FFF;
 	font: 14px Song, Tahoma, arial, sans-serif;
 	color: #151515; 
 	text-align: center;
@@ -23,12 +23,12 @@ body {
 /* links */
 a, a:visited {
 	text-decoration: none;
-	color: #2180BC;
+	color: #1057AE;
 	background: inherit;
 	cursor:pointer;
 }
 a:hover {
-	color: #88ac0b;
+	color: #000;
 	background: inherit;
 	text-decoration: underline;
 }
@@ -65,7 +65,7 @@ img.float-left {
 }
 
 h1, h2, h3, p {
-	padding: 10px;		
+	padding: 10px;
 	margin: 0;
 }
 ul, ol {
@@ -139,13 +139,13 @@ tr.row-b {
 /* form elements */
 form {
 	margin:6px; padding: 0 5px;
-	border: 1px solid #A2A2A2; 
-	/*background-color: #FAFAFA;*/ 
+	/*border: 1px solid #A2A2A2; 
+	background-color: #FAFAFA;*/ 
 }
 label {
-	display:block;
+	/*display:block;
 	font-weight:bold;
-	/*margin:5px 0;*/
+	margin:5px 0;*/
 }
 input {
 	padding:2px;
@@ -168,7 +168,7 @@ input.button {
 	margin: 0;
 	padding: 2px 3px; 
 	color: #FFF;
-	background: #8EB50C url(button-bg.jpg) repeat-x 0 0;
+	background: #0063DC ;
 	border: none;
 }
 
@@ -200,31 +200,39 @@ input.button {
 ********************************************/ 
 #wrap {
 	width: 820px;
-	background: #CCC url(content.jpg) repeat-y center top;
+	background: #FFF;
 	margin: 0 auto;
 	text-align: left;
 }
 #content-wrap {
 	clear: both;
-	width: 760px;
+	width: 820px;
 	padding: 0; 
-	margin: 10px auto;
+	margin: 0px;
 }
 #header {
 	width: 820px;
 	position: relative;
-	height: 103px;
-	background: #CCC url(header.jpg) no-repeat center top;
-	padding: 0;	
-	color: #FFF;
+	height: 65px;
+	background: #FFF;
+	padding: 0px;	
+	color: #000;
 	/* font-size: 14px; */
+}
+#header *{
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+}
+#header h1{
+	padding: 0px;
 }
 #header h1#logo-text {
 	position: absolute;
 	margin: 0; padding: 0;
 	font: bolder 44px 'Trebuchet MS', Arial, Sans-serif;
 	letter-spacing: -2px;
-	color: #FFF;
+	color: #000;
 	text-transform: none;
 	
 	/* change the values of top and left to adjust the position of the logo*/
@@ -232,70 +240,74 @@ input.button {
 }
 #header h2#slogan {
 	position: absolute;
-	margin: 0; padding: 0;
+	margin: 0;
+	padding: 0;
 	font: normal 12px 'Trebuchet MS', Arial, Sans-serif;
 	text-transform: none;
-	color: #FFF;
+	color: #000;
 	
-	/* change the values of top and left to adjust the position of the slogan*/
-	top: 70px; left: 135px;		
+	/* change the values of top and left to adjust the position of the slogan
+	top: 70px; left: 135px;		*/
 }
 #header h1 img{
 	border: none;
 	background: none;
-	margin-left: 20px;
-	margin-top: 10px;
-	/*width: 50px;*/
-	height:60px;
+	margin-left: 0px;
+	margin-top: 0px;
+	padding: 0px;
+	/*width: 50px;
+	height:60px;*/
 }
 
 /* header links */
 #header #header-links {
 	position: absolute;
-	top: 20px; right: 30px;	
-	color: #C6DDEE;
+	top: 00px; right: 30px;	
+	color: #000;
 	font-size: 12px;	
 }
 #header #header-links a {	
-	color: #FFF;
+	color: #000;
 	text-decoration: none;	
 }
 #header #header-links a:hover {
-	color: #D4E59F;	
+	color: #555	;	
 }
 
 /* Menu */
 #menu {
 	clear: both;	
 	margin: 0 auto; padding: 0;
-	background: url(menu.jpg) repeat-x 0 0;	
-	font: bold 12px/37px Verdana, Arial, Tahoma, Sans-serif;
-	height: 37px;
-	width: 780px;	
+	background: #FFF;	
+	font: bold 12px Song, Arial, Tahoma, Sans-serif;		
 }
-#menu ul {
-	float: right;
+#menu ul {	
 	list-style: none;
 	margin:0; padding: 0;
 }
 #menu ul li {
+	float:left;
 	display: inline;
 }
-#menu ul li a {
+#menu ul li span {
 	display: block;
+	white-space: nowrap;
+}
+#menu ul li a {
+	
 	float: left;
-	padding: 0 10px;
-	color: #FFF;	
+	padding: 0 5px;
+	color: #0063DC;	
 	text-decoration: none;
 }
 #menu ul li.last a {
 	padding-right: 20px;	
 }
 #menu ul li a:hover {
-	color: #D4E59F;	
+	color: #0063DC;	
 }
 #menu ul li#current a {	
-	color: #D4E59F;
+	color: #0063DC;
 }
 
 /* Main Column */
@@ -374,8 +386,8 @@ input.button {
 
 /* Footer */	
 #footer {
-	color: #C6DDEE;
-	background: #CCC url(footer.jpg) no-repeat center top;
+	color: #555;
+	background: #FFF;
 	clear: both;
 	width: 820px;
 	height: 65px;
