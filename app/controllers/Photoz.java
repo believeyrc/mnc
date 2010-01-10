@@ -10,16 +10,14 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import jobs.PostThingJob;
 import models.Photo;
 import models.Responses;
+import models.Sets;
 import models.User;
-import models.Thing.TYPE;
 
 import org.apache.commons.io.FileUtils;
 
 import play.Play;
-import play.i18n.Messages;
 import play.libs.Crypto;
 import utils.BalloonUtil;
 import utils.ImageMagick;
@@ -27,13 +25,13 @@ import utils.PhotoUploaderUtil;
 
 public class Photoz extends Basez {
 
-	public static void photos(String family, int offset) {
-		if (offset <= 0)
-			offset = 0;
+	public static void photos(String username, int page) {
+		if (page <= 1)
+			page = 1;
 		int pageSize = 12;
-		long totalCount = Photo.count(" author.family.code = ? ", family);
-		List<Photo> photos = Photo.find(" author.family.code = ? order by id desc", family).from(offset).fetch(pageSize);
-		render(photos, offset, totalCount, pageSize);
+		long totalCount = Photo.count(" author.fullname = ? ", username);
+		List<Photo> photos = Photo.find(" author.fullname = ? order by id desc", username).from(pageSize * (page - 1)).fetch(pageSize);
+		render(photos, page, totalCount, pageSize);
 	}
 
 	public static void carousel(String family) {
@@ -58,13 +56,23 @@ public class Photoz extends Basez {
 
 	public static void rotateRight(Long id) throws IOException {
 		Photo photo = Photo.findById(id);
-		ImageMagick.rotate(photo.prefPath, photo.prefPath, -90);//ImageUtil.saveJPEG(ImageUtil.roate(ImageUtil.load(new File(file)), (float) (Math.PI / 2)), new File(file));
+		ImageMagick.rotate(photo.prefPath, photo.prefPath, -90);// ImageUtil.saveJPEG(ImageUtil.roate(ImageUtil.load(new
+																// File(file)),
+																// (float)
+																// (Math.PI /
+																// 2)), new
+																// File(file));
 		PhotoUploaderUtil.updateThumbFrom(photo, photo.prefPath);
 	}
 
 	public static void rotateLeft(Long id) throws IOException {
 		Photo photo = Photo.findById(id);
-		ImageMagick.rotate(photo.prefPath, photo.prefPath, 90);//ImageUtil.saveJPEG(ImageUtil.roate(ImageUtil.load(new File(file)), -(float) (Math.PI / 2)), new File(file));
+		ImageMagick.rotate(photo.prefPath, photo.prefPath, 90);// ImageUtil.saveJPEG(ImageUtil.roate(ImageUtil.load(new
+																// File(file)),
+																// -(float)
+																// (Math.PI /
+																// 2)), new
+																// File(file));
 		PhotoUploaderUtil.updateThumbFrom(photo, photo.prefPath);
 	}
 
@@ -79,13 +87,25 @@ public class Photoz extends Basez {
 	}
 
 	@Check("ROLE_USER")
-	public static void caption(Long id, String caption) {
+	public static void caption(Long id, String val) {
 		Photo photo = Photo.find("id = ? and author = ? ", id, getCurrentUser()).first();
 		if (photo != null) {
-			photo.caption = caption;
+			photo.caption = val;
 			photo.save();
 			Photo temp = new Photo();
 			temp.caption = photo.caption;
+			temp.id = photo.id;
+			renderJSON(photo);
+		}
+	}
+
+	public static void desc(Long id, String val) {
+		Photo photo = Photo.find("id = ? and author = ? ", id, getCurrentUser()).first();
+		if (photo != null) {
+			photo.description = val;
+			photo.save();
+			Photo temp = new Photo();
+			temp.description = photo.description;
 			temp.id = photo.id;
 			renderJSON(photo);
 		}
@@ -98,7 +118,7 @@ public class Photoz extends Basez {
 		}
 	}
 
-	public static void viewPhoto(Long id) {
+	public static void viewPhoto(String username, Long id) {
 		Photo photo = Photo.findById(id);
 		List<Responses> responses = Responses.find(" photo = ? order by postedAt asc", photo).fetch();
 		render(photo, responses);
@@ -155,6 +175,10 @@ public class Photoz extends Basez {
 
 	static Pattern sessionParser = Pattern.compile("\u0000([^:]*):([^\u0000]*)\u0000");
 
+	public static void prepareUpload() {
+		render();
+	}
+
 	@Check("ROLE_USER")
 	public static void upload(String id, File upload) {
 		try {
@@ -169,7 +193,9 @@ public class Photoz extends Basez {
 			photo.author = User.find("byEmail", Security.connected()).first();
 			photo.save();
 			PhotoUploaderUtil.updateThumbnails(photo);
-			new PostThingJob(Security.connected(), Messages.get("uploadNewImage", getCurrentUser().fullname, photo.id, getCurrentUser().family.code), TYPE.PHOTO).in(1);
+			// new PostThingJob(Security.connected(),
+			// Messages.get("uploadNewImage", getCurrentUser().fullname,
+			// photo.id, getCurrentUser().family.code), TYPE.PHOTO).in(1);
 			renderText("{'err':'','msg':'/%s','original':'/%s','thumb':'/%s','pref':'/%s'}", photo.prefPath, photo.filePath, photo.thumbPath, photo.prefPath);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -179,7 +205,8 @@ public class Photoz extends Basez {
 	private static void restroreSession() throws UnsupportedEncodingException {
 		String checkuser = params.get("checkuser");
 		System.out.println(checkuser);
-		if(checkuser==null)return;
+		if (checkuser == null)
+			return;
 		checkuser = checkuser.replaceAll("##", "\u0000");
 		checkuser = URLEncoder.encode(checkuser, "utf-8");
 		String sign = checkuser.substring(0, checkuser.indexOf("-"));

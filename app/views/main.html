@@ -9,103 +9,11 @@
             href="@{'/public/images/favicon.png'}" />
         <script src="@{'/public/javascripts/jquery-1.3.2.min.js'}"></script>
         <script src="@{'/public/javascripts/jquery.tools.min.js'}"></script>
-		#{isMine} 
-			#{script 'jquery.jeditable.js'/}
-			#{script 'ajaxupload.js'/} 
-			<script>
-		 		$(function(){ 
-		 			$('#logo-text').editable('@{Familyz.updateName().add('family',family.code)}',{
-		 				submit  : '&{'OK'}',width: '300px'
-		 			});
-		 			$('#slogan').editable('@{Familyz.updateSlogan().add('family',family.code)}',{
-		 				submit  : '&{'OK'}',width: '200px'
-		 			});
-		 		});
-		 		
-		 		$(function(){
-					new AjaxUpload('home_img', {
-						action: '@{Familyz.updateImage().add('family',family.code)}',
-						name: 'upload',
-						responseType: 'json',
-						onSubmit : function(file, ext){
-							$('#upload_button').text('Uploading');			
-						},
-						onComplete: function(file, response){
-							$('#home_img').attr('src',response.thumb);						
-						}
-						});
-				});
-		 	</script>
-		#{/isMine}
-	
     </head>
     <body>	
-<div id="wrap">        
+      
 	<div id="header">
-	<table class="Header" style='width:820px;font-size:11px;' border="0" cellspacing="0">
-		<tr>
-			<td class="FlickrLogo">
-				<a href="/"><img src="@{'/public/images/logo.jpg'}" id="FlickrLogo" alt="Flickr 標誌。按一下會返回首頁" height="30" width="180"></a>
-				</td>
-			<td class="Status" style='text-align:right;'>
-				#{isLogin}
-					以 <a href="/account" class="Pale">nile.black</a> 登入
-				#{/isLogin}
-				#{notLogin}
-					<a href="@{Secure.login()}" class="Pale">登入</a> 
-				#{/notLogin}
-					&nbsp;&nbsp;
-					<a href="/help/">Newete 小帮手</a>
-				#{isLogin}
-					&nbsp;&nbsp;
-					<a href="@{Secure.logOut()}">登出</a>
-				#{/isLogin}
-				</td>
-		</tr>
-	</table>
-	<div id="menu">
-	<table class="NavBar" style='width:820px;' border="0" cellspacing="0">
-		<tr>
-			<td class="Primary">
-			<div id="candy_nav_button_bar" class="candy_button_bar">
-				<ul class="site_nav_menu_buttons">
-					<li class="no_menu_li"><span><a href="/">首頁</a></span></li>
-					<li class="menu_li" id="candy_nav_button_you"><span><a href="/photos/89555424@N00/">你的足跡</a> 
-					<img src="http://l.yimg.com/g/images/site_nav_caret_split_default.png" class="nav_button_caret" alt="更多選項" height="15" width="18"></span>
-					</li>
-					<li class="menu_li" id="candy_nav_button_organize"><span><a href="/photos/organize/">管理與建立</a> <img src="http://l.yimg.com/g/images/site_nav_caret_split_default.png" class="nav_button_caret" alt="更多選項" height="15" width="18"></span>
-					</li>
-					<li class="menu_li" id="candy_nav_button_contacts"><span><a href="/photos/89555424@N00/friends/">自己人</a> <img src="http://l.yimg.com/g/images/site_nav_caret_split_default.png" class="nav_button_caret" alt="更多選項" height="15" width="18"></span>
-					</li>
-					<li class="menu_li" id="candy_nav_button_groups"><span><a href="/groups/">社群</a> <img src="http://l.yimg.com/g/images/site_nav_caret_split_default.png" class="nav_button_caret" alt="更多選項" height="15" width="18"></span>
-					</li>
-					<li class="menu_li" id="candy_nav_button_explore"><span><a href="/explore/" alt="發掘 Flickr 奇趣事">發掘</a> <img src="http://l.yimg.com/g/images/site_nav_caret_split_default.png" class="nav_button_caret" alt="更多選項" height="15" width="18"></span>
-					</li>
-
-				</ul>
-			</div>
-			</td>
-			<td style="padding-bottom: 2px;" id="search_header_form_td">
-				<form action="/search/" method="get" onsubmit="_do_header_search('89555424@N00', '', '/search/', '', '');return false;" id="headersearchform">
-					<input style="color: rgb(153, 153, 153);" name="q" id="header_search_q" class="Box" value="搜尋你的所有相片" type="text">
-					<input name="w" value="89555424@N00" type="hidden">
-					<input name="m" value="" type="hidden">
-					<input name="s" value="" type="hidden">
-					<input name="mt" value="" type="hidden">
-					<input name="referer_searched" value="" type="hidden">
-				</form>
-			</td>
-			<td id="search_header_button_td"  style='text-align:right' width="82">
-				<div style="display: block;" id="candy_search_button_bar" class="candy_button_bar">
-					<ul class="site_nav_menu_buttons">
-					<li class="menu_li" id="candy_nav_button_search"><span><a href="/search/" onclick="_do_header_search('89555424@N00', '', '/search/', '', '');return false;">搜尋</a> <img src="http://l.yimg.com/g/images/site_nav_caret_split_default.png" class="nav_button_caret" alt="更多選項" height="15" width="18"></span>					
-					</li>
-					</ul>
-				</div>
-			</td>	
-		</tr>		
-	</table>	
-	</div>	
+		#{include '/tags/header.html' /}
 	</div>
 	<div id="content-wrap">
         #{doLayout /} 
@@ -113,7 +21,7 @@
     <div id="footer">
        <p>&{'SiteforyourFamily'}</p>
     </div>
-</div>        
+
     </body>
 </html>
 

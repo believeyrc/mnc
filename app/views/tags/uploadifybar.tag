@@ -1,18 +1,32 @@
 #{script "../uploadify/swfobject.js"/}
 #{script "../uploadify/jquery.uploadify.v2.1.0.min.js"/}
 <script type="text/javascript">
+var more = false;
 $(document).ready(function() {
 	$('#uploadify-div').uploadify({
-		'auto': true,
+		'auto': false,
 		'scriptData':{"checkuser" : "${request.cookies.PLAY_SESSION?.value?.replaceAll("%00","##")}"},
 		'uploader': '/public/uploadify/uploadify.swf',
-		'script': '@{Photoz.upload().add('family',_caller.family.code)}',
+		'script': '@{Photoz.upload()}',
 		multi:true,
 		fileDataName: 'upload',
-		height:41,
-		width:40,
-		buttonImg: '/public/uploadify/upload.png',
-		'cancelImg': '/public/uploadify/cancel.png'
+		queueID:'upload-queue',
+		height:30,
+		width:108,		
+		wmode:'transparent',
+		buttonImg: '/public/uploadify/selectfiles.png',
+		'cancelImg': '/public/uploadify/cancel.png',
+		//buttonText:'choose'
+		onSelect:function(){
+			if(!more){
+				$('#uploadify-div').uploadifySettings('buttonImg','/public/uploadify/selectmore.png');
+				$('#step1').hide();
+				$('#step2').show();
+				//$('#queue-block').append($('#upload-queue'));
+				//$('#uploader-block').append($('#uploadtoolbar'));
+				more = true;
+			}
+		}
 	});
 });
 </script>
@@ -47,9 +61,11 @@ $(document).ready(function() {
 	height: 3px;
 }
 #uploadtoolbar object{
-	float:right;
+	/*float:right;*/
 }
 </style>
+
 <div id='uploadtoolbar' >
-<div id="uploadify-div">uploadify-div</div>
+<div id="upload-queue"></div>
+<div id="uploadify-div" style="display:none">uploadify-div</div>
 </div>

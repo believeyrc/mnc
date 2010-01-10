@@ -1,30 +1,28 @@
 #{extends 'main.html' /}
-
-<div id="login">
-	
-	<h1>&{'secure.title'}</h1>
-		
-	#{form @authenticate()}
+#{set title:'用户登录'/}
+<table id="layout">
+	<tr><td>
+		<h1>用户登录</h1>
 		#{if flash.error}
-			<p class="error">
-				&{flash.error}
-			</p>
+					<p class="error">
+						&{flash.error}
+					</p>
 		#{/if}
-		#{if flash.success}
-			<p class="success">
-				&{flash.success}
-			</p>
-		#{/if}
-		<p id="username-field">
-			<label for="username">&{'secure.username'}<input type="text" name="username" id="username" value="${flash.username}" /></label>
-			
-		</p>
-		<p id="password-field">
-			<label for="password">&{'secure.password'}<input type="password" name="password" id="password" value="" /></label>
-		</p>
-		<p id="remember-field">
-			<label for="remember"><input type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true"' : ''} />&{'secure.remember'}</label>
-			<input class='button' type="submit" id="signin" value="&{'secure.signin'}" />
-		</p>
-	#{/form}
-</div>
+		<table>
+		#{form @authenticate()}
+			<tr><td id="label"><label>你的Email地址</label></td></tr>
+			<tr><td><input type="text" name="username" value="${flash.email}"><span id='error'>#{error 'email' /}</span></td></tr>
+			<tr><td id="info">你的注册邮件地址。</td></tr>
+			<tr><td id="label"><label>你的登录密码</label></td></tr>	
+			<tr><td><input type="password" name="password" value="${flash.password}"><span id='error'>#{error 'password' /}</span></td></tr>
+			<tr><td id="info">你的登录密码</td></tr>
+			<tr><td id="label"><label></label></td></tr>	
+			<tr><td><input class='button' type="submit" name="submit" value="&{'secure.signin'}"></td></tr>	
+		#{/form}	
+		</table>
+	</td>
+	<td id="info">
+		还没有注册？<br/><a href="@{Userz.register()}">现在加入</a>吧！
+	</td>
+	</tr>
+</table>
