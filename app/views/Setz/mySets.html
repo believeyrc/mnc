@@ -5,8 +5,11 @@
 
 #{include 'Photoz/_userbar.html'/}
 
-<table>
-#{list items:sets, as:'set'}
-	<tr><td><a href="@{Setz.viewSets(currentuser,set.id)}">${set.name}</a></td></tr>
-#{/list}
-</table>
+#{table cols:5, items:sets , as:'set'}
+	#{ifnot set==null}
+		<a href="@{Setz.viewSets(currentuser,set?.id)}">${set?.name}</a>
+	#{/ifnot}
+	#{if set == null}
+		&nbsp;
+	#{/if}
+#{/table}
