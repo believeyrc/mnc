@@ -4,7 +4,7 @@
 	int lose = count%colc;
 	int rowc = count/colc + ( lose > 0? 1 : 0 );
 
-	out << count << "," << rowc << "," << lose
+	//out << count << "," << rowc << "," << lose
 }%
 <table>
 %{

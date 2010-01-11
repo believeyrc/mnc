@@ -35,6 +35,8 @@ public class Setz extends Basez {
 		Photo photo = Photo.findById(photoId);
 		if (sets != null && photo != null) {
 			sets.photos.add(photo);
+			if(sets.cover==null)
+				sets.cover = photo;
 			sets.save();
 		}
 	}

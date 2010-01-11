@@ -16,13 +16,13 @@
 	font-size:15px;
 }
 #photos input{
-	width:240px;
+	width:230px;
 	background:#FFFFD3;
 	border-width:1px 0 0 1px;
 	border-color:#E9E9AE;
 }
 #photos textarea{
-	width:240px;
+	width:230px;
 	height:75px;
 	background:#FFFFD3;
 	border-width:1px 0 0 1px;
@@ -49,9 +49,14 @@
 	background:#FFFFD3;
 }
 
+#editor input,#editor textarea ,#editor div{
+	margin: 6px 0 6px 0;
+}
 #editor a,
 .infotd a{	
 	/*float:right;*/
+	background:#0054BD;
+	color:#fff;
 }
 #editor a:hover,
 .infotd a:hover{
@@ -60,8 +65,8 @@
 .imgrow{
 }
 .imgrow img{
-	/*width:180px;*/
-	padding:1px;
+	/*width:180px;
+	padding:1px;*/
 }
 
 tr.caprow{
@@ -79,17 +84,17 @@ tr.inforow{
 		$(div).hide();
 		//类型1 标题，其他就是描述
 		if(type ==1){
-			$(div).parent().append("<div id='editor'><input id='editor_com' type='input' width='100%' value='"+$(div).text()+"' /> <a onclick='doSave(this,1)'>保存</a><a onclick='cancelEdit(this,1)' >取消</a></div>");
+			$(div).parent().append("<div id='editor'><input id='editor_com' type='input' width='100%' value='"+$(div).text()+"' /> <a onclick='doSave(this,1)'>保存</a>&nbsp;&nbsp;<a onclick='cancelEdit(this,1)' >取消</a></div>");
 		}else{
-			$(div).parent().append("<div id='editor'><textarea id='editor_com' >"+$(div).text()+"</textarea><a onclick='doSave(this,2)'>保存</a><a onclick='cancelEdit(this,2)' >取消</a></div>");
+			$(div).parent().append("<div id='editor'><textarea id='editor_com' >"+$(div).text()+"</textarea><a onclick='doSave(this,2)'>保存</a>&nbsp;&nbsp;<a onclick='cancelEdit(this,2)' >取消</a></div>");
 		}
 	}
-	function cancelEdit(bt,t){	
-		$(bt).closest("div").hide();
+	function cancelEdit(bt,t){			
 		if(t==1)
 			$(bt).closest("div").siblings("#cap").show()
 		else
 			$(bt).closest("div").siblings("#desc").show()
+		$(bt).closest("div").remove();
 	}
 	function doSave(bt,t){
 		var val = $(bt).closest("div").find("#editor_com").val();
@@ -109,7 +114,7 @@ tr.inforow{
 			};
 		}
 		$.post(url, {id:divcap.attr('pid'),val:val},callback, "json");	
-		$(bt).closest("div").hide();
+		$(bt).closest("div").remove();
 	}
 	function deletePhoto(a){
 		if(confirm('您确定删除么？')){

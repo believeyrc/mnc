@@ -148,7 +148,7 @@ textarea{
 			</tr>
 		</table>
 		#{if responses.size() >0}
-			<h4 style='color:red;font-style:bold;'>&{'Responses'}</h4>
+			<h4 style='color:#FF0084;font-style:bold;'>&{'Responses'}</h4>
 			<table>
 				#{list items:responses, as:'resp'}
 				<tr><td style='width:40px'>${resp.author.fullname}</td>
@@ -169,7 +169,7 @@ textarea{
 			}
 			</style>
 			<div style='width:400px'>
-			<h4 style='color:red'>&{'addYourResponse'}</h4>
+			<h4 style='color:#FF0084'>&{'addYourResponse'}</h4>
 			#{form @Photoz.responses().add('id',photo.id)}    
 				<p>
 					<label for="content">&{'YourMessage'} </label>
