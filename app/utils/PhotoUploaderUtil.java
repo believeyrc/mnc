@@ -13,8 +13,8 @@ import play.libs.Codec;
 
 public class PhotoUploaderUtil {
 	public static final int SMALL_SIZE = 75;
-	public static final int MIDLE_SIZE = 180;
-	public static final int LARGE_SIZE = 700;
+	public static final int MIDLE_SIZE = 240;
+	public static final int LARGE_SIZE = 500;
 
 	public static void updateThumbnails(Photo photo) {
 		File ofile = new File(photo.filePath);

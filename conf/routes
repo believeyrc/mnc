@@ -3,9 +3,23 @@
 # ~~~~
 
 # Map static resources from the /app/public folder to the /public path
-GET     /public/                                staticDir:public
+GET /public/                                staticDir:public
+GET	/signup									Userz.register
+GET	/signin									Secure.login
+GET	/account								Userz.account
+GET	/account/changepassword					Userz.changepassword
 
-GET /family/{family}/meme    Memez.index
+GET	/photos/{username}/page{<[0-9]+>page}	Photoz.photos
+GET	/photos/{username}/?					Photoz.photos(page:'1')
+GET	/photos/{username}/{<[0-9]+>id}			Photoz.viewPhoto
+GET	/photos/{username}/sets/{<[0-9]+>setsId}	Setz.viewSets
+GET	/photos/{username}/sets					Setz.mySets
+POST	/captcha/{id}						Postz.captcha
+POST	/desc/{id}							Postz.desc
+
+GET	/photos/upload					Photoz.prepareUpload
+
+GET /family/{family}/meme    				Memez.index
 
 # Home page
 GET     /family/{family}/posts	Postz.index

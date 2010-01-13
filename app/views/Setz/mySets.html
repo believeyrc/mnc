@@ -1,0 +1,18 @@
+#{extends 'main.html' /}
+#{set title:'所有照片'/}
+#{script '../lightbox/js/jquery.lightbox-0.5.min.js'/}
+#{stylesheet '../lightbox/css/jquery.lightbox-0.5.css'/}
+
+#{include 'Photoz/_userbar.html'/}
+
+#{table cols:3, items:sets , as:'set'}
+	#{ifnot set==null}
+		<a href="@{Setz.viewSets(currentuser,set?.id)}"><img src="/${set.cover.thumb2Path}"/></a>
+		<div>
+		共有${set.photos.size()}张相片&nbsp;<a href="@{Setz.viewSets(currentuser,set?.id)}">${set?.name}</a>
+		</div>
+	#{/ifnot}
+	#{if set == null}
+		&nbsp;
+	#{/if}
+#{/table}

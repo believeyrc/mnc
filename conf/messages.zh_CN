@@ -8,9 +8,9 @@ author=作者
 post=相关
 tags=标签
 name=名称
-email=电邮
+email=Email地址
 password=密码
-fullname=全名
+fullname=网址
 isAdmin=是管理员
 logo=穆念慈
 
@@ -134,3 +134,16 @@ uploadNewImage=%s 上传了新的照片,<a href='/photoz/viewphoto?id=%s&family=
 revert=还原
 addYourResponse=增加你的回应
 Responses=回应
+
+password=密码
+newpassword=新密码
+password2=确认密码
+newpassword2=确认密码
+currentPassword=当前密码
+
+validation.equals=两次 %s 不一致。
+validation.required=%s 不能为空。
+validation.minSize=%s 必须 %s 个字母以上。
+validation.exists=%s 已经被使用。
+
+validation.notMacth= %s 不匹配

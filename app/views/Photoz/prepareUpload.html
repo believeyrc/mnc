@@ -1,0 +1,53 @@
+#{extends 'main.html' /}
+#{set title:'上传照片'/}
+<h1>上传照片到 Newete</h1>
+<style>
+	.upload #block{
+		margin: 10px 0 10px 0;
+	}
+	.upload #info{
+		font-weight: bold;
+		font-size: 18px;
+	}
+</style>
+<label id="info"></label>
+
+<div style="background:#F7F7F7;padding:20px;font-size:20px;">
+	<div id="block">
+		<label id="info">步骤1:</label>
+		#{uploadifybar/}
+		<label id="info">选择你要上传的照片，允许JPEG,JPG,GIF,PNG等格式。</label>
+	</div>
+
+	<div id="step1" class="upload">
+		<div id="block">
+			<label id="info">步骤2:</label>
+			<div >
+				上传图片
+			</div>
+			<label  id="info"></label>
+		</div>
+		<div id="block">
+			<label id="info">步骤3:</label>
+			<div>
+				修改标题，标签，或是分类，或是加到相册中
+			</div>
+			<label style='clear:both'  id="info"></label>
+		</div>
+	</div>
+
+	<div id="step2" style="display:none" class="upload">
+		<div id="block">
+			<input type="radio" name="type1"><label>个人的</label>
+				<input type="checkbox" name="type1"><label>朋友可见</label>
+				<input type="checkbox" name="type1"><label>家人可见</label>
+			<input type="radio" name="type1"><label>公开的</label>
+		</div>
+		<div id="block">
+			<div style='height:30px' id="upload-buttons">
+				<a href="javascript:$('#uploadify-div').uploadifyUpload();">开始上传</a>
+			</div>
+		</div>	
+	</div>
+
+</div>

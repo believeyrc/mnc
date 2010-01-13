@@ -16,7 +16,7 @@
 a{
 	cursor:pointer;
 }
-td{
+#photo td{
 	text-align:center;
 	width: 154px;
 }
@@ -92,6 +92,9 @@ textarea{
 			window.location.reload();
 		});
 	}
+	function addToSets(a,id){
+		$(a).parent().find(".sub_menu").load('@{Setz.listMySets(currentuser,photo.id)}');		
+	}
 </script>
 <div id='hiddendiv' style='display:none'>
 	<div id='sayHello' class='sayHello' style='display:none;position:absolute;width:120px;height:132px;'>		
@@ -104,65 +107,145 @@ textarea{
 </div>
 #{/isMine}
 
-<div style="clear:both">
-	<a onclick="return fasle;" href='javascript:history.go(-1)'>&{'returnToList'}</a>
-#{isMine}
-	<a  onclick="rotateRight((${photo.id}))">&{'rotateRight'}</a>
-	<a  onclick="rotateLeft((${photo.id}))">&{'rotateLeft'}</a>
-	<a  onclick="sayHello((${photo.id}))">&{'sayHello'}</a>
-	<a  onclick="revert((${photo.id}))">&{'revert'}</a>
-#{/isMine}	
-</div>
-
-<table>
-<tr>
-<td id='' style='text-align:left'>
-	<h3>&{photo.caption}</h3>
-</td>
-</tr>
-<tr>
-<td id='imgtd'>
-	<img id='photo' src="/${photo.prefPath}"/>
-</td>
-</tr>
-<tr>
-<td id=''>
-	&{photo.caption}
-</td>
-</tr>
+<table >
+	<tr>
+	<td width="502px" style="padding-right:50px;">
+		<table id="photo">
+			<tr>
+			<td id='' style='text-align:left;'>
+				<h3>&{photo.caption}</h3>
+			</td>
+			</tr>
+			<tr>
+				<td id='' style='text-align:left'>
+					<div id="phototools" style="clear:both">		
+						<ul >
+					#{isMine}
+						<li><a onclick="addToSets(this,${photo.id})"><img class="arrow" alt="添加到相册" src="@{'/public/images/addtosets.png'}"/></a>
+							<div class="sub_menu">
+								正在载入相册...
+							</div>
+						</li>
+						<li ><a  onclick="rotateRight((${photo.id}))"><img alt="&{'rotateRight'}" src="@{'/public/images/rotate_l.png'}"/></a></li>
+						<li ><a  onclick="rotateLeft((${photo.id}))"><img alt="&{'rotateLeft'}" src="@{'/public/images/rotate_r.png'}"/></a></li>
+						<li ><a  onclick="sayHello((${photo.id}))"><img alt="&{'sayHello'}" src="@{'/public/images/sayhello.gif'}"/></a></li>
+						<li ><a  onclick="revert((${photo.id}))"><img alt="&{'revert'}" src="@{'/public/images/revert.jpg'}"/></a></li>
+						<li ><a  onclick="delete((${photo.id}))"><img alt="&{'delete'}" src="@{'/public/images/delete.png'}"/></a></li>
+					#{/isMine}	
+						</ul >
+					</div>
+				</td>
+			</tr>
+			<tr>
+			<td id='imgtd'>
+				<img id='photo' src="/${photo.prefPath}"/>
+			</td>
+			</tr>
+			<tr>
+			<td id=''>
+				&{photo.description}
+			</td>
+			</tr>
+		</table>
+		#{if responses.size() >0}
+			<h4 style='color:#FF0084;font-style:bold;'>&{'Responses'}</h4>
+			<table>
+				#{list items:responses, as:'resp'}
+				<tr><td style='width:40px'>${resp.author.fullname}</td>
+				<td style='text-align:left'>
+					<label >${resp.postedAt.format('yyyy/MMM/dd')}</label>	
+					${resp.content}</p>
+				</td>
+				</tr>
+				#{/list}
+			</table>
+		#{/if}
+		#{isLogin}
+			<style>
+			form{
+				border:0px;
+				margin:0px;
+				padding:0px;
+			}
+			</style>
+			<div style='width:400px'>
+			<h4 style='color:#FF0084'>&{'addYourResponse'}</h4>
+			#{form @Photoz.responses().add('id',photo.id)}    
+				<p>
+					<label for="content">&{'YourMessage'} </label>
+					<textarea style='height:60px' name="content" id="content">${content}</textarea>
+				</p>
+				<p>
+					<input class='button' type="submit" value="&{'SubmitYourComment'}" />
+				</p>
+			#{/form}
+			</div>
+		#{/isLogin}
+	</td>
+	<td valign="top">
+		<div>
+			<h4>相片中的人</h4>
+		</div>
+		<div>
+			<h4>标签</h4>
+		</div>
+		<div>
+			<h4>其他信息</h4>
+		</div>
+	</td></tr>
 </table>
-<table>
-<h4 style='color:red;font-style:bold;'>&{'Responses'}</h4>
-#{list items:responses, as:'resp'}
-<tr><td style='width:40px'>${resp.author.fullname}</td>
-<td style='text-align:left'>
-	<label >${resp.postedAt.format('yyyy/MMM/dd')}</label>	
-	${resp.content}</p>
-</td>
-</tr>
-#{/list}
-</table>
-<style>
-form{
-	border:0px;
-	margin:0px;
-	padding:0px;
-}
-</style>
-#{isLogin}
-<div style='width:400px'>
-<h4 style='color:red'>&{'addYourResponse'}</h4>
-#{form @Photoz.responses().add('id',photo.id).add('family',family.code)}    
-	<p>
-		<label for="content">&{'YourMessage'} </label>
-        <textarea style='height:60px' name="content" id="content">${content}</textarea>
-    </p>
-    <p>
-        <input class='button' type="submit" value="&{'SubmitYourComment'}" />
-    </p>
-#{/form}
-</div>
-#{/isLogin}
-<script type="text/javascript"> 
 
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	$("#phototools img.arrow").click(function(){ 
+								
+		$("span.head_menu").removeClass('active');
+		
+		submenu = $(this).parent().parent().find("div.sub_menu");
+		
+		if(submenu.css('display')=="block"){
+			$(this).parent().removeClass("active"); 	
+			submenu.hide(); 		
+			//$(this).attr('src','@{'/public/images/arrow_hover.png'}');									
+		}else{
+			$(this).parent().addClass("active"); 	
+			submenu.fadeIn(); 		
+			//$(this).attr('src','@{'/public/images/arrow_select.png'}');	
+		}
+		
+		$("div.sub_menu:visible").not(submenu).hide();
+		//$("#phototools img.arrow").not(this).attr('src','@{'/public/images/arrow.png'}');
+						
+	})
+	.mouseover(function(){ 
+		//$(this).attr('src','@{'/public/images/arrow_hover.png'}'); 
+		})
+	.mouseout(function(){ 
+		if($(this).parent().parent().find("div.sub_menu").css('display')!="block"){
+			//$(this).attr('src','@{'/public/images/arrow.png'}');
+		}else{
+			//$(this).attr('src','@{'/public/images/arrow_select.png'}');
+		}
+	});
+
+	$("#phototools span.head_menu").mouseover(function(){ $(this).addClass('over')})
+								 .mouseout(function(){ $(this).removeClass('over') });
+	
+	$("#phototools div.sub_menu").mouseover(function(){ $(this).fadeIn(); })
+							   .blur(function(){ 
+							   		$(this).hide();
+									$("span.head_menu").removeClass('active');
+								});		
+								
+	$(document).click(function(event){ 		
+			var target = $(event.target);
+			if (target.parents("#phototools").length == 0) {				
+				$("#phototools span.head_menu").removeClass('active');
+				$("#phototools div.sub_menu").hide();
+				//$("#phototools img.arrow").attr('src','@{'/public/images/arrow.png'}');
+			}
+	});			   
+});
 </script>

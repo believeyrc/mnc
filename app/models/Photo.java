@@ -3,6 +3,7 @@ package models;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 import play.data.validation.Required;
@@ -32,6 +33,8 @@ public class Photo extends Model {
 	public String thumbPath;
 	
 	public String caption;
+	@Lob
+	public String description;
 	public Date uploadAt;
 	/**
 	 * 240x240

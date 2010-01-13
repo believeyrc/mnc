@@ -19,7 +19,7 @@ var msgCancelled='&{"msgCancelled"}'
  function initSwfupload() {
 			var settings = {
 				flash_url : "@{'/public/swfupload/swfupload.swf'}",
-				upload_url: "@{Photoz.upload().add('family',_caller.family.code)}",
+				upload_url: "@{Photoz.upload()}",
 				file_post_name: "upload",
 				post_params: {"checkuser" : "${request.cookies.PLAY_SESSION?.value?.replaceAll("%00","##")}"},
 				file_size_limit : "2 MB",
