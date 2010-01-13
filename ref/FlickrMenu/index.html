@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Flickr Menu 2 | candesprojects.com</title>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>
+
+
+<style type="text/css">
+
+	body{font-family:Arial, Helvetica, sans-serif; font-size:13px; background:#FFFFFF;}
+
+	ul, li{margin:0; border:0; list-style:none; padding:0;}
+	ul{height:21px;}
+
+	h1 { font-size:18px; }
+	p { line-height:18px; }	
+
+	#nicemenu { margin:0 auto; width:600px; margin-top:30px; border-bottom:dotted 1px #E5E5E5; }
+	#nicemenu a { color:#0066CC; text-decoration:none; }
+	#nicemenu a:hover { text-decoration:underline; }	
+	#nicemenu li { display:inline; position:relative; }
+	#nicemenu li span { position:relative; z-index:100; padding:4px 4px 4px 6px;  border-bottom:none; line-height:18px; }	
+	#nicemenu li span a { font-weight:bold; padding:0 6px 0px 2px;  }	
+	#nicemenu li span.over { padding:4px 3px 4px 5px;  border-top:solid 1px #E5E5E5; border-left:solid 1px #E5E5E5;  border-right:solid 1px #999999; border-bottom:solid 1px #fff;  }
+	*+html #nicemenu li span.over {  border-top:solid 2px #E5E5E5; padding-bottom:3px; } /* IE6 */
+	#nicemenu li span.over a { }
+	#nicemenu li span.over a:hover { text-decoration:none; }
+	#nicemenu li span.active { padding:4px 3px 4px 5px;  border-top:solid 1px #E5E5E5; border-left:solid 1px #E5E5E5;  border-right:solid 1px #999999; border-bottom:solid 1px #fff;  }
+	*+html #nicemenu li span.active {  border-top:solid 2px #E5E5E5; padding-bottom:3px; }
+	#nicemenu li span.active a { }
+	#nicemenu li span.active a:hover { text-decoration:none; }	
+	#nicemenu img.arrow { /*margin-left:4px;*/ cursor:pointer; }
+	#nicemenu div.sub_menu { z-index:200;display:none; position:absolute; left:0; top:0px; margin-top:18px; border-top:solid 1px #E5E5E5; border-left:solid 1px #E5E5E5; border-right:solid 1px #999999; border-bottom:solid 1px #999999; padding:4px; top:2px; width:160px; background:#FFFFFF; }
+	* html #nicemenu div.sub_menu { margin-top:23px; } /* IE6 */
+	*+html #nicemenu div.sub_menu { margin-top:23px; } /* IE7 */
+	#nicemenu div.sub_menu a:link, 
+	#nicemenu div.sub_menu a:visited, 
+	#nicemenu div.sub_menu a:hover{ display:block; font-size:11px; padding:4px;}	
+	#nicemenu a.item_line { border-top:solid 1px #E5E5E5; padding-top:6px !important; margin-top:3px; }
+	
+</style>
+<script type="text/javascript">
+
+(function($) {
+	Flickmenu = function(){
+		id = "#nicemenu";				
+		var img = $(id +" img.arrow");
+		img['click'](function(){
+			$("span.head_menu").removeClass('active');		
+			submenu = $(this).parent().parent().find("div.sub_menu");		
+			if(submenu.css('display')=="block"){
+				$(this).parent().removeClass("active"); 	
+				submenu.hide(); 		
+				if(!$(this).hasClass("noswap"))
+					$(this).attr('src','arrow_hover.png');									
+			}else{
+				$(this).parent().addClass("active"); 	
+				submenu.fadeIn(); 		
+				if(!$(this).hasClass('noswap'))
+					$(this).attr('src','arrow_select.png');	
+			}
+			
+			$("div.sub_menu:visible").not(submenu).hide();			
+			$(id +"   img[class=arrow]").not(this).attr('src','arrow.png');
+							
+		})
+		img['mouseover'](function(){ 
+			if(!$(this).hasClass('noswap'))
+				$(this).attr('src','arrow_hover.png'); 
+		})
+		img['mouseout'](function(){ 
+			if($(this).parent().parent().find("div.sub_menu").css('display')!="block"){
+				if(!$(this).hasClass('noswap'))
+					$(this).attr('src','arrow.png');
+			}else{
+				if(!$(this).hasClass('noswap'))
+					$(this).attr('src','arrow_select.png');
+			}
+		});
+
+		$(id +"  span.head_menu")['mouseover'](function(){ 
+			$(this).addClass('over')
+		})
+		.mouseout(function(){ 		
+			$(this).removeClass('over') 
+		});
+		
+		subs = $(id +"  div.sub_menu")
+		subs['mouseover'](function(){ $(this).fadeIn(); })
+	   subs['blur'](function(){ 
+			$(this).hide();
+			$("span.head_menu").removeClass('active');
+		});		
+									
+		$(document).click(function(event){ 		
+				var target = $(event.target);
+				if (target.parents(id).length == 0) {				
+					$(id +"  span.head_menu").removeClass('active');
+					$(id +"  div.sub_menu").hide();					
+					$(id +"  img[class=arrow]").attr('src','arrow.png');
+				}
+		});	
+	}
+	
+	$.fn.flickmenu = function(setting) {
+            return new Flickmenu(setting);
+     };
+
+	
+})(jQuery);
+
+
+$(document).ready(function(){
+	$("#nicemenu").flickmenu()	
+});
+
+</script>
+</head>
+
+<body>
+<div id="nicemenu">
+    <ul>
+        <li><span class="head_menu"><a href="index.html">Home</a></span>
+        <li><span class="head_menu"><a href="index.html">You</a><img src="arrow.png" width="18" height="15" align="top" class="arrow" /></span>
+            <div class="sub_menu">
+                 <a href="index.html">Your Photos</a>
+                 <a href="index.html">Your Sets</a>
+                 <a href="index.html">Your Archives</a>
+                 <a href="index.html">Your Tags</a>
+                 <a href="index.html">Your Map</a>
+                 <a href="index.html">Your Favorites</a>
+                 <a href="index.html">Your Stats</a>
+                 <a href="index.html" class="item_line">Recent Activity</a>
+                 <a href="index.html">Comments You've Made</a>
+                 <a href="index.html" class="item_line">Upload Photos</a>
+                 <a href="index.html" class="item_line">Your Account</a>
+                 <a href="index.html">Your Profile</a>
+                 <a href="index.html" class="item_line">FlickrMail</a>
+            </div>
+        </li>
+        <li><span class="head_menu"><a href="index.html">Organize</a><img src="arrow.png" width="18" height="15" align="top" class="arrow" /></span>
+             <div class="sub_menu">
+                <a href="index.html">All your photos</a>
+                <a href="index.html">Most recently uploaded photos</a>
+                <a href="index.html">Your Sets</a>
+                <a href="index.html">Your Map</a>
+            </div>
+        </li>
+        <li><span class="head_menu"><a href="index.html">Contacts</a><img src="arrow.png" width="18" height="15" align="top" class="arrow" /></span>
+            <div class="sub_menu">
+                <a href="index.html">Latest Photos</a>
+                <a href="index.html">Contact List</a>
+                <a href="index.html">People Search</a>
+                <a href="index.html" class="item_line">Invite your Friends</a>
+                <a href="index.html">Invite History</a>
+                <a href="index.html">Guest Pass History</a>
+                <a href="index.html" class="item_line">Give the gift of Flickr</a>
+            </div>
+        </li>
+        <li><span class="head_menu"><a href="index.html">Groups</a><img src="arrow.png" width="18" height="15" align="top" class="arrow" /></span>
+        	<div class="sub_menu">
+                <a href="index.html">Your Groups</a>
+                <a href="index.html">Recent Changes</a>
+                <a href="index.html" class="item_line">Search for a Group</a>
+                <a href="index.html" class="item_line">Create a New Group</a>
+            </div>
+        </li>
+        <li><span class="head_menu"><a href="index.html">Explore</a><img src="arrow.png" width="18" height="15" align="top" class="arrow" /></span>
+        	<div class="sub_menu">
+                <a href="index.html">Explore Page</a>
+                <a href="index.html">Last 7 Days Interesting</a>
+                <a href="index.html">Calendar</a>
+                <a href="index.html">A Year Ago Today</a>
+                <a href="index.html" class="item_line">World Map</a>
+                <a href="index.html">Places</a>
+                <a href="index.html">Camera Finder</a>
+                <a href="index.html" class="item_line">Popular Tags</a>
+                <a href="index.html">Most Recent Photos</a>
+                <a href="index.html">Creative Commons</a>
+                <a href="index.html" class="item_line">FlickrBlog</a>
+                <a href="index.html" class="item_line">Do More with Your Photos</a>
+                <a href="index.html">Flickr Services</a>
+            </div>
+        </li>
+    </ul>
+</div>
+<div id="nicemenu">
+    <ul>
+        <li><span class="head_menu"><a href="index.html">Home</a></span>
+        <li><span class="head_menu"><img src="A.png" width="18" height="15" align="top" class="noswap arrow" /></span>
+            <div class="sub_menu">
+                 正在载入
+            </div>
+        </li>        
+    </ul>
+</div>
+</body>
+</html>
