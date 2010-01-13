@@ -10,16 +10,19 @@ public abstract class Basez extends Controller {
 		if (session.contains("username")) {
 			User user = User.find("byEmail", session.get("username")).first();
 			renderArgs.put("user", user);
+			//default set current
+			renderArgs.put("currentuser", user.fullname);
 		}
-		if(params.get("username")!=null){
+		if (params.get("username") != null) {
 			renderArgs.put("currentuser", params.get("username"));
 		}
 	}
-	protected static User getCurrentUser() {
+
+	protected static User getLoginUser() {
 		return (User) renderArgs.get("user");
 	}
-	protected static String getFamilyCode() {
-		return params.get("family");
+	protected static String getVisitedUser() {
+		return  (String) renderArgs.get("currentuser");
 	}
-	
+
 }

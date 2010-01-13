@@ -77,7 +77,7 @@ public class Photoz extends Basez {
 	}
 
 	public static void sayHello(Long id, String content, int x, int y, int w, int h) throws IOException {
-		Photo photo = Photo.find("id = ? and author = ? ", id, getCurrentUser()).first();
+		Photo photo = Photo.find("id = ? and author = ? ", id, getLoginUser()).first();
 		if (photo != null) {
 			System.out.println(content);
 			String path = photo.prefPath;
@@ -88,7 +88,7 @@ public class Photoz extends Basez {
 
 	@Check("ROLE_USER")
 	public static void caption(Long id, String val) {
-		Photo photo = Photo.find("id = ? and author = ? ", id, getCurrentUser()).first();
+		Photo photo = Photo.find("id = ? and author = ? ", id, getLoginUser()).first();
 		if (photo != null) {
 			photo.caption = val;
 			photo.save();
@@ -100,7 +100,7 @@ public class Photoz extends Basez {
 	}
 
 	public static void desc(Long id, String val) {
-		Photo photo = Photo.find("id = ? and author = ? ", id, getCurrentUser()).first();
+		Photo photo = Photo.find("id = ? and author = ? ", id, getLoginUser()).first();
 		if (photo != null) {
 			photo.description = val;
 			photo.save();
@@ -112,7 +112,7 @@ public class Photoz extends Basez {
 	}
 
 	public static void revert(Long id) {
-		Photo photo = Photo.find("id = ? and author = ? ", id, getCurrentUser()).first();
+		Photo photo = Photo.find("id = ? and author = ? ", id, getLoginUser()).first();
 		if (photo != null) {
 			PhotoUploaderUtil.updateThumbFrom(photo, photo.filePath);
 		}
@@ -126,9 +126,10 @@ public class Photoz extends Basez {
 
 	public static void responses(Long id, String content) {
 		Photo photo = Photo.findById(id);
-		User user = getCurrentUser();
+		User user = getLoginUser();
 		Responses responses = new Responses(photo, user, content);
 		responses.save();
+		viewPhoto(getVisitedUser(), id);
 	}
 
 	public static void previousPicture(Long id) {
@@ -158,7 +159,7 @@ public class Photoz extends Basez {
 
 	@Check("ROLE_USER")
 	public static void remove(String family, Long id) {
-		Photo photo = Photo.find("id = ? and author = ? ", id, getCurrentUser()).first();
+		Photo photo = Photo.find("id = ? and author = ? ", id, getLoginUser()).first();
 		if (photo != null) {
 			if (photo.filePath != null)
 				FileUtils.deleteQuietly(new File(photo.filePath));

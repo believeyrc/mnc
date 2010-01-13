@@ -38,7 +38,7 @@ public class Postz extends Basez {
 		doPrepare(offset, pageSize, family);
 	}
 
-	public static void show(Long id, String family) {
+	public static void show(Long id) {
 		Post post = Post.findById(id);
 		String randomID = Codec.UUID();
 		render(post, randomID);
@@ -47,17 +47,17 @@ public class Postz extends Basez {
 	public static void postComment(Long postId, @Required(message = "Author is required") String author, @Required(message = "A message is required") String content,
 			@Required(message = "Please type the code") String code, String randomID) {
 		Post post = Post.findById(postId);
-		validation.equals(code.toLowerCase(), ((String)Cache.get(randomID)).toLowerCase()).message("Invalid code. Please type it again");
+		validation.equals(code.toLowerCase(), ((String) Cache.get(randomID)).toLowerCase()).message("Invalid code. Please type it again");
 
 		if (Validation.hasErrors()) {
 			render("Postz/show.html", post, author, content, randomID);
 		}
 		post.addComment(author, content);
 		flash.success("Thanks for posting %s", author);
-		show(postId, getFamilyCode());
+		show(postId);
 	}
 
-	public static void form(Long id,String family) {
+	public static void form(Long id, String family) {
 		if (id != null) {
 			Post post = Post.findById(id);
 			render(post);
@@ -96,7 +96,7 @@ public class Postz extends Basez {
 		if (newPost) {
 			// new PostThingJob(new Thing(Security.connected(),)).in(5);
 		}
-		show(post.id,post.author.family.code);
+		show(post.id);
 	}
 
 	private static boolean isNewPost(Post post) {
@@ -115,8 +115,8 @@ public class Postz extends Basez {
 		}
 	}
 
-	public static void listTagged(String tag,String family) {
-		List<Post> posts = Post.findTaggedWith(tag,family);
+	public static void listTagged(String tag, String family) {
+		List<Post> posts = Post.findTaggedWith(tag, family);
 		render(tag, posts);
 	}
 

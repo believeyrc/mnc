@@ -9,15 +9,25 @@ GET	/signin									Secure.login
 GET	/account								Userz.account
 GET	/account/changepassword					Userz.changepassword
 
+GET	/photos/upload					Photoz.prepareUpload
+GET	/people/{username}/relationship/	Relationshipz.relationship
+
 GET	/photos/{username}/page{<[0-9]+>page}	Photoz.photos
 GET	/photos/{username}/?					Photoz.photos(page:'1')
 GET	/photos/{username}/{<[0-9]+>id}			Photoz.viewPhoto
 GET	/photos/{username}/sets/{<[0-9]+>setsId}	Setz.viewSets
 GET	/photos/{username}/sets					Setz.mySets
-POST	/captcha/{id}						Postz.captcha
-POST	/desc/{id}							Postz.desc
 
-GET	/photos/upload					Photoz.prepareUpload
+GET /    Homez.index
+
+POST	/services/rest/caption/					Photoz.caption
+POST	/services/rest/desc/						Photoz.desc
+
+#POST	/captcha/{id}						Postz.captcha
+#POST	/desc/{id}							Postz.desc
+
+
+
 
 GET /family/{family}/meme    				Memez.index
 
@@ -39,7 +49,7 @@ POST	/normalize				Photoz.normalize
 GET /family/{family}/?	Memez.index
 GET /family/{family}/neighbours	Familyz.neighbours
 
-GET /    Homez.index
+
 
 
 GET     /admin/?                            Admin.index

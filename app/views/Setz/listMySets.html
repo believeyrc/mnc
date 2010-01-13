@@ -3,17 +3,17 @@
 <script>
 		function addPhotoToSets(setid,photoid){
 			$.post('@{Setz.addPhotoToSets()}',{setsId:setid,photoId:photoid},function(){
-				if ($("#phototools").length != 0) {
-					$("#phototools span.head_menu").removeClass('active');
-					$("#phototools div.sub_menu").hide();				
+				if ($("#nicemenu").length != 0) {
+					$("#nicemenu span.head_menu").removeClass('active');
+					$("#nicemenu div.sub_menu").hide();				
 				}
 			});						
 		}
 		function removePhotoFromSets(setid,photoid){
 			$.post('@{Setz.removePhotoFromSets()}',{setsId:setid,photoId:photoid},function(){
-				if ($("#phototools").length != 0) {
-					$("#phototools span.head_menu").removeClass('active');
-					$("#phototools div.sub_menu").hide();				
+				if ($("#nicemenu").length != 0) {
+					$("#nicemenu span.head_menu").removeClass('active');
+					$("#nicemenu div.sub_menu").hide();				
 				}
 			});			
 		}
@@ -21,9 +21,9 @@
 			var url = $(bt).closest('form').attr('action');
 			$.post(url, {username:$('#username').val(),newset:$('#newset').val()}, function(ret){
 				$.post('@{Setz.addPhotoToSets()}',{setsId:ret,photoId:${photoId}});
-				if ($("#phototools").length != 0) {
-					$("#phototools span.head_menu").removeClass('active');
-					$("#phototools div.sub_menu").hide();				
+				if ($("#nicemenu").length != 0) {
+					$("#nicemenu span.head_menu").removeClass('active');
+					$("#nicemenu div.sub_menu").hide();				
 				}
 			},'JSON'); 
 		}

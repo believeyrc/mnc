@@ -13,7 +13,7 @@ public class Setz extends Basez {
 		Photo photo = Photo.findById(photoId);
 		if (user != null) {
 			List<Sets> sets = Sets.find("byAuthor", user).fetch();
-			render(sets,photoId,photo);
+			render(sets, photoId, photo);
 		}
 	}
 
@@ -35,7 +35,7 @@ public class Setz extends Basez {
 		Photo photo = Photo.findById(photoId);
 		if (sets != null && photo != null) {
 			sets.photos.add(photo);
-			if(sets.cover==null)
+			if (sets.cover == null)
 				sets.cover = photo;
 			sets.save();
 		}
@@ -45,15 +45,17 @@ public class Setz extends Basez {
 		Sets sets = Sets.findById(setsId);
 		Photo photo = Photo.findById(photoId);
 		if (sets != null && photo != null && sets.photos.contains(photo)) {
+			if (sets.cover.getId() == photo.getId()) {
+				sets.cover = null;
+			}
 			sets.photos.remove(photo);
 			sets.save();
 		}
 	}
-	
-	
+
 	public static void newset(String username, String newset) {
 		Sets sets = new Sets();
-		sets.author = getCurrentUser();
+		sets.author = getLoginUser();
 		sets.createDate = new Date();
 		sets.name = newset;
 		sets.save();

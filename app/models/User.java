@@ -15,6 +15,8 @@ public class User extends Model {
     @Password
     public String password;
     public String fullname;
+    public String screenname;
+    public String avatar;
     public boolean isAdmin;
     @ManyToMany
     public List<Role> roles;

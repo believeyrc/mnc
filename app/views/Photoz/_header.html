@@ -1,3 +1,5 @@
+#{script 'flickrmenu.js'/}
+
 <table class="Header" style='width:820px;font-size:11px;' border="0" cellspacing="0">
 	<tr style='height:35px;'>
 		<td>
@@ -40,7 +42,8 @@
 				<li><span class="head_menu"><a href="@{Userz.register()}" alt="注册">注册</a></span>
 				</li>
 			#{/notLogin}
-				*{<li><span class="head_menu"><a href="/explore/" alt="发掘 Newete 奇趣事">发掘</a> <img src="@{'/public/images/site_nav_caret_split_default.png'}" class="nav_button_caret" alt="更多選項" height="15" width="18"></span>
+				*{
+					<li><span class="head_menu"><a href="/explore/" alt="发掘 Newete 奇趣事">发掘</a> <img src="@{'/public/images/site_nav_caret_split_default.png'}" class="nav_button_caret" alt="更多選項" height="15" width="18"></span>
 				}*
 			</li>
 			</ul>
@@ -68,57 +71,11 @@
 </table>	
 
 <script type="text/javascript">
-
 $(document).ready(function(){
-
-	$("#nicemenu img.arrow").click(function(){ 
-								
-		$("span.head_menu").removeClass('active');
-		
-		submenu = $(this).parent().parent().find("div.sub_menu");
-		
-		if(submenu.css('display')=="block"){
-			$(this).parent().removeClass("active"); 	
-			submenu.hide(); 		
-			$(this).attr('src','@{'/public/images/arrow_hover.png'}');									
-		}else{
-			$(this).parent().addClass("active"); 	
-			submenu.fadeIn(); 		
-			$(this).attr('src','@{'/public/images/arrow_select.png'}');	
-		}
-		
-		$("div.sub_menu:visible").not(submenu).hide();
-		$("#nicemenu img.arrow").not(this).attr('src','@{'/public/images/arrow.png'}');
-						
-	})
-	.mouseover(function(){ $(this).attr('src','@{'/public/images/arrow_hover.png'}'); })
-	.mouseout(function(){ 
-		if($(this).parent().parent().find("div.sub_menu").css('display')!="block"){
-			$(this).attr('src','@{'/public/images/arrow.png'}');
-		}else{
-			$(this).attr('src','@{'/public/images/arrow_select.png'}');
-		}
-	});
-
-	$("#nicemenu span.head_menu").mouseover(function(){ $(this).addClass('over')})
-								 .mouseout(function(){ $(this).removeClass('over') });
-	
-	$("#nicemenu div.sub_menu").mouseover(function(){ $(this).fadeIn(); })
-							   .blur(function(){ 
-							   		$(this).hide();
-									$("span.head_menu").removeClass('active');
-								});		
-								
-	$(document).click(function(event){ 		
-			var target = $(event.target);
-			if (target.parents("#nicemenu").length == 0) {				
-				$("#nicemenu span.head_menu").removeClass('active');
-				$("#nicemenu div.sub_menu").hide();
-				$("#nicemenu img.arrow").attr('src','@{'/public/images/arrow.png'}');
-			}
-	});			   
-							   
-								   
+	o = {arrawpng : '@{'/public/images/arrow.png'}',
+	arrawselectpng :'@{'/public/images/arrow_select.png'}',
+	arrawhoverpng :'@{'/public/images/arrow_hover.png'}'}
+	$("#nicemenu").flickmenu(o)	
 });
 
 </script>

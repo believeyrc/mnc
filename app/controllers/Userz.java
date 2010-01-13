@@ -1,6 +1,7 @@
 package controllers;
 
 import models.User;
+import play.data.validation.Validation;
 import play.i18n.Messages;
 
 public class Userz extends Basez {
@@ -9,7 +10,7 @@ public class Userz extends Basez {
 	}
 
 	public static void account() {
-		render(getCurrentUser());
+		render(getLoginUser());
 	}
 
 	public static void changePassword() {
@@ -22,13 +23,13 @@ public class Userz extends Basez {
 		validation.required(newpassword2);
 		validation.minSize(newpassword, 6);
 		validation.equals(newpassword, newpassword2);
-		User currentUser = getCurrentUser();
+		User currentUser = getLoginUser();
 		if (User.connect(currentUser.email, currentPassword) == null) {
-			validation.addError("currentPassword", "validation.notMacth", currentPassword);
+			Validation.addError("currentPassword", "validation.notMacth", currentPassword);
 		}
-		if (validation.hasErrors()) {
+		if (Validation.hasErrors()) {
 			params.flash();
-			validation.keep();
+			Validation.keep();
 			changePassword();
 		} else {
 			currentUser.password = newpassword;
@@ -37,26 +38,32 @@ public class Userz extends Basez {
 		}
 	}
 
-	public static void save(String email, String fullname, String password, String password2) {
+	public static void save(String email, String fullname, String password, String password2,String screenname) {
+		fullname = fullname.toLowerCase();
+		
 		validation.required(email);
+		validation.email(email);
 		validation.required(fullname);
 		validation.minSize(fullname, 5);
+		validation.match(fullname, "[a-z0-9]*");
+		validation.required(screenname);
+		validation.minSize(screenname,1);
 		validation.required(password);
 		validation.minSize(password, 6);
 		validation.required(password2);
 		validation.equals(password, password2);
-
+		
 		long count = User.count("byEmail", email);
 		if (count > 0) {
-			validation.addError("email", Messages.get("validation.exists", email));
+			Validation.addError("email", Messages.get("validation.exists", email));
 		}
 		count = User.count("byFullname", fullname);
 		if (count > 0) {
-			validation.addError("fullname", Messages.get("validation.exists", fullname));
+			Validation.addError("fullname", Messages.get("validation.exists", fullname));
 		}
-		if (validation.hasErrors()) {
+		if (Validation.hasErrors()) {
 			params.flash(); // add http parameters to the flash scope
-			validation.keep(); // keep the errors for the next request
+			Validation.keep(); // keep the errors for the next request
 			register();
 		}
 		User user = new User(email, password, fullname);

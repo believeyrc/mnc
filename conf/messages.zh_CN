@@ -147,3 +147,6 @@ validation.minSize=%s 必须 %s 个字母以上。
 validation.exists=%s 已经被使用。
 
 validation.notMacth= %s 不匹配
+screenname=显示名字
+validation.match=%s含有不符合的字符
+ 

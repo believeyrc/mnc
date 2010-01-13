@@ -1,7 +1,12 @@
 #{extends 'main.html' /}
-#{list items:families, as:'family'}
-<div class='family-block' >
-	<a href="/family/${family.code}"><img src="/${family.image?:'public/home/home.jpg'}"/></a>
-	<div><a href="/family/${family.code}">${family.name}</a></div>	
-</div>
-#{/list}
+#{isLogin}
+	#{include 'Photoz/_userbar.html'/}
+	<h2>»<a href="@{Photoz.photos(user.fullname,1)}">你上传的所有内容</a></h2>
+#{/isLogin}
+#{notLogin}
+	<h2>»<a href="">大家最近上传的照片</a></h2>
+#{/notLogin}
+
+#{table items:lastPhotos,as:'photo',cols:5}
+	<a href="@{Photoz.viewPhoto(photo.author.fullname,photo.id)}"><img src='${photo.thumbPath}'/></a>
+#{/table}
