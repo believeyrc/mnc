@@ -147,7 +147,7 @@ tr.inforow{
 		imgrow += "<td class='imgtd'>"
 		imgrow += ( "<div class='imgbock'><a href='"
 			+ actionBridge.Photoz.viewPhoto(photo.author.fullname,photo.id)
-			+"'><img src='/${photo.thumb2Path}' alt='${photo.caption}'/></a></div>" )
+			+"'><img src='http://static.jsxnc.com/${photo.thumb2Path}' alt='${photo.caption}'/></a></div>" )
 		imgrow += "<div><div id='desc' "
 }% 
 	#{isMine caller:_caller} %{ 

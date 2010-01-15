@@ -34,7 +34,7 @@ public class PhotoUploaderUtil {
 	}
 
 	public static String getPathForSmall(String base) {
-		return base + "-75.jpg";
+		return base + ".75.jpg";
 	}
 
 	public static String getPathForMidle(String base) {
