@@ -8,5 +8,5 @@
 #{/notLogin}
 
 #{table items:lastPhotos,as:'photo',cols:5}
-	<a href="@{Photoz.viewPhoto(photo.author.fullname,photo.id)}">#{photo photo:photo,as:'75'}</a>
+	<a href="@{Photoz.viewPhoto(photo.author.fullname,photo.id)}">#{photo photo:photo,as:'75'/}</a>
 #{/table}
