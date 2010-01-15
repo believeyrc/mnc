@@ -47,7 +47,7 @@ public class ResizeImageJob extends Job<File> {
 		File ofile = outputFile;
 		if (outputFile == null)
 			ofile = new File(this.file.getParent(), String.format("%1s%2sx%3s.jpg", this.file.getName(), this.width, this.height));		
-		ImageUtil.saveJPEG(ImageUtil.thumbnail(ImageUtil.load(new File( staticpath+file.getPath() ) ), width, height ), new File( staticpath+outputFile.getPath() ) );
+		ImageUtil.saveJPEG(ImageUtil.thumbnail(ImageUtil.load(new File( staticpath+file.getPath() ) ), width, height, enlargeImage, absolution ), new File( staticpath+outputFile.getPath() ) );
 //		ImageMagick.thumbnail(staticpath+file.getPath(), staticpath+outputFile.getPath(), width, height);
 		return ofile;
 	}
