@@ -5,6 +5,7 @@ import java.io.File;
 import play.Play;
 import play.jobs.Job;
 import utils.ImageMagick;
+import utils.ImageUtil;
 
 /**
  * 
