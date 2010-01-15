@@ -46,8 +46,13 @@ public class ImageUtil {
 		return rescaledTomato;
 	}
 
-	public static BufferedImage thumbnail(BufferedImage img, int width, int height) {
-		ResampleOp resampleOp = new ResampleOp(DimensionConstrain.createMaxDimension(width, height,true));
+	public static BufferedImage thumbnail(BufferedImage img, int width, int height, boolean enlargeImage, boolean absolution) {
+		ResampleOp resampleOp = null;
+		if(absolution){
+			resampleOp = new ResampleOp(DimensionConstrain.createAbsolutionDimension(width, height));			
+		} else {
+			resampleOp = new ResampleOp(DimensionConstrain.createMaxDimension(width, height, !enlargeImage));
+		}
 		BufferedImage rescaledTomato = resampleOp.filter(img, null);
 		return rescaledTomato;
 	}

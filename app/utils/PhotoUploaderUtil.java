@@ -19,7 +19,7 @@ public class PhotoUploaderUtil {
 	public static void updateThumbnails(Photo photo) {
 		File ofile = new File(photo.filePath);
 		new ResizeImageJob(ofile, LARGE_SIZE, LARGE_SIZE, new File(photo.prefPath)).in(0);
-		new ResizeImageJob(ofile, SMALL_SIZE, SMALL_SIZE, new File(photo.thumbPath)).in(0);
+		new ResizeImageJob(ofile, SMALL_SIZE, SMALL_SIZE, new File(photo.thumbPath), false, true).in(0);
 		new ResizeImageJob(ofile, MIDLE_SIZE, MIDLE_SIZE, new File(photo.thumb2Path)).in(0);
 	}
 
