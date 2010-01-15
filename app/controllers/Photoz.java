@@ -185,7 +185,7 @@ public class Photoz extends Basez {
 		try {
 			restroreSession();
 			String pathForPhoto = PhotoUploaderUtil.getPathForPhoto();
-			File ofile = new File(pathForPhoto);
+			File ofile = new File("/staticres/"+pathForPhoto);
 			FileUtils.moveFile(upload, ofile);
 			Photo photo = new Photo(upload.getName(), new Date(), pathForPhoto);
 			photo.prefPath = PhotoUploaderUtil.getPathForLarge(pathForPhoto);
