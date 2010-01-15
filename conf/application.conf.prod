@@ -145,3 +145,4 @@ mail.smtp=mock
 # ~~~~~
 jvm.memory=-Xmx270m -Xms270m -XX:MaxPermSize=80m -Xverify:none -XX:+UseParallelGC -XX:+UseParallelOldGC -XX:+UseAdaptiveSizePolicy -XX:SurvivorRatio=4 -XX:TargetSurvivorRatio=90 -XX:MaxTenuringThreshold=31 -XX:+AggressiveOpts
 shell=sh
+staticpath=/staticres/
