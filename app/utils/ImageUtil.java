@@ -10,6 +10,7 @@ import play.Logger;
 
 import com.jhlabs.image.RotateFilter;
 import com.mortennobel.imagescaling.ResampleOp;
+import com.mortennobel.imagescaling.DimensionConstrain;
 
 public class ImageUtil {
 	public static BufferedImage load(File file) {
@@ -45,6 +46,12 @@ public class ImageUtil {
 		return rescaledTomato;
 	}
 
+	public static BufferedImage thumbnail(BufferedImage img, int width, int height) {
+		ResampleOp resampleOp = new ResampleOp(DimensionConstrain.createMaxDimension(width, height,true));
+		BufferedImage rescaledTomato = resampleOp.filter(img, null);
+		return rescaledTomato;
+	}
+	
 	public static BufferedImage roate(BufferedImage src, float angle) {
 		BufferedImage dst = new BufferedImage(src.getHeight(), src.getWidth(), src.getType());
 		RotateFilter rotateFilter = new RotateFilter(angle);
