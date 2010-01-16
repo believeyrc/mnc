@@ -135,13 +135,10 @@ tr.inforow{
 	def inforow = ""
 	def descrow = "";
 	def cols = 3
-	_photos.eachWithIndex(){photo,i->
-		//println(i+":"+photo.id)
+	_photos.eachWithIndex(){photo,i->		
 		if( i%cols ==0 ){
 			imgrow+="<tr valign='top' class='imgrow'>"
 			caprow+="<tr valign='top' class='caprow'>"
-			//descrow+="<tr valign='top' class='descrow'>"
-			//inforow+="<tr valign='top' class='inforow'>"
 		}	
 		caprow += "<td class='captd'><div id='cap' "
 		imgrow += "<td class='imgtd'>"
