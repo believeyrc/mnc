@@ -2,8 +2,7 @@
   <tbody>
 	<tr>
 	  <td class="Buddy" width=52>
-		<a href="@{Photoz.photos(currentuser,1)}"><img width="48" height="48" alt="大头贴" title="到你的所有相片页面" 
-		src="#{if visitedUser.avatar==null}@{'/public/images/avatar.jpg'}#{/if}#{ifnot visitedUser.avatar==null}/${visitedUser.avatar}#{/ifnot}"></a>
+		<a href="@{Photoz.photos(currentuser,1)}">#{avata user:visitedUser/}</a>
 	  </td>
 	  <td class="Section">
 		<h1>

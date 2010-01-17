@@ -1,2 +1,2 @@
 <img width="${_as?_as:48}" height="${_as?_as:48}" alt="大头贴" title="到你的所有相片页面"
-		src="#{if _user.avatar==null}@{'/public/images/avatar.jpg'}#{/if}#{ifnot _user.avatar==null}${play.configuration.staticserver}${_user.avatar}#{/ifnot}">
+		src="#{if _user.avatar==null}${play.configuration.staticserver}public/images/avatar.jpg#{/if}#{ifnot _user.avatar==null}${play.configuration.staticserver}${_user.avatar}#{/ifnot}">
