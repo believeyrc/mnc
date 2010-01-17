@@ -1,0 +1,63 @@
+#{extends 'main.html' /}
+#{set title:'修改密码'/}
+<h1>修改大头贴</h1>
+#{script 'jquery.Jcrop.js'/}
+#{stylesheet 'jquery.Jcrop.css'/}
+
+#{form action:@saveAvatar(),id:'avatarform'}
+<table>
+	<tr><td id="label"><label>现在的大头贴</label></td></tr>	
+	<tr><td>#{avatar user:user/}</td></tr>
+
+	<tr><td id="label"><label>新的大头贴</label></td></tr>
+	<tr><td>
+	<div style="width:48px;height:48px;overflow:hidden;margin:0px;">
+		#{photo photo:photo,as:'500',id:'preview'/}
+	</div>
+    <div >
+		拖动下边的选择框来调整你大头贴。
+	</div>
+	</td></tr>
+	<tr>
+        <td>#{photo photo:photo,as:'500',id:'jcrop_target'/}</td>
+    </tr>	
+	<tr><td><input type="submit" name="submit" value="设置我的大头贴"></td></tr>
+</table>
+<input name='id' type='hidden' value='${photo.id}'/>
+<input name='x' type='hidden' value='0'/>
+<input name='y' type='hidden' value='0'/>
+<input name='w' type='hidden' value='0'/>
+<input name='h' type='hidden' value='0'/>
+#{/form}
+<script>
+$(document).ready(function(){
+	function showPreview(coords)
+	{	
+		if (parseInt(coords.w) > 0)
+		{
+			var rx = 48 / coords.w;
+			var ry = 48 / coords.h;
+
+			$('#preview').css({
+				width: Math.round(rx * $('#jcrop_target').width()) + 'px',
+				height: Math.round(ry * $('#jcrop_target').height()) + 'px',
+				marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+				marginTop: '-' + Math.round(ry * coords.y) + 'px'
+			});
+			var $f = $('#avatarform');
+			$f.find('input[name=x]').val(coords.x);
+			$f.find('input[name=y]').val(coords.y);
+			$f.find('input[name=w]').val(coords.w);
+			$f.find('input[name=h]').val(coords.h);
+		}
+	};
+
+	$('#jcrop_target').Jcrop({
+		onChange: showPreview,
+		onSelect: showPreview,
+		aspectRatio: 1,
+		setSelect:[0,0,48,48],
+		minSize:[10,10]
+	});
+});
+</script>

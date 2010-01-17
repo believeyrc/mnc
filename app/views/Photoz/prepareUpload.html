@@ -13,7 +13,7 @@
 <label id="info"></label>
 
 <div style="background:#F7F7F7;padding:20px;font-size:20px;">
-	<div id="block">
+	<div id="block" class='uploaderblock'>
 		<label id="info">步骤1:</label>
 		#{uploadifybar/}
 		<label id="info">选择你要上传的照片，允许JPEG,JPG,GIF,PNG等格式。</label>
@@ -37,17 +37,28 @@
 	</div>
 
 	<div id="step2" style="display:none" class="upload">
+	*{
 		<div id="block">
 			<input type="radio" name="type1"><label>个人的</label>
 				<input type="checkbox" name="type1"><label>朋友可见</label>
 				<input type="checkbox" name="type1"><label>家人可见</label>
 			<input type="radio" name="type1"><label>公开的</label>
 		</div>
+	}*
 		<div id="block">
 			<div style='height:30px' id="upload-buttons">
 				<a href="javascript:$('#uploadify-div').uploadifyUpload();">开始上传</a>
 			</div>
 		</div>	
 	</div>
-
+	<div id="step3" style="display:none" class="upload">
+		<div id="block">
+			<div style='height:30px' id="upload-buttons">
+				到<a href="@{Photoz.home(user.fullname)}">我的照片</a>中，给图片添加描述...
+			</div>
+		</div>	
+	</div>
 </div>
+
+
+

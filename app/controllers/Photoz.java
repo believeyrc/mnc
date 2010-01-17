@@ -12,19 +12,26 @@ import java.util.regex.Pattern;
 
 import models.Photo;
 import models.Responses;
-import models.Sets;
 import models.User;
 
 import org.apache.commons.io.FileUtils;
 
 import play.Play;
 import play.libs.Crypto;
+import play.mvc.With;
 import utils.BalloonUtil;
-import utils.ImageMagick;
+import utils.ImageUtil;
 import utils.PhotoUploaderUtil;
 
+@With(Secure.class)
 public class Photoz extends Basez {
-
+    public static void home(String username) {
+	    int	 page = 1;
+		int pageSize = 12;
+		long totalCount = Photo.count(" author.fullname = ? ", username);
+		List<Photo> photos = Photo.find(" author.fullname = ? order by id desc", username).from(pageSize * (page - 1)).fetch(pageSize);
+		render("Photoz/photos.html",photos, page, totalCount, pageSize);
+    }
 	public static void photos(String username, int page) {
 		if (page <= 1)
 			page = 1;
@@ -56,23 +63,15 @@ public class Photoz extends Basez {
 
 	public static void rotateRight(Long id) throws IOException {
 		Photo photo = Photo.findById(id);
-		ImageMagick.rotate(photo.prefPath, photo.prefPath, -90);// ImageUtil.saveJPEG(ImageUtil.roate(ImageUtil.load(new
-																// File(file)),
-																// (float)
-																// (Math.PI /
-																// 2)), new
-																// File(file));
+		//ImageMagick.rotate(photo.prefPath, photo.prefPath, -90);
+        ImageUtil.saveJPEG(ImageUtil.roate(ImageUtil.load(photo.prefPath),(float)(Math.PI /2)),photo.prefPath);
 		PhotoUploaderUtil.updateThumbFrom(photo, photo.prefPath);
 	}
 
 	public static void rotateLeft(Long id) throws IOException {
 		Photo photo = Photo.findById(id);
-		ImageMagick.rotate(photo.prefPath, photo.prefPath, 90);// ImageUtil.saveJPEG(ImageUtil.roate(ImageUtil.load(new
-																// File(file)),
-																// -(float)
-																// (Math.PI /
-																// 2)), new
-																// File(file));
+		//ImageMagick.rotate(photo.prefPath, photo.prefPath, 90);
+        ImageUtil.saveJPEG(ImageUtil.roate(ImageUtil.load(photo.prefPath),-(float)(Math.PI /2)), photo.prefPath);
 		PhotoUploaderUtil.updateThumbFrom(photo, photo.prefPath);
 	}
 
@@ -86,16 +85,15 @@ public class Photoz extends Basez {
 		}
 	}
 
-	@Check("ROLE_USER")
 	public static void caption(Long id, String val) {
 		Photo photo = Photo.find("id = ? and author = ? ", id, getLoginUser()).first();
 		if (photo != null) {
 			photo.caption = val;
 			photo.save();
-			Photo temp = new Photo();
-			temp.caption = photo.caption;
-			temp.id = photo.id;
-			renderJSON(photo);
+//			Photo temp = new Photo();
+//			temp.caption = photo.caption;
+//			temp.id = photo.id;
+			renderJSON(val);
 		}
 	}
 
@@ -104,21 +102,21 @@ public class Photoz extends Basez {
 		if (photo != null) {
 			photo.description = val;
 			photo.save();
-			Photo temp = new Photo();
-			temp.description = photo.description;
-			temp.id = photo.id;
-			renderJSON(photo);
+//			Photo temp = new Photo();
+//			temp.description = photo.description;
+//			temp.id = photo.id;
+			renderJSON(val);
 		}
 	}
-
+	
 	public static void revert(Long id) {
 		Photo photo = Photo.find("id = ? and author = ? ", id, getLoginUser()).first();
 		if (photo != null) {
 			PhotoUploaderUtil.updateThumbFrom(photo, photo.filePath);
 		}
 	}
-
-	public static void viewPhoto(String username, Long id) {
+	
+	public static void viewPhoto(String username,Long id) {
 		Photo photo = Photo.findById(id);
 		List<Responses> responses = Responses.find(" photo = ? order by postedAt asc", photo).fetch();
 		render(photo, responses);
@@ -129,7 +127,7 @@ public class Photoz extends Basez {
 		User user = getLoginUser();
 		Responses responses = new Responses(photo, user, content);
 		responses.save();
-		viewPhoto(getVisitedUser(), id);
+		viewPhoto(getVisitedUser(),id);
 	}
 
 	public static void previousPicture(Long id) {
@@ -175,12 +173,12 @@ public class Photoz extends Basez {
 	}
 
 	static Pattern sessionParser = Pattern.compile("\u0000([^:]*):([^\u0000]*)\u0000");
-
+	@Check("login")
 	public static void prepareUpload() {
 		render();
 	}
 
-	@Check("ROLE_USER")
+	@Check("login")
 	public static void upload(String id, File upload) {
 		try {
 			restroreSession();

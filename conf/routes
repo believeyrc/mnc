@@ -8,12 +8,13 @@ GET	/signup									Userz.register
 GET	/signin									Secure.login
 GET	/account								Userz.account
 GET	/account/changepassword					Userz.changepassword
+GET	/account/changeavatar/{id}					Userz.changeAvatar
 
 GET	/photos/upload					Photoz.prepareUpload
 GET	/people/{username}/relationship/	Relationshipz.relationship
 
 GET	/photos/{username}/page{<[0-9]+>page}	Photoz.photos
-GET	/photos/{username}/?					Photoz.photos(page:'1')
+GET	/photos/{username}/?					Photoz.home
 GET	/photos/{username}/{<[0-9]+>id}			Photoz.viewPhoto
 GET	/photos/{username}/sets/{<[0-9]+>setsId}	Setz.viewSets
 GET	/photos/{username}/sets					Setz.mySets

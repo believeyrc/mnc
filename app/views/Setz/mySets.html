@@ -6,13 +6,16 @@
 #{include 'Photoz/_userbar.html'/}
 
 #{table cols:5, items:sets , as:'set'}
-	#{ifnot set==null}
-		<a href="@{Setz.viewSets(currentuser,set?.id)}">#{photo photo:set.cover,as:'75'/}</a>
-		<div>
-		共有${set.photos.size()}张相片&nbsp;<a href="@{Setz.viewSets(currentuser,set?.id)}">${set?.name}</a>
-		</div>
-	#{/ifnot}
-	#{if set == null}
-		&nbsp;
-	#{/if}
+	#{td valign:'top',class:'info'}
+		#{ifnot set==null}
+			<a href="@{Setz.viewSets(currentuser,set?.id)}">#{photo photo:set.cover,as:'75'/}</a><br/>
+		#{/ifnot}
+	#{/td}
+	#{td valign:'top'}
+		#{ifnot set==null}
+			<div>
+			共有${set.photos.size()}张相片<br/><a href="@{Setz.viewSets(currentuser,set?.id)}">${set?.name}</a>
+			</div>
+		#{/ifnot}
+	#{/td}
 #{/table}

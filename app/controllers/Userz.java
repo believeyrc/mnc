@@ -1,8 +1,10 @@
 package controllers;
 
+import models.Photo;
 import models.User;
 import play.data.validation.Validation;
 import play.i18n.Messages;
+import utils.ImageUtil;
 
 public class Userz extends Basez {
 	public static void register() {
@@ -15,6 +17,27 @@ public class Userz extends Basez {
 
 	public static void changePassword() {
 		render();
+	}
+
+    public static void saveScreename(String val) {
+        User user = getLoginUser();
+        user.screenname = val;
+        user.save();
+        renderJSON(val);
+	}
+
+	public static void changeAvatar(Long id) {
+		Photo photo = Photo.findById(id);
+		render(photo);
+	}
+
+	public static void saveAvatar(Long id, int x, int y, int w, int h) {
+		Photo photo = Photo.findById(id);
+		User loginUser = getLoginUser();
+		loginUser.avatar = "public/avatar/" + loginUser.id + ".jpg";
+		loginUser.save();
+		ImageUtil.saveJPEG(ImageUtil.thumbnail(ImageUtil.crop(ImageUtil.load(photo.prefPath), x, y, w, h),48,48,true,true), loginUser.avatar);
+		account();
 	}
 
 	public static void saveNewPassword(String currentPassword, String newpassword, String newpassword2) {
@@ -38,21 +61,21 @@ public class Userz extends Basez {
 		}
 	}
 
-	public static void save(String email, String fullname, String password, String password2,String screenname) {
+	public static void save(String email, String fullname, String password, String password2, String screenname) {
 		fullname = fullname.toLowerCase();
-		
+
 		validation.required(email);
 		validation.email(email);
 		validation.required(fullname);
 		validation.minSize(fullname, 5);
 		validation.match(fullname, "[a-z0-9]*");
 		validation.required(screenname);
-		validation.minSize(screenname,1);
+		validation.minSize(screenname, 1);
 		validation.required(password);
 		validation.minSize(password, 6);
 		validation.required(password2);
 		validation.equals(password, password2);
-		
+
 		long count = User.count("byEmail", email);
 		if (count > 0) {
 			Validation.addError("email", Messages.get("validation.exists", email));

@@ -7,7 +7,7 @@
 		</td>
 		<td class="Status" >
 			#{isLogin}
-				以 <a href="/account" class="Pale">nile.black</a> 登入
+				以 #{screenname user/} 登入
 			#{/isLogin}
 			#{notLogin}
 				<a href="@{Userz.register()}" class="Pale">现在加入</a> &nbsp;&nbsp;&nbsp;
@@ -29,7 +29,7 @@
 			<ul >
 				<li ><span class="head_menu"><a href="/">首页</a></span></li>
 			#{isLogin}
-				<li ><span class="head_menu"><a href="@{Photoz.photos(user.fullname,1)}">你的足迹</a> 
+				<li ><span class="head_menu"><a href="@{Photoz.home(user.fullname)}">你的足迹</a> 
 				<img src="@{'/public/images/site_nav_caret_split_default.png'}" class="arrow" alt="更多选项" height="15" width="18"></span>
 				<div class="sub_menu">
 					<a href="@{Photoz.photos(user.fullname,1)}">你的所有照片</a>
@@ -50,22 +50,26 @@
 		</div>
 		</td>
 		<td style="padding-bottom: 2px;" id="search_header_form_td">
+		*{
 			<form action="/search/" method="get" onsubmit="_do_header_search('89555424@N00', '', '/search/', '', '');return false;" id="headersearchform">
-				<input style="color: rgb(153, 153, 153);" name="q" id="header_search_q" class="Box" value="搜尋你的所有相片" type="text">
+				<input style="color: rgb(153, 153, 153);" name="q" id="header_search_q" class="Box" value="照片搜索" type="text">
 				<input name="w" value="89555424@N00" type="hidden">
 				<input name="m" value="" type="hidden">
 				<input name="s" value="" type="hidden">
 				<input name="mt" value="" type="hidden">
 				<input name="referer_searched" value="" type="hidden">
 			</form>
+		}*
 		</td>
 		<td id="search_header_button_td"  style='text-align:right' width="82">
+		*{
 			<div style="display: block;" id="candy_search_button_bar" class="candy_button_bar">
 				<ul class="site_nav_menu_buttons">
 				<li class="menu_li" id="candy_nav_button_search"><span><a href="/search/" onclick="_do_header_search('89555424@N00', '', '/search/', '', '');return false;">搜尋</a> <img src="@{'/public/images/site_nav_caret_split_default.png'}" class="nav_button_caret" alt="更多選項" height="15" width="18"></span>					
 				</li>
 				</ul>
 			</div>
+		}*
 		</td>	
 	</tr>		
 </table>	

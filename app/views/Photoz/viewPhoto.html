@@ -11,7 +11,6 @@
 #{stylesheet 'imgareaselect-default.css'/}
 #{stylesheet 'themes/base/ui.all.css'/}
 
-
 <style type="text/css">
 a{
 	cursor:pointer;
@@ -96,6 +95,7 @@ textarea{
 		$(a).parent().find(".sub_menu").load('@{Setz.listMySets(currentuser,photo.id)}');		
 	}
 </script>
+
 <div id='hiddendiv' style='display:none'>
 	<div id='sayHello' class='sayHello' style='display:none;position:absolute;width:120px;height:132px;'>		
 		<img id='hello-img' src='/public/images/hello-lt.gif' style='width:120px;height:70px;'/>	
@@ -112,12 +112,12 @@ textarea{
 	<td width="502px" style="padding-right:50px;">
 		<table id="photo">
 			<tr>
-			<td id='' style='text-align:left;'>
-				<h3>&{photo.caption}</h3>
+			<td>
+				<div class='cap'>&{photo.caption}</div>
 			</td>
 			</tr>
 			<tr>
-				<td id='' style='text-align:left'>
+				<td style='text-align:left'>
 					<div id="nicemenu" style="clear:both">		
 						<ul >
 					#{isMine}
@@ -132,69 +132,51 @@ textarea{
 						<li ><a  onclick="revert((${photo.id}))"><img alt="&{'revert'}" src="@{'/public/images/revert.jpg'}"/></a></li>
 						<li ><a  onclick="delete((${photo.id}))"><img alt="&{'delete'}" src="@{'/public/images/delete.png'}"/></a></li>
 					#{/isMine}	
+					#{isLogin}
+                        <li ><a  href="@{Userz.changeAvatar(photo.id)}"><img alt="&{'delete'}" src="@{'/public/images/changeavatar.jpg'}"/></a></li>
+                    #{/isLogin}
 						</ul >
 					</div>
 				</td>
 			</tr>
 			<tr>
-			<td id='imgtd'>
+			<td id='imgtd' style='width:500px;text-align:left'>
 				#{photo photo:photo,as:'500',id:'photo'/}
 			</td>
 			</tr>
 			<tr>
-			<td id=''>
-				&{photo.description}
+			<td  style='width:500px;text-align:left;'>
+				<div id="${photo.id}" class='desc large'>&{photo.description}</div>
 			</td>
 			</tr>
-		</table>
-		#{if responses.size() >0}
-			<h4 style='color:#FF0084;font-style:bold;'>&{'Responses'}</h4>
-			<table>
-				#{list items:responses, as:'resp'}
-				<tr><td style='width:40px'>${resp.author.fullname}</td>
-				<td style='text-align:left'>
-					<label >${resp.postedAt.format('yyyy/MMM/dd')}</label>	
-					${resp.content}</p>
-				</td>
-				</tr>
-				#{/list}
-			</table>
-		#{/if}
-		#{isLogin}
-			<style>
-			form{
-				border:0px;
-				margin:0px;
-				padding:0px;
-			}
-			</style>
-			<div style='width:400px'>
-			<h4 style='color:#FF0084'>&{'addYourResponse'}</h4>
-			#{form @Photoz.responses().add('id',photo.id)}    
-				<p style="margin:15px 5px 5px 5px;">
-					<label for="content">&{'YourMessage'} </label>
-					<textarea style='height:60px' name="content" id="content">${content}</textarea>
-				</p>
-				<p>
-					<input class='button' type="submit" value="&{'SubmitYourComment'}" />
-				</p>
-			#{/form}
-			</div>
-		#{/isLogin}
+		</table>        
+		#{responses responses:responses/}
 	</td>
 	<td valign="top">
-		<div>
-			<h4>提供图片的人</h4>
-			<a href="">${photo.author.fullname}</a>
+        <h4>提供图片的人</h4>
+		<div style="line-height:40px">
+            <table>
+                <tr><td>#{avatar user:photo.author,as:24/}</td><td>#{screenname photo.author/}上传于${photo.uploadAt.format('yyyy-MM-dd')}</td></tr>			     
+            </table>
 		</div>
+        <!--
 		<div>
 			<h4>相片中的人</h4>
 		</div>
 		<div>
 			<h4>标签</h4>
-		</div>
+        </div>
 		<div>
 			<h4>其他信息</h4>
 		</div>
+		-->
 	</td></tr>
 </table>
+
+#{script 'jquery.jeditable.js'/}
+<script>
+$(document).ready(function(){
+		$('div.cap').editable('@{Photoz.caption()}',{placeholder:'点击这里修改',name:'val',onblur:'ignore', submit:'保存',cancel:'取消'});
+		$('div.desc').editable('@{Photoz.desc()}',{placeholder:'点击这里添加描述',name:'val',onblur:'ignore', submit:'保存',cancel:'取消',rows:10,type:'textarea'});
+});
+</script>

@@ -26,6 +26,11 @@ $(document).ready(function() {
 				//$('#uploader-block').append($('#uploadtoolbar'));
 				more = true;
 			}
+		},
+		onAllComplete:function(){
+			$('.uploaderblock').hide();
+			$('#step2').hide();
+			$('#step3').show();
 		}
 	});
 });

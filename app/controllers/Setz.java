@@ -45,7 +45,7 @@ public class Setz extends Basez {
 		Sets sets = Sets.findById(setsId);
 		Photo photo = Photo.findById(photoId);
 		if (sets != null && photo != null && sets.photos.contains(photo)) {
-			if (sets.cover.getId() == photo.getId()) {
+			if (sets.cover!=null && sets.cover.getId() == photo.getId()) {
 				sets.cover = null;
 			}
 			sets.photos.remove(photo);

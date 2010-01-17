@@ -11,12 +11,17 @@ import models.User;
 public class Homez extends Basez {
 	public static void index() {
 		User currentUser = getLoginUser();
-		List<Photos> lastPhotos;
+        List<Photos> lastPhotos ;
 		if (currentUser != null) {
-			lastPhotos = Photo.find("author = ? order by uploadAt desc", currentUser).fetch(15);
+			List<Photos>  yourlastPhotos = Photo.find("author = ? order by uploadAt desc", currentUser).fetch(15);
+            renderArgs.put("yourlastPhotos",yourlastPhotos);
+            lastPhotos = Photo.find("author != ? order by uploadAt desc",currentUser).fetch(15);    
+            renderArgs.put("lastPhotos",lastPhotos );
 		} else {
-			lastPhotos = Photo.find("order by uploadAt desc").fetch(15);
-		}
-		render(lastPhotos);
+            lastPhotos = Photo.find("order by uploadAt desc").fetch(15);
+            renderArgs.put("lastPhotos",lastPhotos );    
+        }
+
+		render();
 	}
 }

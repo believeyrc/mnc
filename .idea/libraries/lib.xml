@@ -1,0 +1,20 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/java-image-scaling-0.8.4-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/Filters.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/faint.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jna.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/SimpleCaptcha-1.1.1c.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/SimpleCaptcha-1.1.1-src.zip!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javacv.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java-image-scaling-0.8.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/Filters-src.zip!/" />
+      <root url="jar://$PROJECT_DIR$/lib/openjcv-0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/OpenCV.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java-imaging-utilities-0.14.3-core.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

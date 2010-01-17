@@ -4,31 +4,30 @@
 #{script 'jquery.jeditable.js'/}
 <script>
 	$(document).ready(function(){		
-		//$('div[id=cap]').editor();
-		$('div[id=cap]').editable('@{Photoz.caption()}',{name:'val',onblur:'ignore', submit:'保存',cancel:'取消'});
-		$('div[id=desc]').editable('@{Photoz.desc()}',{name:'val',onblur:'ignore', submit:'保存',cancel:'取消',rows:'2',type:'textarea'});
-		//$('div[id=desc]').click(doedit);
+		$('div.cap').editable('@{Photoz.caption()}',{placeholder:'点击这里修改',name:'val',onblur:'ignore', submit:'保存',cancel:'取消'});
+		$('div.desc').editable('@{Photoz.desc()}',{placeholder:'点击这里添加描述',name:'val',onblur:'ignore', submit:'保存',cancel:'取消',rows:'2',type:'textarea'});
 	});
 </script>
-#{table items:photos,as:'photo',cols:3}
-	#{td id:"captd"} <div id='cap' >${photo.caption}</div>#{/td}
+#{table items:photos,as:'photo',cols:3,style:'border-spacing:8px;'}
+	#{td id:"captd"} <div id="${photo.id}" class='cap' >${photo.caption}</div>#{/td}
 	#{td id:"imgtd"} 
 		<div class='imgbock'><a href='@{Photoz.viewPhoto(photo.author.fullname,photo.id)}'>#{photo photo:photo,as:'240'/}</a></div>
-		<div><div id='desc' >${photo.description?photo.description:'点击这里写修改描述'}</div></div>
+		<div id="${photo.id}" class='desc mini' >${photo.description}</div>
 		<div id='info' vpid='${photo.id}'>更新于${photo.uploadAt.format('yyyy/mm/dd')}<a onclick='deletePhoto(this)' >删除</a><a href='@{Photoz.viewPhoto(photo.author.fullname,photo.id)}'>查看</a>
 	#{/td}
+    #{onNull}&nbsp;#{/onNull}            
 #{/table}
 
 <div style="clear:both">  
 #{if page > 1 }
   <div class="grid_3 alpha" style="display:inline;" id="prev">
-	<a href="@{Photoz.photos(user.fullname,page-1)}">&{'PreviousPage'}</a>
+	<a href="@{Photoz.photos(visitedUser.fullname,page-1)}">&{'PreviousPage'}</a>
   </div>
 #{/if}
 
 #{if totalCount> page + pageSize}
   <div class="grid_3 omega float-right" style="display:inline;"  id="next">
-	<a href="@{Photoz.photos(user.fullname,page+1)}">&{'NextPage'}</a>
+	<a href="@{Photoz.photos(visitedUser.fullname,page+1)}">&{'NextPage'}</a>
   </div>
 #{/if}
 </div>

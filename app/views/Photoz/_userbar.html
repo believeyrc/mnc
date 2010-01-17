@@ -1,18 +1,17 @@
 <table width="800" cellspacing="0" id="SubNav">
   <tbody>
 	<tr>
-	  <td class="Buddy">
-		<a href="@{Photoz.photos(currentuser,1)}"><img width="48" height="48" alt=
-		"到你的所有相片頁面" src=
-		"http://farm5.static.flickr.com/4071/buddyicons/89555424@N00.jpg?1262695429#89555424@N00"></a>
+	  <td class="Buddy" width=52>
+		<a href="@{Photoz.photos(currentuser,1)}"><img width="48" height="48" alt="大头贴" title="到你的所有相片页面" 
+		src="#{if visitedUser.avatar==null}@{'/public/images/avatar.jpg'}#{/if}#{ifnot visitedUser.avatar==null}/${visitedUser.avatar}#{/ifnot}"></a>
 	  </td>
 	  <td class="Section">
 		<h1>
-		  你的所有內容  <small>31 項目 / 41 次檢視</small>
+		  你的所有內容  <small></small>
 		</h1>
 		<p class="LinksNewP">
 		  <span class="LinksNew"><span>
-		  <a href="@{Setz.mySets(currentuser)}">相片集</a></span> 
+		  <a href="@{Setz.mySets(currentuser)}">相册</a></span> 
 		</p>
 	  </td>
 	  <td class="Extras">		

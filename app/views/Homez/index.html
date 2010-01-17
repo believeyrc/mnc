@@ -1,12 +1,19 @@
 #{extends 'main.html' /}
 #{isLogin}
 	#{include 'Photoz/_userbar.html'/}
-	<h2>»<a href="@{Photoz.photos(user.fullname,1)}">你上传的所有内容</a></h2>
-#{/isLogin}
-#{notLogin}
-	<h2>»<a href="">大家最近上传的照片</a></h2>
-#{/notLogin}
 
-#{table items:lastPhotos,as:'photo',cols:5}
-	<a href="@{Photoz.viewPhoto(photo.author.fullname,photo.id)}">#{photo photo:photo,as:'75'/}</a>
-#{/table}
+#{/isLogin}
+
+#{if yourlastPhotos}
+    <h2>»<a href="@{Photoz.photos(user.fullname,1)}">你上传的所有内容</a></h2>
+    #{table items:yourlastPhotos,as:'photo',cols:5, style:'border-spacing:8px;'}
+        #{td}<a href="@{Photoz.viewPhoto(photo.author.fullname,photo.id)}">#{photo photo:photo,as:'75'/}</a>#{/td}
+    #{/table}
+#{/if}
+
+#{if lastPhotos}
+    <h2>»<a href="">大家最近上传的照片</a></h2>
+    #{table items:lastPhotos,as:'photo',cols:5, style:'border-spacing:8px;'}
+        #{td}<a href="@{Photoz.viewPhoto(photo.author.fullname,photo.id)}">#{photo photo:photo,as:'75'/}</a>#{/td}
+    #{/table}
+#{/if}
