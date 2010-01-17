@@ -143,7 +143,7 @@ tr.inforow{
 		caprow += "<td class='captd'><div id='cap' "
 		imgrow += "<td class='imgtd'>"
 		imgrow += ( "<div class='imgbock'><a href='"
-			+ actionBridge.Photoz.viewPhoto(photo.author.fullname,photo.id)
+			+ actionBridge.Photov.viewPhoto(photo.author.fullname,photo.id)
 			+"'><img src='http://static.jsxnc.com/${photo.thumb2Path}' alt='${photo.caption}'/></a></div>" )
 		imgrow += "<div><div id='desc' "
 }% 
@@ -164,7 +164,7 @@ tr.inforow{
 %{
 			
 			imgrow += ( "<a href='"
-			+ actionBridge.Photoz.viewPhoto(photo.author.fullname,photo.id)
+			+ actionBridge.Photov.viewPhoto(photo.author.fullname,photo.id)
 			+"'> "
 			+play.i18n.Messages.get('viewPhoto')
 			+"</a>"

@@ -5,15 +5,15 @@
 #{/isLogin}
 
 #{if yourlastPhotos}
-    <h2>»<a href="@{Photoz.photos(user.fullname,1)}">你上传的所有内容</a></h2>
+    <h2>»<a href="@{Photov.photos(user.fullname,1)}">你上传的所有内容</a></h2>
     #{table items:yourlastPhotos,as:'photo',cols:5, style:'border-spacing:8px;'}
-        #{td}<a href="@{Photoz.viewPhoto(photo.author.fullname,photo.id)}">#{photo photo:photo,as:'75'/}</a>#{/td}
+        #{td}<a href="@{Photov.viewPhoto(photo.author.fullname,photo.id)}">#{photo photo:photo,as:'75'/}</a>#{/td}
     #{/table}
 #{/if}
 
 #{if lastPhotos}
     <h2>»<a href="">大家最近上传的照片</a></h2>
     #{table items:lastPhotos,as:'photo',cols:5, style:'border-spacing:8px;'}
-        #{td}<a href="@{Photoz.viewPhoto(photo.author.fullname,photo.id)}">#{photo photo:photo,as:'75'/}</a>#{/td}
+        #{td}<a href="@{Photov.viewPhoto(photo.author.fullname,photo.id)}">#{photo photo:photo,as:'75'/}</a>#{/td}
     #{/table}
 #{/if}

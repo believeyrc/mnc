@@ -34,3 +34,9 @@
     #{/form}
     </div>
 #{/isLogin}
+#{notLogin}
+	<br/>
+	已经注册？<a href="@{Secure.login()}">登入</a>吧！
+	<br/>
+	还没有注册？<a href="@{Userz.register()}">现在加入</a>吧！
+#{/notLogin}

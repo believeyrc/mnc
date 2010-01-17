@@ -172,11 +172,12 @@ textarea{
 		-->
 	</td></tr>
 </table>
-
-#{script 'jquery.jeditable.js'/}
-<script>
-$(document).ready(function(){
-		$('div.cap').editable('@{Photoz.caption()}',{placeholder:'点击这里修改',name:'val',onblur:'ignore', submit:'保存',cancel:'取消'});
-		$('div.desc').editable('@{Photoz.desc()}',{placeholder:'点击这里添加描述',name:'val',onblur:'ignore', submit:'保存',cancel:'取消',rows:10,type:'textarea'});
-});
-</script>
+#{isMine}
+	#{script 'jquery.jeditable.js'/}
+	<script>
+	$(document).ready(function(){
+			$('div.cap').editable('@{Photoz.caption()}',{placeholder:'点击这里修改',name:'val',onblur:'ignore', submit:'保存',cancel:'取消'});
+			$('div.desc').editable('@{Photoz.desc()}',{placeholder:'点击这里添加描述',name:'val',onblur:'ignore', submit:'保存',cancel:'取消',rows:10,type:'textarea'});
+	});
+	</script>
+#{/isMine}

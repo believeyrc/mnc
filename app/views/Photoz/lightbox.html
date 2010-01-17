@@ -24,12 +24,12 @@
 <div style="clear:both">  
 #{if offset > 0 }
   <div class="grid_3 alpha" style="display:inline;" id="prev">
-	<a href="@{Photoz.photos().add('family',family.code).add('offset',offset-35>0?offset-35:0)}">&{'PreviousPicture'}</a>
+	<a href="@{Photov.photos().add('family',family.code).add('offset',offset-35>0?offset-35:0)}">&{'PreviousPicture'}</a>
   </div>
 #{/if}
 #{if totalCount> offset+pageSize}
   <div class="grid_3 omega float-right" style="display:inline;"  id="next">
-	<a href="@{Photoz.photos().add('family',family.code).add('offset',offset+pageSize)}">&{'NextPicture'}</a>
+	<a href="@{Photov.photos().add('family',family.code).add('offset',offset+pageSize)}">&{'NextPicture'}</a>
   </div>
 #{/if}
 </div>

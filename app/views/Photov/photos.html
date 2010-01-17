@@ -1,6 +1,7 @@
 #{extends 'main.html' /}
 #{set title:'所有照片'/}
 #{include 'Photoz/_userbar.html'/}
+#{isMine}
 #{script 'jquery.jeditable.js'/}
 <script>
 	$(document).ready(function(){		
@@ -8,12 +9,24 @@
 		$('div.desc').editable('@{Photoz.desc()}',{placeholder:'点击这里添加描述',name:'val',onblur:'ignore', submit:'保存',cancel:'取消',rows:'2',type:'textarea'});
 	});
 </script>
+#{/isMine}
+<script>
+	function deletePhoto(a){
+		if(confirm('您确定删除么？')){
+			var pid = $(a).closest('div').attr('vpid');
+			$.post('@{Photoz.remove()}', {id:pid}, function(ret){				
+				window.location.reload();
+			}, "json");	
+		}
+		return false;
+	}	
+</script>
 #{table items:photos,as:'photo',cols:3,style:'border-spacing:8px;'}
 	#{td id:"captd"} <div id="${photo.id}" class='cap' >${photo.caption}</div>#{/td}
 	#{td id:"imgtd"} 
-		<div class='imgbock'><a href='@{Photoz.viewPhoto(photo.author.fullname,photo.id)}'>#{photo photo:photo,as:'240'/}</a></div>
+		<div class='imgbock'><a href='@{Photov.viewPhoto(photo.author.fullname,photo.id)}'>#{photo photo:photo,as:'240'/}</a></div>
 		<div id="${photo.id}" class='desc mini' >${photo.description}</div>
-		<div id='info' vpid='${photo.id}'>更新于${photo.uploadAt.format('yyyy/mm/dd')}<a onclick='deletePhoto(this)' >删除</a><a href='@{Photoz.viewPhoto(photo.author.fullname,photo.id)}'>查看</a>
+		<div id='info' vpid='${photo.id}'>更新于${photo.uploadAt.format('yyyy/mm/dd')}<a onclick='deletePhoto(this)' >删除</a><a href='@{Photov.viewPhoto(photo.author.fullname,photo.id)}'>查看</a>
 	#{/td}
     #{onNull}&nbsp;#{/onNull}            
 #{/table}
@@ -21,13 +34,13 @@
 <div style="clear:both">  
 #{if page > 1 }
   <div class="grid_3 alpha" style="display:inline;" id="prev">
-	<a href="@{Photoz.photos(visitedUser.fullname,page-1)}">&{'PreviousPage'}</a>
+	<a href="@{Photov.photos(visitedUser.fullname,page-1)}">&{'PreviousPage'}</a>
   </div>
 #{/if}
 
 #{if totalCount> page + pageSize}
   <div class="grid_3 omega float-right" style="display:inline;"  id="next">
-	<a href="@{Photoz.photos(visitedUser.fullname,page+1)}">&{'NextPage'}</a>
+	<a href="@{Photov.photos(visitedUser.fullname,page+1)}">&{'NextPage'}</a>
   </div>
 #{/if}
 </div>

@@ -8,14 +8,14 @@ GET	/signup									Userz.register
 GET	/signin									Secure.login
 GET	/account								Userz.account
 GET	/account/changepassword					Userz.changepassword
-GET	/account/changeavatar/{id}					Userz.changeAvatar
+GET	/account/changeavatar/{id}				Userz.changeAvatar
 
-GET	/photos/upload					Photoz.prepareUpload
-GET	/people/{username}/relationship/	Relationshipz.relationship
+GET	/photos/upload							Photoz.prepareUpload
+GET	/people/{username}/relationship/		Relationshipz.relationship
 
-GET	/photos/{username}/page{<[0-9]+>page}	Photoz.photos
-GET	/photos/{username}/?					Photoz.home
-GET	/photos/{username}/{<[0-9]+>id}			Photoz.viewPhoto
+GET	/photos/{username}/page{<[0-9]+>page}	Photov.photos
+GET	/photos/{username}/?					Photov.home
+GET	/photos/{username}/{<[0-9]+>id}			Photov.viewPhoto
 GET	/photos/{username}/sets/{<[0-9]+>setsId}	Setz.viewSets
 GET	/photos/{username}/sets					Setz.mySets
 
@@ -30,25 +30,25 @@ POST	/services/rest/desc/						Photoz.desc
 
 
 
-GET /family/{family}/meme    				Memez.index
+#GET /family/{family}/meme    				Memez.index
 
 # Home page
-GET     /family/{family}/posts	Postz.index
-GET     /family/{family}/{offset}-{pageSize}                    Postz.history
+#GET     /family/{family}/posts	Postz.index
+#GET     /family/{family}/{offset}-{pageSize}                    Postz.history
 
-GET    	/family/{family}/posts/{<[0-9]+>id}                    Postz.show
-GET     /family/{family}/posts/tag/{tag}                           Postz.listTagged
-POST    /family/{family}/posts/{postId}/comments               Postz.postComment
-GET     /captcha                                Postz.captcha
+#GET    	/family/{family}/posts/{<[0-9]+>id}                    Postz.show
+#GET     /family/{family}/posts/tag/{tag}                           Postz.listTagged
+#POST    /family/{family}/posts/{postId}/comments               Postz.postComment
+#GET     /captcha                                Postz.captcha
 #GET	/nextimg			Photoz.nextPicture
 #GET	/preimg				Photoz.previousPicture
-GET	/family/{family}/photos				Photoz.photos
-GET	/family/{family}/carousel				Photoz.carousel
-GET		/family/{family}/galleria	Photoz.galleria
-POST	/normalize				Photoz.normalize
+#GET	/family/{family}/photos				Photov.photos
+#GET	/family/{family}/carousel				Photov.carousel
+#GET		/family/{family}/galleria	Photov.galleria
+#POST	/normalize				Photoz.normalize
 
-GET /family/{family}/?	Memez.index
-GET /family/{family}/neighbours	Familyz.neighbours
+#GET /family/{family}/?	Memez.index
+#GET /family/{family}/neighbours	Familyz.neighbours
 
 
 

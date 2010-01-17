@@ -20,12 +20,12 @@
 	<div id="controls">
 		#{if offset > 0 }
 		  <div class="" style="display:inline;" id="prev">
-			<a href="@{Photoz.photos().add('family',family.code).add('offset',offset-35>0?offset-35:0)}">&{'PreviousPage'}</a>
+			<a href="@{Photov.photos().add('family',family.code).add('offset',offset-35>0?offset-35:0)}">&{'PreviousPage'}</a>
 		  </div>
 		#{/if}
 		#{if totalCount> offset+pageSize}
 		  <div class="" style="display:inline;"  id="next">
-			<a href="@{Photoz.photos().add('family',family.code).add('offset',offset+pageSize)}">&{'NextPage'}</a>
+			<a href="@{Photov.photos().add('family',family.code).add('offset',offset+pageSize)}">&{'NextPage'}</a>
 		  </div>
 		#{/if}
 	</div>
