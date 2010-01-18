@@ -16,7 +16,7 @@ GET	/people/{username}/relationship/		Relationshipz.relationship
 GET	/photos/{username}/page{<[0-9]+>page}	Photov.photos
 GET	/photos/{username}/?					Photov.home
 GET	/photos/{username}/{<[0-9]+>id}			Photov.viewPhoto
-GET	/photos/{username}/sets/{<[0-9]+>setsId}	Setv    .viewSets
+GET	/photos/{username}/sets/{<[0-9]+>setsId}	Setv.viewSets
 GET	/photos/{username}/sets					Setv.mySets
 
 GET /    Homez.index
@@ -24,9 +24,12 @@ GET /    Homez.index
 POST	/services/rest/caption/					Photoz.caption
 POST	/services/rest/desc/						Photoz.desc
 
-#POST	/captcha/{id}						Postz.captcha
-#POST	/desc/{id}							Postz.desc
+POST	/captcha/{id}						Postz.captcha
+POST	/desc/{id}							Postz.desc
 
+
+GET     /posts/{username}	Postz.index
+GET     /posts/{username}/{offset}-{pageSize}       Postz.history
 
 
 
