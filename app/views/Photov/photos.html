@@ -26,7 +26,8 @@
 	#{td id:"imgtd"} 
 		<div class='imgbock'><a href='@{Photov.viewPhoto(photo.author.fullname,photo.id)}'>#{photo photo:photo,as:'240'/}</a></div>
 		<div id="${photo.id}" class='desc mini' >${photo.description}</div>
-		<div id='info' vpid='${photo.id}'>更新于${photo.uploadAt.format('yyyy/mm/dd')}<a onclick='deletePhoto(this)' >删除</a><a href='@{Photov.viewPhoto(photo.author.fullname,photo.id)}'>查看</a>
+		<div id='info' vpid='${photo.id}'>更新于${photo.uploadAt.format('yyyy/mm/dd')}
+		#{isMine}<a onclick='deletePhoto(this)' >删除</a>#{/isMine}
 	#{/td}
     #{onNull}&nbsp;#{/onNull}            
 #{/table}
