@@ -5,13 +5,11 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/Photov.java" afterPath="$PROJECT_DIR$/app/controllers/Photov.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/routes" afterPath="$PROJECT_DIR$/conf/routes" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/application.conf" afterPath="$PROJECT_DIR$/conf/application.conf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/projectCodeStyle.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Post.java" afterPath="$PROJECT_DIR$/app/models/Post.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/Postz/show.html" afterPath="$PROJECT_DIR$/app/views/Postz/show.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tags/display.tag" afterPath="$PROJECT_DIR$/app/views/tags/display.tag" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/Postz/index.html" afterPath="$PROJECT_DIR$/app/views/Postz/index.html" />
       <change type="DELETED" beforePath="F:\mnc\app\views\Setz\listMySets.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/Setz.java" afterPath="$PROJECT_DIR$/app/controllers/Setz.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/Photoz/_userbar.html" afterPath="$PROJECT_DIR$/app/views/Photoz/_userbar.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/Photoz/_header.html" afterPath="$PROJECT_DIR$/app/views/Photoz/_header.html" />
@@ -100,7 +98,7 @@
       <file leaf-file-name="Photov.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/Photov.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="54" selection-start="1752" selection-end="1760" vertical-scroll-proportion="0.537931">
+            <state line="53" column="61" selection-start="1932" selection-end="1932" vertical-scroll-proportion="0.50708663">
               <folding />
             </state>
           </provider>
@@ -432,7 +430,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="230" y="85" width="1388" height="875" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.9992384" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -440,11 +438,11 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32907802" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12082067" sideWeight="0.6609929" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25835866" sideWeight="0.6609929" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -595,7 +593,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/Photov.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="54" selection-start="1752" selection-end="1760" vertical-scroll-proportion="0.537931">
+        <state line="53" column="61" selection-start="1932" selection-end="1932" vertical-scroll-proportion="0.50708663">
           <folding />
         </state>
       </provider>
