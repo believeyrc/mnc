@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager" verified="true">
-    <list default="true" readonly="true" id="657448d6-ae46-4957-aa86-9a04dc3e319a" name="Default" comment="" />
-    <ignored path="mnc.iws" />
+    <list default="true" readonly="true" id="657448d6-ae46-4957-aa86-9a04dc3e319a" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/Photov.java" afterPath="$PROJECT_DIR$/app/controllers/Photov.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/routes" afterPath="$PROJECT_DIR$/conf/routes" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/application.conf" afterPath="$PROJECT_DIR$/conf/application.conf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/projectCodeStyle.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Post.java" afterPath="$PROJECT_DIR$/app/models/Post.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/Postz/show.html" afterPath="$PROJECT_DIR$/app/views/Postz/show.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tags/display.tag" afterPath="$PROJECT_DIR$/app/views/tags/display.tag" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/Postz/index.html" afterPath="$PROJECT_DIR$/app/views/Postz/index.html" />
+      <change type="DELETED" beforePath="F:\mnc\app\views\Setz\listMySets.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/Setz.java" afterPath="$PROJECT_DIR$/app/controllers/Setz.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/Photoz/_userbar.html" afterPath="$PROJECT_DIR$/app/views/Photoz/_userbar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/Photoz/_header.html" afterPath="$PROJECT_DIR$/app/views/Photoz/_header.html" />
+      <change type="DELETED" beforePath="F:\mnc\app\views\Setz\mySets.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="F:\mnc\app\views\Setz\viewSets.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/Postz.java" afterPath="$PROJECT_DIR$/app/controllers/Postz.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/Photov/viewPhoto.html" afterPath="$PROJECT_DIR$/app/views/Photov/viewPhoto.html" />
+    </list>
     <ignored path=".idea/workspace.xml" />
+    <ignored path="mnc.iws" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,64 +79,37 @@
   <component name="FileColors" enabled="true" enabledForTabs="true" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="changeAvatar.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/Userz/changeAvatar.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="24" selection-start="482" selection-end="482" vertical-scroll-proportion="0.39925835">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="viewPhoto.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/Photoz/viewPhoto.html">
+        <entry file="file://$PROJECT_DIR$/app/views/Photov/viewPhoto.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="171" column="11" selection-start="4827" selection-end="4827" vertical-scroll-proportion="-21.192308">
+            <state line="168" column="14" selection-start="5006" selection-end="5006" vertical-scroll-proportion="-16.689655">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Homez.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/Homez.java">
+      <file leaf-file-name="Sets.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/Sets.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="84" selection-start="566" selection-end="566" vertical-scroll-proportion="0.0">
+            <state line="12" column="13" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/Homez/index.html">
+      <file leaf-file-name="Photov.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/Photov.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="5" selection-start="663" selection-end="663" vertical-scroll-proportion="-13.153846">
+            <state line="49" column="54" selection-start="1752" selection-end="1760" vertical-scroll-proportion="0.537931">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Photo.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/Photo.java">
+      <file leaf-file-name="_userbar.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/Photoz/_userbar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="21" selection-start="366" selection-end="374" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="screenname.tag" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/tags/screenname.tag">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="27" selection-start="27" selection-end="27" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/conf/routes">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="55" selection-start="638" selection-end="638" vertical-scroll-proportion="0.0">
+            <state line="12" column="25" selection-start="324" selection-end="324" vertical-scroll-proportion="-9.103448">
               <folding />
             </state>
           </provider>
@@ -126,25 +118,34 @@
       <file leaf-file-name="_header.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/Photoz/_header.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="37" selection-start="340" selection-end="340" vertical-scroll-proportion="-6.576923">
+            <state line="37" column="56" selection-start="1361" selection-end="1361" vertical-scroll-proportion="-5.107143">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Envision.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/images/Envision.css">
+      <file leaf-file-name="register.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/Userz/register.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="413" column="77" selection-start="7255" selection-end="7255" vertical-scroll-proportion="0.0">
+            <state line="10" column="0" selection-start="122" selection-end="340" vertical-scroll-proportion="-7.586207">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="photos.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/Photoz/photos.html">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/Postz/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="46" selection-start="488" selection-end="507" vertical-scroll-proportion="-7.3076925">
+            <state line="18" column="141" selection-start="380" selection-end="380" vertical-scroll-proportion="-9.103448">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="display.tag" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/tags/display.tag">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="51" column="62" selection-start="1812" selection-end="1820" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -160,22 +161,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/views/tags/onNull.tag" />
-        <option value="$PROJECT_DIR$/app/views/tags/table.tag" />
-        <option value="$PROJECT_DIR$/app/views/Setz/viewSets.html" />
-        <option value="$PROJECT_DIR$/app/views/Photoz/photos.html" />
-        <option value="$PROJECT_DIR$/app/controllers/Userz.java" />
-        <option value="$PROJECT_DIR$/app/views/Userz/account.html" />
-        <option value="$PROJECT_DIR$/app/views/tags/responses.tag" />
-        <option value="$PROJECT_DIR$/app/views/tags/avatar.tag" />
-        <option value="$PROJECT_DIR$/conf/routes" />
-        <option value="$PROJECT_DIR$/app/controllers/Photoz.java" />
-        <option value="$PROJECT_DIR$/app/views/tags/screenname.tag" />
-        <option value="$PROJECT_DIR$/app/views/Photoz/_header.html" />
-        <option value="$PROJECT_DIR$/app/views/Photoz/viewPhoto.html" />
-        <option value="$PROJECT_DIR$/app/views/Homez/index.html" />
-        <option value="$PROJECT_DIR$/app/controllers/Homez.java" />
         <option value="$PROJECT_DIR$/app/views/Userz/changeAvatar.html" />
+        <option value="$PROJECT_DIR$/app/views/Setz/viewSets.html" />
+        <option value="$PROJECT_DIR$/conf/application.conf" />
+        <option value="$PROJECT_DIR$/app/controllers/Setv.java" />
+        <option value="$PROJECT_DIR$/conf/routes" />
+        <option value="$PROJECT_DIR$/app/views/Setv/mySets.html" />
+        <option value="$PROJECT_DIR$/app/views/Photoz/_userbar.html" />
+        <option value="$PROJECT_DIR$/app/controllers/Setz.java" />
+        <option value="$PROJECT_DIR$/app/views/Photoz/_header.html" />
+        <option value="$PROJECT_DIR$/app/views/Postz/index.html" />
+        <option value="$PROJECT_DIR$/app/views/tags/display.tag" />
+        <option value="$PROJECT_DIR$/app/models/Post.java" />
+        <option value="$PROJECT_DIR$/app/controllers/Postz.java" />
+        <option value="$PROJECT_DIR$/app/views/Postz/show.html" />
+        <option value="$PROJECT_DIR$/app/views/Photov/viewPhoto.html" />
+        <option value="$PROJECT_DIR$/app/controllers/Photov.java" />
       </list>
     </option>
   </component>
@@ -214,7 +215,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -283,7 +283,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tags" />
+              <option name="myItemId" value="Setv" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -301,16 +301,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Homez" />
+              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Favorites" />
       <pane id="PackagesPane" />
     </panes>
@@ -321,15 +318,20 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="options.lastSelected" value="preferences.externalResources" />
+    <property name="options.lastSelected" value="preferences.keymap" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="controllers" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -429,25 +431,26 @@
     <supportedVersion>125</supportedVersion>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="0" />
-    <editor active="true" />
+    <frame x="230" y="85" width="1388" height="875" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.9992384" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32907802" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2113022" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12082067" sideWeight="0.6609929" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsManagerConfiguration">
@@ -461,7 +464,7 @@
     <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
     <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加故事" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -474,6 +477,8 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
+    <MESSAGE value="删除查看按钮" />
+    <MESSAGE value="添加故事" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -483,114 +488,114 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/tags/photo.tag">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="48" selection-start="298" selection-end="332" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/conf/application.conf">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="145" column="14" selection-start="4105" selection-end="4105" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tags/responses.tag">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="37" selection-start="131" selection-end="131" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/opt/play-1.0-r785/framework/play.jar!/play/mvc/Controller.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="85" selection-start="4403" selection-end="4455" vertical-scroll-proportion="0.7724551">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/Photoz.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="34" selection-start="913" selection-end="913" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/Envision.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="413" column="77" selection-start="7255" selection-end="7255" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tags/screenname.tag">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="27" selection-start="27" selection-end="27" vertical-scroll-proportion="0.0">
+        <state line="94" column="0" selection-start="2812" selection-end="2812" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/conf/routes">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="55" selection-start="638" selection-end="638" vertical-scroll-proportion="0.0">
+        <state line="18" column="56" selection-start="749" selection-end="749" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/Setv/mySets.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="28" selection-start="307" selection-end="307" vertical-scroll-proportion="-7.586207">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/Setz.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="0" selection-start="813" selection-end="1032" vertical-scroll-proportion="0.9332322">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/Setv.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="31" selection-start="676" selection-end="684" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/Postz/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="141" selection-start="380" selection-end="380" vertical-scroll-proportion="-9.103448">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tags/display.tag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="62" selection-start="1812" selection-end="1820" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/Userz/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="122" selection-end="340" vertical-scroll-proportion="-7.586207">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/Postz/show.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="0" selection-start="1319" selection-end="1395" vertical-scroll-proportion="0.28250402">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Post.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="117" selection-start="1613" selection-end="1613" vertical-scroll-proportion="0.40030676">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/Postz.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="103" selection-start="1437" selection-end="1443" vertical-scroll-proportion="0.07458143">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/Photoz/_header.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="37" selection-start="340" selection-end="340" vertical-scroll-proportion="-6.576923">
+        <state line="37" column="56" selection-start="1361" selection-end="1361" vertical-scroll-proportion="-5.107143">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tags/avatar.tag">
+    <entry file="file://$PROJECT_DIR$/app/views/Photoz/_userbar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="40" selection-start="37" selection-end="40" vertical-scroll-proportion="0.0">
+        <state line="12" column="25" selection-start="324" selection-end="324" vertical-scroll-proportion="-9.103448">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Photoz/photos.html">
+    <entry file="file://$PROJECT_DIR$/app/views/Photov/viewPhoto.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="46" selection-start="488" selection-end="507" vertical-scroll-proportion="-7.3076925">
+        <state line="168" column="14" selection-start="5006" selection-end="5006" vertical-scroll-proportion="-16.689655">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Photo.java">
+    <entry file="file://$PROJECT_DIR$/app/models/Sets.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="21" selection-start="366" selection-end="374" vertical-scroll-proportion="0.0">
+        <state line="12" column="13" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Photoz/viewPhoto.html">
+    <entry file="file://$PROJECT_DIR$/app/controllers/Photov.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="171" column="11" selection-start="4827" selection-end="4827" vertical-scroll-proportion="-21.192308">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Homez/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="5" selection-start="663" selection-end="663" vertical-scroll-proportion="-13.153846">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/Homez.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="84" selection-start="566" selection-end="566" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Userz/changeAvatar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="24" selection-start="482" selection-end="482" vertical-scroll-proportion="0.39925835">
+        <state line="49" column="54" selection-start="1752" selection-end="1760" vertical-scroll-proportion="0.537931">
           <folding />
         </state>
       </provider>

@@ -53,9 +53,9 @@ public class Post extends Model {
         return Post.find("postedAt > ? order by postedAt asc", postedAt).first();
     }
     
-    public static List<Post> findTaggedWith(String tag,String family) {
+    public static List<Post> findTaggedWith(String tag,String fullname) {
         return Post.find(
-            "select distinct p from Post p join p.tags as t where t.name = ? and p.author.family.code = ?", tag,family
+            "select distinct p from Post p join p.tags as t where t.name = ? and p.author.fullname = ?", tag,fullname
         ).fetch();
     }
 

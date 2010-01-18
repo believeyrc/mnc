@@ -92,7 +92,7 @@ textarea{
 		});
 	}
 	function addToSets(a,id){
-		$(a).parent().find(".sub_menu").load('@{Setz.listMySets(currentuser,photo.id)}');		
+		$(a).parent().find(".sub_menu").load('@{Setv.listMySets(currentuser,photo.id)}');		
 	}
 </script>
 
@@ -159,6 +159,14 @@ textarea{
                 <tr><td>#{avatar user:photo.author,as:24/}</td><td>#{screenname photo.author/}上传于${photo.uploadAt.format('yyyy-MM-dd')}</td></tr>			     
             </table>
 		</div>
+        #{if insets.size() > 0}
+        <h4>相片也属于相册</h4>
+		<div style="line-height:40px">
+            #{table cols:1,items:insets,as:'sets'}
+                #{td}<a href="@{Setv.viewSets(sets.author.fullname,sets.id)}">${sets.name}</a>#{/td}
+            #{/table}
+		</div>
+        #{/if}
         <!--
 		<div>
 			<h4>相片中的人</h4>

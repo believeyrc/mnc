@@ -1,0 +1,21 @@
+#{extends 'main.html' /}
+#{set title:'所有照片'/}
+#{script '../lightbox/js/jquery.lightbox-0.5.min.js'/}
+#{stylesheet '../lightbox/css/jquery.lightbox-0.5.css'/}
+
+#{include 'Photoz/_userbar.html'/}
+
+#{table cols:5, items:sets , as:'set'}
+	#{td valign:'top',class:'info'}
+		#{ifnot set==null}
+			<a href="@{Setv.viewSets(currentuser,set?.id)}">#{photo photo:set.cover,as:'75'/}</a><br/>
+		#{/ifnot}
+	#{/td}
+	#{td valign:'top'}
+		#{ifnot set==null}
+			<div>
+			共有${set.photos.size()}张相片<br/><a href="@{Setv.viewSets(currentuser,set?.id)}">${set?.name}</a>
+			</div>
+		#{/ifnot}
+	#{/td}
+#{/table}

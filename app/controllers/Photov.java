@@ -4,6 +4,7 @@ import java.util.List;
 
 import models.Photo;
 import models.Responses;
+import models.Sets;
 
 public class Photov extends Basez {
     public static void home(String username) {
@@ -42,12 +43,13 @@ public class Photov extends Basez {
 		renderText("{ \"more\":%s, \"id\":%s, \"path\":\"%s\" }", more > 1, photo.id, photo.filePath);
 	}
 
-	
-	public static void viewPhoto(String username,Long id) {
-		Photo photo = Photo.findById(id);
-		List<Responses> responses = Responses.find(" photo = ? order by postedAt asc", photo).fetch();
-		render(photo, responses);
-	}
+
+    public static void viewPhoto(String username, Long id) {
+        Photo photo = Photo.findById(id);
+        List<Responses> responses = Responses.find(" photo = ? order by postedAt asc", photo).fetch();
+        List<Sets> insets = Sets.find("select DISTINCT sets from Sets sets ,in( sets.photos) p where p.id = ?", photo.id).fetch();
+        render(photo, responses, insets);
+    }
 
 	public static void previousPicture(Long id) {
 		if (id == null)

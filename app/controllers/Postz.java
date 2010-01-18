@@ -16,19 +16,19 @@ import play.mvc.Before;
 
 public class Postz extends Basez {
 
-	public static void index(String family) {
-		doPrepare(0, 10, family);
+	public static void index(String username) {
+		doPrepare(0, 10, username);
 	}
 
-	private static void doPrepare(int offset, int pageSize, String family) {
-		Long totalCount = Post.count(" author.family.code = ?", family);
+	private static void doPrepare(int offset, int pageSize, String username) {
+		Long totalCount = Post.count(" author.family.code = ?", username);
 		Post frontPost = null;
 		List<Post> olderPosts = null;
 		if (offset == 0) {
-			frontPost = Post.find(" author.family.code = ? order by postedAt desc", family).first();
-			olderPosts = Post.find(" author.family.code = ? order by postedAt desc", family).from(1).fetch(pageSize - 1);
+			frontPost = Post.find(" author.fullname = ? order by postedAt desc", username).first();
+			olderPosts = Post.find(" author.fullname = ? order by postedAt desc", username).from(1).fetch(pageSize - 1);
 		} else {
-			olderPosts = Post.find(" author.family.code = ? order by postedAt desc", family).from(offset).fetch(pageSize);
+			olderPosts = Post.find(" author.fullname = ? order by postedAt desc", username).from(offset).fetch(pageSize);
 		}
 
 		render("Postz/index.html", frontPost, olderPosts, totalCount, offset, pageSize);
@@ -38,7 +38,7 @@ public class Postz extends Basez {
 		doPrepare(offset, pageSize, family);
 	}
 
-	public static void show(Long id) {
+	public static void show(String username,Long id) {
 		Post post = Post.findById(id);
 		String randomID = Codec.UUID();
 		render(post, randomID);
@@ -54,10 +54,10 @@ public class Postz extends Basez {
 		}
 		post.addComment(author, content);
 		flash.success("Thanks for posting %s", author);
-		show(postId);
+		show(post.author.fullname,postId);
 	}
 
-	public static void form(Long id, String family) {
+	public static void form(String fullname,Long id) {
 		if (id != null) {
 			Post post = Post.findById(id);
 			render(post);
@@ -96,7 +96,7 @@ public class Postz extends Basez {
 		if (newPost) {
 			// new PostThingJob(new Thing(Security.connected(),)).in(5);
 		}
-		show(post.id);
+		show(post.author.fullname,post.id);
 	}
 
 	private static boolean isNewPost(Post post) {
@@ -115,8 +115,8 @@ public class Postz extends Basez {
 		}
 	}
 
-	public static void listTagged(String tag, String family) {
-		List<Post> posts = Post.findTaggedWith(tag, family);
+	public static void listTagged(String tag, String fullname) {
+		List<Post> posts = Post.findTaggedWith(tag, fullname);
 		render(tag, posts);
 	}
 

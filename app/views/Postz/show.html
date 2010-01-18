@@ -3,7 +3,7 @@
 
 #{isMine}
 <p id="newPost" class='float-right'>
-    <a href="@{Postz.form().add('family',family.code).add('id',post.id)}"><span>+</span>&{'EditPost'}</a>
+    <a href="@{Postz.form(post.author.fullname,post.id)}"><span>+</span>&{'EditPost'}</a>
 </p>
 #{/isMine}
 
@@ -16,14 +16,14 @@
 <ul id="pagination">
     #{if post.previous()}
         <li id="previous">
-            <a href="@{Postz.show(post.previous().id,post.author.family.code)}">
+            <a href="@{Postz.show(post.author.fullname,post.previous().id)}">
                 ${post.previous().title}
             </a>
         </li>
     #{/if}
     #{if post.next()}
         <li id="next">
-            <a href="@{Postz.show(post.next().id,post.author.family.code)}">
+            <a href="@{Postz.show(post.author.fullname,post.next().id)}">
                 ${post.next().title}
             </a>
         </li>
@@ -31,24 +31,23 @@
 </ul>
 
 &{'PostAComment'} 
-#{form @Postz.postComment().add('postId',post.id).add('family',family.code)}
+#{form @Postz.postComment().add('postId',post.id)}
     #{ifErrors}
         <p class="error">
             ${errors[0]}
         </p>
     #{/ifErrors}
-    <p>
-        <label for="author">&{'YourName'} </label>
-        <input type="text" name="author" id="author" value="${author}"/>
-           <label for="content">&{'YourMessage'} </label>
-        <textarea name="content" id="content">${content}</textarea>
-   
-        <label for="code">&{'PleaseTypeTheCodeBelow'} </label>
-        <img src="@{Postz.captcha(randomID)}" />
-        <br />
-        <input type="text" name="code" id="code" size="18" value="" />
-        <input type="hidden" name="randomID" value="${randomID}" />
-    </p>
+        <table>
+    <tr><td id="label"><label>&{'YourName'}</label></td></tr>
+    <tr><td><input type="text" name="author" value="${flash.author}"><span id='error'>#{error 'email' /}</span></td></tr>
+    <tr><td id="label"><label>&{'YourMessage'} </label></td></tr>
+    <tr><td><textarea name="content" id="content">${flash.content}</textarea><span id='error'>#{error 'content' /}</span></td></tr>
+    <tr><td id="label"><label>&{'PleaseTypeTheCodeBelow'}</label></td></tr>
+    <tr><td id="label"><img src="@{Postz.captcha(randomID)}" /></td></tr>
+    <tr><td><input type="text" name="code" id="code" size="18" value="" /><span id='error'>#{error 'code' /}</span></td></tr>
+    <tr><td id="info">&nbsp;</td></tr>
+    <input type="hidden" name="randomID" value="${randomID}" />
+        </table>
     <p>
         <input class='button' type="submit" value="&{'SubmitYourComment'}" />
     </p>
