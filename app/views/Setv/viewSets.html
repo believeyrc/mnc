@@ -5,7 +5,7 @@
 
 #{include 'Photoz/_userbar.html'/}
 
-#{table items:sets.photos,as:'photo',cols:3,style:'border-spacing:8px;'}
+#{table items:photos,as:'photo',cols:3,style:'border-spacing:8px;'}
 	#{td id:"captd"} <div id="${photo.id}" class='cap' >${photo.caption}</div>#{/td}
 	#{td id:"imgtd"}
             <div class='imgbock'><a href='@{Photov.viewPhoto(photo.author.fullname,photo.id)}'>#{photo photo:photo,as:'240'/}</a></div>
@@ -14,3 +14,17 @@
 	#{/td}
     #{onNull}&nbsp;#{/onNull}
 #{/table}
+
+<div style="clear:both">
+#{if page > 1 }
+  <div class="grid_3 alpha" style="display:inline;" id="prev">
+	<a href="@{Setv.viewPhotosInSets(visitedUser.fullname,sets.id,page-1)}">&{'PreviousPage'}</a>
+  </div>
+#{/if}
+
+#{if totalCount> page + pageSize}
+  <div class="grid_3 omega float-right" style="display:inline;"  id="next">
+	<a href="@{Setv.viewPhotosInSets(visitedUser.fullname,sets.id,page+1)}">&{'NextPage'}</a>
+  </div>
+#{/if}
+</div>                

@@ -109,7 +109,7 @@ textarea{
 
 <table >
 	<tr>
-	<td width="502px" style="padding-right:50px;">
+	<td width="502px" style="padding-right:50px;" valign="top">
 		<table id="photo">
 			<tr>
 			<td>
@@ -162,9 +162,16 @@ textarea{
         #{if insets.size() > 0}
         <h4>相片也属于相册</h4>
 		<div style="line-height:40px">
-            #{table cols:1,items:insets,as:'sets'}
-                #{td}<a href="@{Setv.viewSets(sets.author.fullname,sets.id)}">${sets.name}</a>#{/td}
-            #{/table}
+            #{list items:insets,as:'sets'}
+                #{set p:sets.nextPhotoInSets(photo)/}
+                #{set n:sets.previousPhotoInSets(photo)/}
+            <table>
+                <tr><td><a href="@{Setv.viewSets(sets.author.fullname,sets.id)}">${sets.name}</a></td><td></td></tr>
+                <tr><td>#{photo photo:p,as:'75'/}</td><td>#{photo photo:n,as:'75'/}</td></tr>
+                <tr><td><a href="@{Photov.viewPhoto(p.author.fullname,p.id)}">上一张</a></td>
+                    <td><a href="@{Photov.viewPhoto(p.author.fullname,n.id)}">下一张</a></td></tr>
+            </table>
+            #{/list}
 		</div>
         #{/if}
         <!--

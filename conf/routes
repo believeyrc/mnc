@@ -18,6 +18,7 @@ GET	/photos/{username}/?					Photov.home
 GET	/photos/{username}/{<[0-9]+>id}			Photov.viewPhoto
 GET	/photos/{username}/sets/{<[0-9]+>setsId}	Setv.viewSets
 GET	/photos/{username}/sets					Setv.mySets
+GET	/photos/{username}/sets/{<[0-9]+>setsId}/page{<[0-9]+>page}	Setv.viewPhotosInSets
 
 GET /    Homez.index
 

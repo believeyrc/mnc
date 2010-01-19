@@ -27,6 +27,18 @@ public class Setv extends Basez {
 
 	public static void viewSets(String username, Long setsId) {
 		Sets sets = Sets.findById(setsId);
-		render(sets);
-	}	
+        int page = 1;
+        int pageSize = 12;
+        long totalCount = sets.countPhotos();
+        List<Photo> photos = sets.listPhotos(pageSize, page-1);
+        render(sets,photos,page,pageSize,totalCount);
+	}
+
+	public static void viewPhotosInSets(String username, Long setsId,int page) {
+		Sets sets = Sets.findById(setsId);
+        long totalCount = sets.countPhotos();
+        int pageSize = 12;
+        List<Photo> photos = sets.listPhotos(pageSize, page-1);
+        render("Setv/viewSets.html",sets,photos,page,pageSize,totalCount);
+	}
 }
