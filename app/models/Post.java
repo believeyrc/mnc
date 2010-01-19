@@ -46,11 +46,11 @@ public class Post extends Model {
     }
         
     public Post previous() {
-        return Post.find("postedAt < ? order by postedAt desc", postedAt).first();
+        return Post.find(" author = ? and postedAt < ? order by postedAt desc", author, postedAt).first();
     }
      
     public Post next() {
-        return Post.find("postedAt > ? order by postedAt asc", postedAt).first();
+        return Post.find(" author = ? and postedAt > ? order by postedAt asc", author, postedAt).first();
     }
     
     public static List<Post> findTaggedWith(String tag,String fullname) {
