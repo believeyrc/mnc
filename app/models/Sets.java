@@ -12,7 +12,7 @@ public class Sets extends Model{
 	public Sets() {
 		photos = new ArrayList<Photo>();
 	}
-	@OneToMany(fetch= FetchType.EAGER)
+	@OneToMany(fetch= FetchType.LAZY)
 	public List<Photo> photos;
 	@OneToOne 
 	public Photo cover;

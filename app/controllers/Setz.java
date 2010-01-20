@@ -12,6 +12,7 @@ public class Setz extends Basez {
 		Sets sets = Sets.findById(setsId);
 		Photo photo = Photo.findById(photoId);
 		if (sets != null && photo != null) {
+            //这里会把所有的照片都取出来一遍
 			sets.photos.add(photo);
 			if (sets.cover == null)
 				sets.cover = photo;
