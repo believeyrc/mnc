@@ -39,7 +39,7 @@
   </div>
 #{/if}
 
-#{if totalCount> page + pageSize}
+#{if totalCount> page * pageSize}
   <div class="grid_3 omega float-right" style="display:inline;"  id="next">
 	<a href="@{Photov.photos(visitedUser.fullname,page+1)}">&{'NextPage'}</a>
   </div>

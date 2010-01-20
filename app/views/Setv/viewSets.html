@@ -22,7 +22,7 @@
   </div>
 #{/if}
 
-#{if totalCount> page + pageSize}
+#{if totalCount> page *之 pageSize}
   <div class="grid_3 omega float-right" style="display:inline;"  id="next">
 	<a href="@{Setv.viewPhotosInSets(visitedUser.fullname,sets.id,page+1)}">&{'NextPage'}</a>
   </div>
