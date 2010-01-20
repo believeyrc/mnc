@@ -41,4 +41,12 @@ public class Setv extends Basez {
         List<Photo> photos = sets.listPhotos(pageSize, page-1);
         render("Setv/viewSets.html",sets,photos,page,pageSize,totalCount);
 	}
+
+    public static void viewSetsOfPhoto(Long setsid, Long photoid){
+        Sets sets = Sets.findById(setsid);
+        Photo photo = Photo.findById(photoid);
+        Photo previous = sets.previousPhotoInSets(photo);
+        Photo next = sets.nextPhotoInSets(photo);
+        render("Setv/_viewSetsOfPhoto.html",sets,photo,previous,next);
+    }
 }

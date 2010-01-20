@@ -1,0 +1,6 @@
+<table>    
+    <tr><td>#{if previous == null }第一张#{/if} #{ifnot previous == null }<a href="@{Photov.viewPhoto(previous.author.fullname,previous.id)}">#{photo photo:previous,as:'75'/}</a>#{/ifnot}</td>
+        <td>#{if next == null }最后一张#{/if} #{ifnot next == null } <a href="@{Photov.viewPhoto(next.author.fullname,next.id)}">#{photo photo:next,as:'75'/}</a>#{/ifnot}</td></tr>
+    <tr><td>#{ifnot previous == null } <a onclick="updatesetsinfo(this,'@{Setv.viewSetsOfPhoto(sets.id, previous?.id)}')">上一张</a> #{/ifnot}</td>
+        <td>#{ifnot next == null }<a onclick="updatesetsinfo(this,'@{Setv.viewSetsOfPhoto(sets.id, next?.id)}')">下一张</a>#{/ifnot}</td></tr>
+</table>

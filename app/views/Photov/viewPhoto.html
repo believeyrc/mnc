@@ -10,6 +10,7 @@
 #{script 'ui.resizable.js'/}
 #{stylesheet 'imgareaselect-default.css'/}
 #{stylesheet 'themes/base/ui.all.css'/}
+#{script 'setsinfo.js'/}
 
 <style type="text/css">
 a{
@@ -160,17 +161,11 @@ textarea{
             </table>
 		</div>
         #{if insets.size() > 0}
-        <h4>相片也属于相册</h4>
+        <h4>相片属于相册</h4>
 		<div style="line-height:40px">
             #{list items:insets,as:'sets'}
-                #{set p:sets.nextPhotoInSets(photo)/}
-                #{set n:sets.previousPhotoInSets(photo)/}
-            <table>
-                <tr><td><a href="@{Setv.viewSets(sets.author.fullname,sets.id)}">${sets.name}</a></td><td></td></tr>
-                <tr><td>#{photo photo:p,as:'75'/}</td><td>#{photo photo:n,as:'75'/}</td></tr>
-                <tr><td><a href="@{Photov.viewPhoto(p.author.fullname,p.id)}">上一张</a></td>
-                    <td><a href="@{Photov.viewPhoto(p.author.fullname,n.id)}">下一张</a></td></tr>
-            </table>
+            <div class="collapse"><span onclick="$(this).closest('.collapse').find('#container').load('@{Setv.viewSetsOfPhoto(sets.id, photo.id)}')">+</span><a href="@{Setv.viewSets(currentuser,sets?.id)}" > ${sets.name}</a>
+            <div id="container"></div></div>
             #{/list}
 		</div>
         #{/if}

@@ -27,12 +27,12 @@ public class Sets extends Model{
 	 * 分页获取照片
 	 */
 	public List<Photo> listPhotos(int pagesize, int page){
-		return Photo.find(" select p from Photo p , Sets s join s.photos as sp where sp.id = p.id and s.id = ? order by p.id ",this.id).from(pagesize*page).fetch(pagesize);
+		return Photo.find("select p from Photo p , Sets s join s.photos as sp where sp.id = p.id and s.id = ? order by p.id asc",this.id).from(pagesize*page).fetch(pagesize);
 	}
 	public Photo nextPhotoInSets(Photo photo){
-		return Photo.find(" select p from Photo p , Sets s join s.photos as sp where sp.id = p.id and p.id > ? order by p.id ", photo.id).first();
+		return Photo.find("select p from Photo p , Sets s join s.photos as sp where sp.id = p.id and s.id = ? and p.id > ? order by p.id asc", this.id, photo.id).first();
 	}
 	public Photo previousPhotoInSets(Photo photo){
-		return Photo.find(" select p from Photo p , Sets s join s.photos as sp where sp.id = p.id and p.id < ? order by p.id ", photo.id).first();
+		return Photo.find("select p from Photo p , Sets s join s.photos as sp where sp.id = p.id and s.id = ? and p.id < ? order by p.id desc", this.id, photo.id).first();
 	}
 }
