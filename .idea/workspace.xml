@@ -89,7 +89,7 @@
       <file leaf-file-name="Setv.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/Setv.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="0" selection-start="1567" selection-end="1567" vertical-scroll-proportion="0.0">
+            <state line="33" column="53" selection-start="966" selection-end="966" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -113,15 +113,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="setsinfo.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/setsinfo.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="0" selection-start="161" selection-end="161" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="viewPhoto.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/Photov/viewPhoto.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -140,19 +131,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="viewSets.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="viewSets.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/Setv/viewSets.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="24" selection-start="994" selection-end="994" vertical-scroll-proportion="-13.551724">
+            <state line="24" column="24" selection-start="994" selection-end="994" vertical-scroll-proportion="0.6188976">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="photos.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="photos.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/Photov/photos.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="23" selection-start="1501" selection-end="1501" vertical-scroll-proportion="0.66456693">
+            <state line="41" column="32" selection-start="1502" selection-end="1510" vertical-scroll-proportion="-14.551724">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Photov.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/Photov.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="13" selection-start="622" selection-end="622" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -191,8 +191,8 @@
         <option value="$PROJECT_DIR$/app/views/Setv/_viewSetsOfPhoto.html" />
         <option value="$PROJECT_DIR$/app/models/Sets.java" />
         <option value="$PROJECT_DIR$/app/controllers/Setz.java" />
-        <option value="$PROJECT_DIR$/app/views/Setv/viewSets.html" />
         <option value="$PROJECT_DIR$/app/views/Photov/photos.html" />
+        <option value="$PROJECT_DIR$/app/views/Setv/viewSets.html" />
       </list>
     </option>
   </component>
@@ -540,11 +540,6 @@
         <state line="20" column="63" selection-start="862" selection-end="862" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/Photov.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="23" selection-start="1331" selection-end="1331" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/Photoz/_userbar.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="44" selection-start="474" selection-end="474" vertical-scroll-proportion="-10.620689">
@@ -599,13 +594,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/Setv.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="0" selection-start="1567" selection-end="1567" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/Sets.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="36" selection-start="276" selection-end="276" vertical-scroll-proportion="0.0">
@@ -627,16 +615,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Setv/viewSets.html">
+    <entry file="file://$PROJECT_DIR$/app/views/Photov/photos.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="24" selection-start="994" selection-end="994" vertical-scroll-proportion="-13.551724">
+        <state line="41" column="32" selection-start="1502" selection-end="1510" vertical-scroll-proportion="-14.551724">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Photov/photos.html">
+    <entry file="file://$PROJECT_DIR$/app/controllers/Photov.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="23" selection-start="1501" selection-end="1501" vertical-scroll-proportion="0.66456693">
+        <state line="20" column="13" selection-start="622" selection-end="622" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/Setv.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="53" selection-start="966" selection-end="966" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/Setv/viewSets.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="24" selection-start="994" selection-end="994" vertical-scroll-proportion="0.6188976">
           <folding />
         </state>
       </provider>
