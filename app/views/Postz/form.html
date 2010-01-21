@@ -1,5 +1,6 @@
 #{extends 'main.html' /}
 <script src="@{'/public/javascripts/xheditor/xheditor.js'}"></script> 
+#{include 'Photoz/_userbar.html'/}
 
 #{ifnot post?.id}
     &{'InfoWriteANewPost'}
@@ -26,7 +27,7 @@
  
     <p>
         #{field 'content'}
-        <label>&{'WriteHere'}</label>
+        *{<label>&{'WriteHere'}</label>}*
         <textarea name="${field.name}" id="xheditor"  style="width: 100%;height: 400px;"
             class="${field.errorClass}">${post?.content}</textarea>
         #{/field}
@@ -51,8 +52,7 @@ function pageInit(){
 	//GStart,GEnd,Separator,Cut,Copy,Paste,Pastetext,Blocktag,Fontface,FontSize,Bold,Italic,Underline,Strikethrough,FontColor,BackColor,Removeformat,Align,List,Outdent,Indent,Link,Unlink,Img,Flash,Media,Emot,Table,Source,Preview,Fullscreen,About
 	var editor = $('#xheditor').xheditor(true,{
 		//skin:'o2007blue',
-		tools:'Blocktag,Fontface,FontSize,Bold,Italic,Underline,Strikethrough,FontColor,BackColor,Removeformat,GStart,Align,List,Outdent,Indent,Link,Unlink,Img,Emot,Table,Fullscreen',
-		upImgUrl:"@{Photoz.upload(post?.id)}",upImgExt:"jpg,jpeg,gif,png"});
+		tools:'Blocktag,Fontface,FontSize,Bold,Italic,Underline,Strikethrough,FontColor,BackColor,Removeformat,GStart,Align,List,Outdent,Indent,Link,Unlink,Emot,Table,Fullscreen'});
 	editor.focus();
 }
 </script>

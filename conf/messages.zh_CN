@@ -26,7 +26,7 @@ OlderPosts=<h3>历史 <span class="from">记录</span></h3>
 NoPost=暂时没有文章
 
 AdminWelcome=<h3>欢迎回来 %s <span>你已经写了 %s 文章了，继续努力哦</span></h3>
-WriteANewPost=开始新文章
+WriteANewPost=开始新的故事
 EditPost=修改文章
 ViewBlog=查看首页
 Logout=退出
@@ -48,7 +48,7 @@ EnterSomeTags=输入标签：
 WriteHere=正文：
 PostTitle=标题：
 PleaseCorrectTheseErrors=请检查这些错误
-InfoWriteANewPost=<h3>开始, <span>一篇新的文章</span></h3>
+InfoWriteANewPost=<h3>开始, <span>一个新的故事</span></h3>
 InfoEditThisPost=<h3>修改, <span>文章</span></h3>
 
 PostAComment=<h3>我来发表一下看法</h3>

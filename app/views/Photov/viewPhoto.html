@@ -162,7 +162,7 @@ textarea{
 		</div>
         #{if insets.size() > 0}
         <h4>相片属于相册</h4>
-		<div style="line-height:40px">
+		<div>
             #{list items:insets,as:'sets'}
             <div class="collapse"><span onclick="$(this).closest('.collapse').find('#container').load('@{Setv.viewSetsOfPhoto(sets.id, photo.id)}')">+</span><a href="@{Setv.viewSets(currentuser,sets?.id)}" > ${sets.name}</a>
             <div id="container"></div></div>
