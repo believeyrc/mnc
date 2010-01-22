@@ -7,7 +7,7 @@ $(document).ready(function() {
 		'auto': false,
 		'scriptData':{"checkuser" : "${request.cookies.PLAY_SESSION?.value?.replaceAll("%00","##")}"},
 		'uploader': '/public/uploadify/uploadify.swf',
-		'script': '@{Photoz.upload()}',
+		'script': '@{Photov.upload()}',
 		multi:true,
 		fileDataName: 'upload',
 		queueID:'upload-queue',

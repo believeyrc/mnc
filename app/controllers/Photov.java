@@ -1,10 +1,22 @@
 package controllers;
 
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import models.Photo;
 import models.Responses;
 import models.Sets;
+import models.User;
+import org.apache.commons.io.FileUtils;
+import play.Play;
+import play.libs.Crypto;
+import utils.PhotoUploaderUtil;
 
 public class Photov extends Basez {
     public static void home(String username) {
@@ -61,4 +73,45 @@ public class Photov extends Basez {
 		Photo photo = Photo.find("id < ? order by id desc", id).first();
 		renderText("{\"more\":%s,\"id\":%s,\"path\":\"%s\"}", more > 1, photo.id, photo.filePath);
 	}
+	public static void upload(File upload) {
+		try {
+			restroreSession();
+			String pathForPhoto = PhotoUploaderUtil.getPathForPhoto();
+			String staticpath = Play.configuration.getProperty("staticpath","");
+			File ofile = new File(staticpath+pathForPhoto);
+			FileUtils.moveFile(upload, ofile);
+			Photo photo = new Photo(upload.getName(), new Date(), pathForPhoto);
+			photo.prefPath = PhotoUploaderUtil.getPathForLarge(pathForPhoto);
+			photo.thumbPath = PhotoUploaderUtil.getPathForSmall(pathForPhoto);
+			photo.thumb2Path = PhotoUploaderUtil.getPathForMidle(pathForPhoto);
+			photo.author = User.find("byEmail", Security.connected()).first();
+			photo.save();
+			PhotoUploaderUtil.updateThumbnails(photo);
+			// new PostThingJob(Security.connected(),
+			// Messages.get("uploadNewImage", getCurrentUser().fullname,
+			// photo.id, getCurrentUser().family.code), TYPE.PHOTO).in(1);
+			renderText("{'err':'','msg':'/%s','original':'/%s','thumb':'/%s','pref':'/%s'}", photo.prefPath, photo.filePath, photo.thumbPath, photo.prefPath);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static void restroreSession() throws UnsupportedEncodingException {
+		String checkuser = params.get("checkuser");
+		System.out.println(checkuser);
+		if (checkuser == null)
+			return;
+		checkuser = checkuser.replaceAll("##", "\u0000");
+		checkuser = URLEncoder.encode(checkuser, "utf-8");
+		String sign = checkuser.substring(0, checkuser.indexOf("-"));
+		String data = checkuser.substring(checkuser.indexOf("-") + 1);
+		if (sign.equals(Crypto.sign(data, Play.secretKey.getBytes()))) {
+			String sessionData = URLDecoder.decode(data, "utf-8");
+			Matcher matcher = sessionParser.matcher(sessionData);
+			while (matcher.find()) {
+				session.put(matcher.group(1), matcher.group(2));
+			}
+		}
+	}
+    static Pattern sessionParser = Pattern.compile("\u0000([^:]*):([^\u0000]*)\u0000");    
 }

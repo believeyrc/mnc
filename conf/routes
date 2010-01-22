@@ -25,6 +25,7 @@ GET /    Homez.index
 POST	/services/rest/caption/					Photoz.caption
 POST	/services/rest/desc/						Photoz.desc
 POST	/services/desc/{id}							Postz.desc
+POST	/services/rest/upload						Photov.upload
 GET	    /services/captcha/{id}						Postz.captcha
 
 

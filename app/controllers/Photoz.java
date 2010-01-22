@@ -120,50 +120,7 @@ public class Photoz extends Basez {
 		}
 	}
 
-	static Pattern sessionParser = Pattern.compile("\u0000([^:]*):([^\u0000]*)\u0000");
-
 	public static void prepareUpload() {
 		render();
-	}
-
-	public static void upload(String id, File upload) {
-		try {
-			restroreSession();
-			String pathForPhoto = PhotoUploaderUtil.getPathForPhoto();
-			String staticpath = Play.configuration.getProperty("staticpath","");
-			File ofile = new File(staticpath+pathForPhoto);
-			FileUtils.moveFile(upload, ofile);
-			Photo photo = new Photo(upload.getName(), new Date(), pathForPhoto);
-			photo.prefPath = PhotoUploaderUtil.getPathForLarge(pathForPhoto);
-			photo.thumbPath = PhotoUploaderUtil.getPathForSmall(pathForPhoto);
-			photo.thumb2Path = PhotoUploaderUtil.getPathForMidle(pathForPhoto);
-			photo.author = User.find("byEmail", Security.connected()).first();
-			photo.save();
-			PhotoUploaderUtil.updateThumbnails(photo);
-			// new PostThingJob(Security.connected(),
-			// Messages.get("uploadNewImage", getCurrentUser().fullname,
-			// photo.id, getCurrentUser().family.code), TYPE.PHOTO).in(1);
-			renderText("{'err':'','msg':'/%s','original':'/%s','thumb':'/%s','pref':'/%s'}", photo.prefPath, photo.filePath, photo.thumbPath, photo.prefPath);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	private static void restroreSession() throws UnsupportedEncodingException {
-		String checkuser = params.get("checkuser");
-		System.out.println(checkuser);
-		if (checkuser == null)
-			return;
-		checkuser = checkuser.replaceAll("##", "\u0000");
-		checkuser = URLEncoder.encode(checkuser, "utf-8");
-		String sign = checkuser.substring(0, checkuser.indexOf("-"));
-		String data = checkuser.substring(checkuser.indexOf("-") + 1);
-		if (sign.equals(Crypto.sign(data, Play.secretKey.getBytes()))) {
-			String sessionData = URLDecoder.decode(data, "utf-8");
-			Matcher matcher = sessionParser.matcher(sessionData);
-			while (matcher.find()) {
-				session.put(matcher.group(1), matcher.group(2));
-			}
-		}
 	}
 }
