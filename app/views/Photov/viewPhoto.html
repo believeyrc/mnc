@@ -92,9 +92,19 @@ textarea{
 			window.location.reload();
 		});
 	}
-	function addToSets(a,id){
+	function addToSets(a){
 		$(a).parent().find(".sub_menu").load('@{Setv.listMySets(currentuser,photo.id)}');		
 	}
+    $(document).ready(function(){
+        $("#loading-div").load('@{Setv.setsInfoOfPhoto(photo.id)}',{},function(ret){
+            var sets = $(ret).find('div');
+            if(sets.length >0) $('#sets-wrapper').show();
+            sets.each(function(){
+                $('#sets-div').append($(this));
+            })
+            $(".collapse").collapse();
+        });
+    })
 </script>
 
 <div id='hiddendiv' style='display:none'>
@@ -122,7 +132,7 @@ textarea{
 					<div id="nicemenu" style="clear:both">		
 						<ul >
 					#{isMine}
-						<li><a onclick="addToSets(this,${photo.id})"><img class="arrow noswap" alt="添加到相册" src="@{'/public/images/addtosets.png'}"/></a>
+						<li><a onclick="addToSets(this)"><img class="arrow noswap" alt="添加到相册" src="@{'/public/images/addtosets.png'}"/></a>
 							<div class="sub_menu">
 								正在载入相册...
 							</div>
@@ -154,21 +164,23 @@ textarea{
 		#{responses responses:responses/}
 	</td>
 	<td valign="top">
-        <h4>提供图片的人</h4>
-		<div style="line-height:40px">
-            <table>
-                <tr><td>#{avatar user:photo.author,as:24/}</td><td>#{screenname photo.author/}上传于${photo.uploadAt.format('yyyy-MM-dd')}</td></tr>			     
-            </table>
-		</div>
-        #{if insets.size() > 0}
-        <h4>相片属于相册</h4>
-		<div>
-            #{list items:insets,as:'sets'}
-            <div class="collapse"><span onclick="$(this).closest('.collapse').find('#container').load('@{Setv.viewSetsOfPhoto(sets.id, photo.id)}')">+</span><a href="@{Setv.viewSets(currentuser,sets?.id)}" > ${sets.name}</a>
-            <div id="container"></div></div>
-            #{/list}
-		</div>
-        #{/if}
+        <div>
+            <h4>提供图片的人</h4>
+            <div style="line-height:40px">
+                <table>
+                    <tr><td>#{avatar user:photo.author,as:24/}</td><td>#{screenname photo.author/}上传于${photo.uploadAt.format('yyyy-MM-dd')}</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div id="sets-wrapper" style="display:none;">
+            <h4>相片属于相册</h4>
+            <div id="sets-div">
+               
+            </div>
+        </div>
+        
+
         <!--
 		<div>
 			<h4>相片中的人</h4>
@@ -182,6 +194,7 @@ textarea{
 		-->
 	</td></tr>
 </table>
+<div id="loading-div" style="display:none;"></div>
 #{isMine}
 	#{script 'jquery.jeditable.js'/}
 	<script>

@@ -7,10 +7,9 @@
 	  <td class="Section">
 		<h1>#{isMine}你#{/isMine} #{notMine}${visitedUser.screenname == null? visitedUser.fullname:visitedUser.screenname }#{/notMine}的所有內容<small></small></h1>
 		<p class="LinksNewP">
-		  <span class="LinksNew"><span>
-          <a href="@{Photov.photos(currentuser,1)}">图片</a></span> 
-		  <a href="@{Setv.mySets(currentuser)}">相册</a></span>
-          <a href="@{Postz.index(currentuser)}">故事</a></span> 
+		  <span><a href="@{Photov.photos(currentuser,1)}">图片</a></span>
+		  <span><a href="@{Setv.mySets(currentuser)}">相册</a></span>
+          <span><a href="@{Postz.index(currentuser)}">故事</a></span>
 		</p>
 	  </td>
 	</tr>

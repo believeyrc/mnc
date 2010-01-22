@@ -59,8 +59,7 @@ public class Photov extends Basez {
     public static void viewPhoto(String username, Long id) {
         Photo photo = Photo.findById(id);
         List<Responses> responses = Responses.find(" photo = ? order by postedAt asc", photo).fetch();
-        List<Sets> insets = Sets.find("select DISTINCT sets from Sets sets ,in( sets.photos) p where p.id = ?", photo.id).fetch();
-        render(photo, responses, insets);
+        render(photo, responses);
     }
 
 	public static void previousPicture(Long id) {

@@ -27,6 +27,7 @@ POST	/services/rest/desc/						Photoz.desc
 POST	/services/desc/{id}							Postz.desc
 POST	/services/rest/upload						Photov.upload
 GET	    /services/captcha/{id}						Postz.captcha
+GET	    /services/sets/{photoid}						Setsv.setsInfoOfPhoto
 
 
 GET     /posts/{username}/{<[0-9]+>id}	Postz.show

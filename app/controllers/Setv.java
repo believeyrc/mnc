@@ -49,4 +49,9 @@ public class Setv extends Basez {
         Photo next = sets.nextPhotoInSets(photo);
         render("Setv/_viewSetsOfPhoto.html",sets,photo,previous,next);
     }
+    public static void setsInfoOfPhoto(Long photoid){
+        List<Sets> insets = Sets.find("select DISTINCT sets from Sets sets ,in( sets.photos) p where p.id = ?", photoid).fetch();
+        Photo photo = Photo.findById(photoid);
+        render("Setv/_setsInfoOfPhoto.html",insets,photo);
+    }
 }

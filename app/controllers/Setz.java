@@ -18,6 +18,7 @@ public class Setz extends Basez {
 				sets.cover = photo;
 			sets.save();
 		}
+        renderJSON(sets.id);
 	}
 
 	public static void removePhotoFromSets(Long setsId, Long photoId) {
@@ -30,6 +31,7 @@ public class Setz extends Basez {
 			sets.photos.remove(photo);
 			sets.save();
 		}
+        renderJSON(sets.id);
 	}
 
 	public static void newset(String username, String newset) {

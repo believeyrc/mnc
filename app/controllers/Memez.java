@@ -7,35 +7,32 @@ import org.apache.commons.lang.StringUtils;
 
 import jobs.PostThingJob;
 
-import models.Family;
 import models.Meme;
 import models.Thing;
 import models.User;
 import play.data.validation.MinSize;
 import play.data.validation.Required;
-import play.mvc.Before;
 
 public class Memez extends Basez {
 
-	public static void index(String family) {
-		doPrepare(0, 10, family);
+	public static void index(String username) {
+		doPrepare(0, 10, username);
 	}
 
-	private static void doPrepare(int offset, int pageSize, String family) {
-		Long totalCount = Meme.count(" family.code = ? ", family);
+	private static void doPrepare(int offset, int pageSize, String username) {
+		Long totalCount = Meme.count(" author.fullname = ? ", username);
 		List<Meme> olderPosts = null;
-		olderPosts = Meme.find(" family.code = ? order by updatedAt desc", family).from(offset).fetch(pageSize);
+		olderPosts = Meme.find(" author.fullname = ? order by updatedAt desc", username).from(offset).fetch(pageSize);
 		render("Memez/index.html", olderPosts, totalCount, offset, pageSize);
-
 	}
 
 	public static void history(int offset, int pageSize, String family) {
 		doPrepare(offset, pageSize, family);
 	}
 
-	public static void theirs(String family) {
-		Long totalCount = Thing.count(" toFamily.code = ?", family);
-		List<Thing> things = Thing.find(" toFamily.code = ?", family).fetch(10);
+	public static void theirs(String username) {
+		Long totalCount = Thing.count(" toFamily.code = ?", username);
+		List<Thing> things = Thing.find(" toFamily.code = ?", username).fetch(10);
 		int pageSize = 0;
 		int offset = 10;
 		render(things, totalCount, offset, pageSize);
@@ -50,10 +47,10 @@ public class Memez extends Basez {
 	}
 
 	@Check("login")
-	public static void save(@Required(message = "Content is required") @MinSize(10) String content, String family) {
+	public static void save(@Required(message = "Content is required") @MinSize(10) String content, String username) {
 		saveMeme(content);
 		new PostThingJob(Security.connected(), content, Thing.TYPE.MEME).in(5);
-		index(family);
+		index(username);
 	}
 
 }

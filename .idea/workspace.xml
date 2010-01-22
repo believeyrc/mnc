@@ -77,37 +77,19 @@
   <component name="FileColors" enabled="true" enabledForTabs="true" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="viewSets.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/Setv/viewSets.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="159" selection-end="193" vertical-scroll-proportion="-3.7931035">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="viewPhoto.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/Photov/viewPhoto.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="167" column="40" selection-start="5129" selection-end="5129" vertical-scroll-proportion="-7.448276">
+            <state line="106" column="6" selection-start="2479" selection-end="2479" vertical-scroll-proportion="-3.310345">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Photoz.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/Photoz.java">
+      <file leaf-file-name="setsinfo.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/setsinfo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="122" column="0" selection-start="3768" selection-end="3768" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Photov.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/Photov.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="30" selection-start="2552" selection-end="2552" vertical-scroll-proportion="0.0">
+            <state line="35" column="17" selection-start="1247" selection-end="1251" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -116,43 +98,61 @@
       <file leaf-file-name="routes" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/conf/routes">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="58" selection-start="1079" selection-end="1079" vertical-scroll-proportion="0.0">
+            <state line="29" column="3" selection-start="1137" selection-end="1140" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActionInvoker.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://D:/opt/play-1.0-r785/framework/src/play/mvc/ActionInvoker.java">
+      <file leaf-file-name="_header.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/Photoz/_header.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="136" column="140" selection-start="5788" selection-end="5788" vertical-scroll-proportion="0.0">
+            <state line="42" column="43" selection-start="1645" selection-end="1645" vertical-scroll-proportion="-4.551724">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="prepareUpload.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/Photoz/prepareUpload.html">
+      <file leaf-file-name="Setv.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/Setv.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="22" selection-start="353" selection-end="365" vertical-scroll-proportion="-8.724138">
+            <state line="15" column="32" selection-start="423" selection-end="430" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="uploadifybar.tag" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/tags/uploadifybar.tag">
+      <file leaf-file-name="Setz.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/Setz.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="27" selection-start="394" selection-end="394" vertical-scroll-proportion="0.37429112">
+            <state line="42" column="18" selection-start="1091" selection-end="1101" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Router.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://D:/opt/play-1.0-r785/framework/src/play/mvc/Router.java">
+      <file leaf-file-name="_setsInfoOfPhoto.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/Setv/_setsInfoOfPhoto.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="141" column="23" selection-start="5332" selection-end="5332" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="5" vertical-scroll-proportion="-0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Photov.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/Photov.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="60" column="102" selection-start="2049" selection-end="2049" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="listMySets.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/Setv/listMySets.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="44" selection-start="874" selection-end="881" vertical-scroll-proportion="0.5531915">
               <folding />
             </state>
           </provider>
@@ -161,7 +161,7 @@
       <file leaf-file-name="_viewSetsOfPhoto.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/Setv/_viewSetsOfPhoto.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="36" selection-start="547" selection-end="547" vertical-scroll-proportion="-4.551724">
+            <state line="1" column="12" selection-start="24" selection-end="24" vertical-scroll-proportion="-0.7586207">
               <folding />
             </state>
           </provider>
@@ -177,22 +177,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/views/Photov/photos.html" />
-        <option value="$PROJECT_DIR$/app/views/Setv/viewSets.html" />
-        <option value="$PROJECT_DIR$/app/views/Userz/account.html" />
-        <option value="$PROJECT_DIR$/app/views/Userz/register.html" />
-        <option value="$PROJECT_DIR$/app/views/tags/notMine.tag" />
-        <option value="$PROJECT_DIR$/app/views/Photoz/_userbar.html" />
-        <option value="$PROJECT_DIR$/app/views/Postz/index.html" />
-        <option value="$PROJECT_DIR$/conf/messages.zh_CN" />
-        <option value="$PROJECT_DIR$/app/views/Postz/form.html" />
-        <option value="$PROJECT_DIR$/app/views/Setv/_viewSetsOfPhoto.html" />
-        <option value="$PROJECT_DIR$/app/views/Photov/viewPhoto.html" />
-        <option value="$PROJECT_DIR$/app/controllers/Photoz.java" />
-        <option value="$PROJECT_DIR$/app/controllers/Photov.java" />
-        <option value="$PROJECT_DIR$/conf/routes" />
-        <option value="$PROJECT_DIR$/app/views/Photoz/prepareUpload.html" />
         <option value="$PROJECT_DIR$/app/views/tags/uploadifybar.tag" />
+        <option value="$PROJECT_DIR$/app/controllers/Memez.java" />
+        <option value="$PROJECT_DIR$/app/views/Memez/memebase.html" />
+        <option value="$PROJECT_DIR$/app/views/tags/pagination.tag" />
+        <option value="$PROJECT_DIR$/app/views/Photoz/_userbar.html" />
+        <option value="$PROJECT_DIR$/public/javascripts/flickrmenu.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/setsinfo.js" />
+        <option value="$PROJECT_DIR$/app/views/Setv/_viewSetsOfPhoto.html" />
+        <option value="$PROJECT_DIR$/app/controllers/Photov.java" />
+        <option value="$PROJECT_DIR$/app/controllers/Setv.java" />
+        <option value="$PROJECT_DIR$/app/views/Photoz/_header.html" />
+        <option value="$PROJECT_DIR$/conf/routes" />
+        <option value="$PROJECT_DIR$/app/controllers/Setz.java" />
+        <option value="$PROJECT_DIR$/app/views/Setv/_setsInfoOfPhoto.html" />
+        <option value="$PROJECT_DIR$/app/views/Photov/viewPhoto.html" />
+        <option value="$PROJECT_DIR$/app/views/Setv/listMySets.html" />
       </list>
     </option>
   </component>
@@ -231,7 +231,9 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Favorites" />
+      <pane id="Favorites">
+        <subPane subId="mnc" />
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -239,13 +241,15 @@
               <option name="myItemId" value="mnc" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+              <option name="myItemId" value="mnc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="play" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+              <option name="myItemId" value="mnc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -254,14 +258,30 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+              <option name="myItemId" value="mnc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="mnc" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mnc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javascripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -412,13 +432,13 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.9992384" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983682" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26600984" sideWeight="0.67832166" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3135198" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23953202" sideWeight="0.6981352" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2937063" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -463,114 +483,114 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/conf/messages.zh_CN">
+    <entry file="file://$PROJECT_DIR$/public/images/bgsprite.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="jar://D:/opt/play-1.0-r785/framework/play.jar!/play/templates/FastTags.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="38" selection-start="828" selection-end="828" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="66" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Postz/form.html">
+    <entry file="file://$PROJECT_DIR$/public/javascripts/jquery.jeditable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="178" selection-start="1741" selection-end="1741" vertical-scroll-proportion="-18.586206">
+        <state line="61" column="47" selection-start="3310" selection-end="3310" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Sets.java">
+    <entry file="file://D:/opt/play-1.0-r785/framework/src/play/templates/FastTags.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="27" selection-start="430" selection-end="441" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="77" column="45" selection-start="3299" selection-end="3299" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Photoz/_userbar.html">
+    <entry file="file://$PROJECT_DIR$/public/javascripts/flickrmenu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="120" selection-start="318" selection-end="318" vertical-scroll-proportion="-5.3103447">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Setv/viewSets.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="159" selection-end="193" vertical-scroll-proportion="-3.7931035">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Setv/_viewSetsOfPhoto.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="36" selection-start="547" selection-end="547" vertical-scroll-proportion="-4.551724">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/opt/play-1.0-r785/framework/play.jar!/play/server/HttpHandler.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="13" selection-start="149" selection-end="149" vertical-scroll-proportion="0.11167513">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/opt/play-1.0-r785/framework/src/play/mvc/Router.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="141" column="23" selection-start="5332" selection-end="5332" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/opt/play-1.0-r785/framework/src/play/server/HttpHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="472" column="0" selection-start="20190" selection-end="20190" vertical-scroll-proportion="4.179487">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Photov/viewPhoto.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="167" column="40" selection-start="5129" selection-end="5129" vertical-scroll-proportion="-7.448276">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/Photoz.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="0" selection-start="3768" selection-end="3768" vertical-scroll-proportion="0.0">
+        <state line="68" column="32" selection-start="1965" selection-end="1974" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/Photov.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="30" selection-start="2552" selection-end="2552" vertical-scroll-proportion="0.0">
+        <state line="60" column="102" selection-start="2049" selection-end="2049" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/Setv.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="32" selection-start="423" selection-end="430" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/Setz.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="18" selection-start="1091" selection-end="1101" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/Photoz/_header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="43" selection-start="1645" selection-end="1645" vertical-scroll-proportion="-4.551724">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/jquery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.16446126">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/conf/routes">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="58" selection-start="1079" selection-end="1079" vertical-scroll-proportion="0.0">
+        <state line="29" column="3" selection-start="1137" selection-end="1140" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/opt/play-1.0-r785/framework/src/play/mvc/ActionInvoker.java">
+    <entry file="file://$PROJECT_DIR$/app/views/Setv/_viewSetsOfPhoto.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="136" column="140" selection-start="5788" selection-end="5788" vertical-scroll-proportion="0.0">
+        <state line="1" column="12" selection-start="24" selection-end="24" vertical-scroll-proportion="-0.7586207">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Photoz/prepareUpload.html">
+    <entry file="file://$PROJECT_DIR$/app/views/Setv/_setsInfoOfPhoto.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="22" selection-start="353" selection-end="365" vertical-scroll-proportion="-8.724138">
+        <state line="0" column="0" selection-start="0" selection-end="5" vertical-scroll-proportion="-0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tags/uploadifybar.tag">
+    <entry file="file://$PROJECT_DIR$/app/views/Photov/viewPhoto.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="27" selection-start="394" selection-end="394" vertical-scroll-proportion="0.37429112">
+        <state line="106" column="6" selection-start="2479" selection-end="2479" vertical-scroll-proportion="-3.310345">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/setsinfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="17" selection-start="1247" selection-end="1251" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/Setv/listMySets.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="44" selection-start="874" selection-end="881" vertical-scroll-proportion="0.5531915">
           <folding />
         </state>
       </provider>
