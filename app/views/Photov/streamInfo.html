@@ -1,0 +1,12 @@
+<table>    
+    <tr><td width="77px">
+    	#{set previous:photo.previous()/}
+    	#{set next:photo.next()/}
+    	#{if previous == null }<small>第一张</small>#{/if}
+        #{ifnot previous == null} <a href="@{Photov.viewPhoto(previous.author.fullname, previous.id)}">#{photo photo:previous,as:'75'/}</a>#{/ifnot}</td>
+        <td width="77px">#{if next == null }<small>最后一张</small>#{/if}
+            #{ifnot next == null} <a href="@{Photov.viewPhoto(next.author.fullname, next.id)}">#{photo photo:next,as:'75'/}</a>#{/ifnot}</td>
+        <td rowspan="3" width="50px" valign="middle"><b>相册中共有 张相片</b></td></tr>
+    <tr><td style="line-height:20px;">#{ifnot previous == null } <a onclick="updatesetsinfo(this,'@{Photov.streamInfo(previous.author.fullname,previous.id)}')">上一张</a> #{/ifnot}</td>
+        <td align="right">#{ifnot next == null }<a onclick="updatesetsinfo(this,'@{Photov.streamInfo(next.author.fullname,next.id)}')">下一张</a>#{/ifnot}</td></tr>
+</table>
