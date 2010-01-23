@@ -8,6 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="secure" />
+    <orderEntry type="module" module-name="search" />
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="play" level="project" />
   </component>

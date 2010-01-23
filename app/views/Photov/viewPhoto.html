@@ -2,6 +2,20 @@
 #{set 'title'}
 	 图片 ${photo.caption}
 #{/set}
+        
+#{script 'setsinfo.js'/}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#loading-div").load('@{Setv.setsInfoOfPhoto(photo.id,setsid)}',{},function(ret){
+            var sets = $(ret).find('div');
+            if(sets.length >0) $('#sets-wrapper').show();
+            sets.each(function(){
+                $('#sets-div').append($(this));
+            })
+            $(".collapse").collapse();
+        });
+    })
+</script>
 
 #{isMine}
 #{script 'jquery.imgareaselect.comments.js'/}
@@ -10,7 +24,7 @@
 #{script 'ui.resizable.js'/}
 #{stylesheet 'imgareaselect-default.css'/}
 #{stylesheet 'themes/base/ui.all.css'/}
-#{script 'setsinfo.js'/}
+
 
 <style type="text/css">
 a{
@@ -95,16 +109,6 @@ textarea{
 	function addToSets(a){
 		$(a).parent().find(".sub_menu").load('@{Setv.listMySets(currentuser,photo.id)}');		
 	}
-    $(document).ready(function(){
-        $("#loading-div").load('@{Setv.setsInfoOfPhoto(photo.id)}',{},function(ret){
-            var sets = $(ret).find('div');
-            if(sets.length >0) $('#sets-wrapper').show();
-            sets.each(function(){
-                $('#sets-div').append($(this));
-            })
-            $(".collapse").collapse();
-        });
-    })
 </script>
 
 <div id='hiddendiv' style='display:none'>

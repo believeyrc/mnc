@@ -4,6 +4,9 @@
 
 # Map static resources from the /app/public folder to the /public path
 GET /public/                                staticDir:public
+
+GET     /services/search/						Searchv.search
+
 GET	/signup									Userz.register
 GET	/signin									Secure.login
 GET	/account								Userz.account
@@ -18,6 +21,7 @@ GET	/photos/{username}/?					Photov.home
 GET	/photos/{username}/{<[0-9]+>id}			Photov.viewPhoto
 GET	/photos/{username}/sets/{<[0-9]+>setsId}	Setv.viewSets
 GET	/photos/{username}/sets					Setv.mySets
+GET	/photos/{username}/{<[0-9]+>photoid}/in/sets-{<[0-9]+>setsid}		Photov.viewPhotoInSets
 GET	/photos/{username}/sets/{<[0-9]+>setsId}/page{<[0-9]+>page}	Setv.viewPhotosInSets
 
 GET /    Homez.index
@@ -28,6 +32,7 @@ POST	/services/desc/{id}							Postz.desc
 POST	/services/rest/upload						Photov.upload
 GET	    /services/captcha/{id}						Postz.captcha
 GET	    /services/sets/{photoid}						Setsv.setsInfoOfPhoto
+
 
 
 GET     /posts/{username}/{<[0-9]+>id}	Postz.show

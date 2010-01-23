@@ -4,7 +4,6 @@ import models.Photo;
 import models.Sets;
 import models.User;
 
-import java.util.Date;
 import java.util.List;
 
 public class Setv extends Basez {
@@ -34,6 +33,12 @@ public class Setv extends Basez {
         render(sets,photos,page,pageSize,totalCount);
 	}
 
+    /**
+     * 浏览相册中的照片
+     * @param username
+     * @param setsId
+     * @param page
+     */
 	public static void viewPhotosInSets(String username, Long setsId,int page) {
 		Sets sets = Sets.findById(setsId);
         long totalCount = sets.countPhotos();
@@ -42,6 +47,11 @@ public class Setv extends Basez {
         render("Setv/viewSets.html",sets,photos,page,pageSize,totalCount);
 	}
 
+    /**
+     * 查询某一个照片在某一个相片中的位置
+     * @param setsid
+     * @param photoid
+     */
     public static void viewSetsOfPhoto(Long setsid, Long photoid){
         Sets sets = Sets.findById(setsid);
         Photo photo = Photo.findById(photoid);
@@ -49,9 +59,14 @@ public class Setv extends Basez {
         Photo next = sets.nextPhotoInSets(photo);
         render("Setv/_viewSetsOfPhoto.html",sets,photo,previous,next);
     }
-    public static void setsInfoOfPhoto(Long photoid){
+
+    /**
+     * 查询照片所在的所有相册
+     * @param photoid
+     */
+    public static void setsInfoOfPhoto(Long photoid, Long setsid){
         List<Sets> insets = Sets.find("select DISTINCT sets from Sets sets ,in( sets.photos) p where p.id = ?", photoid).fetch();
         Photo photo = Photo.findById(photoid);
-        render("Setv/_setsInfoOfPhoto.html",insets,photo);
+        render("Setv/_setsInfoOfPhoto.html",insets,photo, setsid);
     }
 }

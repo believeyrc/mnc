@@ -12,7 +12,7 @@
 	//out << count << "," << rowc << "," << lose
 	if (_items instanceof java.util.Set){
 	    _items = new java.util.ArrayList(_items)
-	}
+	} 
 }%
 
 #{doBody as:'skip' /}

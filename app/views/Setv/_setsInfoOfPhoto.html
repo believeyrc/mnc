@@ -1,7 +1,7 @@
 <div>
 #{list items:insets,as:'sets'}
    <div id="sets-${sets?.id}" class="collapse">
-        <img ${sets_index==1 ? "class=e":""} rel="@{Setv.viewSetsOfPhoto(sets.id, photo.id)}"/>
+        <img ${sets.id==setsid ? "class=e":""} rel="@{Setv.viewSetsOfPhoto(sets.id, photo.id)}"/>
         <a href="@{Setv.viewSets(currentuser,sets?.id)}" ><b>${sets.name}(相册)</b></a>
    </div>
 #{/list}

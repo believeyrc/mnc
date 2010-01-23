@@ -1,0 +1,28 @@
+#{extends 'main.html' /}
+#{set title:'所有照片'/}
+<h3>"${params.q}" 搜索结果</h3>
+#{table items:photos,as:'result',cols:3,style:'border-spacing:8px;'}    
+	#{td id:"captd"} <div id="${result.object.id}" class='cap' >${result.object.caption}</div>#{/td}
+	#{td id:"imgtd"}
+		<div class='imgbock'><a href='@{Photov.viewPhoto(result.object.author?.fullname,result.object.id)}'>#{photo photo:result.object,as:'240'/}</a></div>
+		<div id="${result.object.id}" class='desc mini' >${result.object.description}</div>
+		<div id='info' vpid='${result.object.id}'>#{screenname result.object.author/} 更新于${result.object.uploadAt.format('yyyy/mm/dd')}		
+	#{/td}
+    #{onNull}&nbsp;#{/onNull}
+#{/table}
+
+
+
+<div style="clear:both">
+#{if page > 1 }
+  <div class="grid_3 alpha" style="display:inline;" id="prev">
+	<a href="@{Searchv.search().add('q',params.q).add('page',page-1).add('pageSize',params.pageSize)}">&{'PreviousPage'}</a>
+  </div>
+#{/if}
+
+#{if totalCount> page * pageSize}
+  <div class="grid_3 omega float-right" style="display:inline;"  id="next">
+	<a href="@{Searchv.search().add('q',params.q).add('page',page+1).add('pageSize',params.pageSize)}">&{'NextPage'}</a>
+  </div>
+#{/if}
+</div>

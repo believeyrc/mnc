@@ -8,7 +8,10 @@ import javax.persistence.ManyToOne;
 
 import play.data.validation.Required;
 import play.db.jpa.Model;
+import play.modules.search.Field;
+import play.modules.search.Indexed;
 
+@Indexed
 @Entity
 public class Photo extends Model {
 	public Photo(){
@@ -31,8 +34,9 @@ public class Photo extends Model {
 	 * 75x75
 	 */
 	public String thumbPath;
-	
+	@Field
 	public String caption;
+    @Field    
 	@Lob
 	public String description;
 	public Date uploadAt;

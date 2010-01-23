@@ -61,7 +61,11 @@ public class Photov extends Basez {
         List<Responses> responses = Responses.find(" photo = ? order by postedAt asc", photo).fetch();
         render(photo, responses);
     }
-
+   public static void viewPhotoInSets(String username, Long photoid, Long setsid) {
+        Photo photo = Photo.findById(photoid);       
+        List<Responses> responses = Responses.find(" photo = ? order by postedAt asc", photo).fetch();
+        render("Photov/viewPhoto.html",photo, responses, setsid);
+    }
 	public static void previousPicture(Long id) {
 		if (id == null)
 			id = 0L;
