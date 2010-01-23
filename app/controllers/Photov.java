@@ -33,6 +33,14 @@ public class Photov extends Basez {
 		List<Photo> photos = Photo.find(" author.fullname = ? order by id desc", username).from(pageSize * (page - 1)).fetch(pageSize);
 		render(photos, page, totalCount, pageSize);
 	}
+	public static void photosWith(String username, Long id) {
+		int pageSize = 12;
+		long totalCount = Photo.count(" author.fullname = ? ", username);
+		long position = Photo.count(" author.fullname = ? and id > ? order by id desc ",username, id);
+		int page = (int) (position/pageSize)+1;
+		List<Photo> photos = Photo.find(" author.fullname = ? order by id desc", username).from(pageSize * (page - 1)).fetch(pageSize);
+		render("Photov/photos.html",photos, page, totalCount, pageSize);
+	}
 
 	public static void carousel(String family) {
 		List<Photo> photos = Photo.find(" author.family.code = ? order by id desc", family).fetch();
@@ -54,7 +62,6 @@ public class Photov extends Basez {
 		renderText("{ \"more\":%s, \"id\":%s, \"path\":\"%s\" }", more > 1, photo.id, photo.filePath);
 	}
 
-
     public static void viewPhoto(String username, Long id) {
         Photo photo = Photo.findById(id);
         List<Responses> responses = Responses.find(" photo = ? order by postedAt asc", photo).fetch();
@@ -63,12 +70,14 @@ public class Photov extends Basez {
    public static void viewPhotoInSets(String username, Long photoid, Long setsid) {
         Photo photo = Photo.findById(photoid);       
         List<Responses> responses = Responses.find(" photo = ? order by postedAt asc", photo).fetch();
-        render("Photov/viewPhoto.html",photo, responses, setsid);
+        boolean nostream = true;
+        render("Photov/viewPhoto.html",photo, responses, setsid, nostream);
     }
    
    public static void streamInfo(String username,Long id) {
 	   Photo photo = Photo.findById(id);
-	   render(photo);
+	   long totalCount = photo.countOfUser();
+	   render(photo, totalCount);
    }
    
 	public static void previousPicture(Long id) {

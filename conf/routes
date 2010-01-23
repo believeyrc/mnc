@@ -18,12 +18,14 @@ GET	/photos/grab							Photoz.prepareGrab
 GET	/people/{username}/relationship/		Relationshipz.relationship
 
 GET	/photos/{username}/page{<[0-9]+>page}	Photov.photos
+GET	/photos/{username}/with/{<[0-9]+>id}	Photov.photosWith
 GET	/photos/{username}/?					Photov.home
 GET	/photos/{username}/{<[0-9]+>id}			Photov.viewPhoto
 GET	/photos/{username}/sets/{<[0-9]+>setsId}	Setv.viewSets
 GET	/photos/{username}/sets					Setv.mySets
 GET	/photos/{username}/{<[0-9]+>photoid}/in/sets-{<[0-9]+>setsid}		Photov.viewPhotoInSets
 GET	/photos/{username}/sets/{<[0-9]+>setsId}/page{<[0-9]+>page}	Setv.viewPhotosInSets
+GET	/photos/{username}/sets/{<[0-9]+>setsId}/with/{<[0-9]+>id}	Setv.viewSetsWith
 
 GET /    Homez.index
 

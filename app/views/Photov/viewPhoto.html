@@ -174,8 +174,8 @@ textarea{
                 <table>
                     <tr><td>#{avatar user:photo.author,as:24/}</td><td>#{screenname photo.author/}上传于${photo.uploadAt.format('yyyy-MM-dd')}</td></tr>
                 </table>
-                <div id="sets-${sets?.id}" class="collapse">
-                	<img class=e rel="@{Photov.streamInfo(username,photo.id)}"/>
+                <div id="stream" class="collapse">
+                	<img #{ifnot nostream}class=e#{/ifnot} rel="@{Photov.streamInfo(username,photo.id)}"/>
 	                <a href="@{Photov.home(currentuser)}" ><b>#{screenname photo.author/} 的所有图片 </b></a>
                 </div>
             </div>

@@ -48,7 +48,9 @@ public class Photo extends Model {
 		return this.caption + ":" +filePath;
 	}
 	
-    
+    public long countOfUser() {
+    	return Photo.count(" author = ? ", author);
+    }
     public Photo previous() {
     	return Photo .find(" author = ? and id > ? order by id asc", author, id).first();
     }

@@ -23,6 +23,9 @@ public class Sets extends Model{
 	public long countPhotos(){
 		return Photo.count("select count(p) from Photo p , Sets as s join s.photos as sp where sp.id = p.id and s.id = ?" , this.id);
 	}
+	public long positionOfPhoto(Long photoid) {
+		return Photo.count("select count(p) from Photo p , Sets as s join s.photos as sp where sp.id = p.id and s.id = ? and p.id > ?" , this.id, photoid);
+	}
 	/*
 	 * 分页获取照片
 	 */

@@ -33,6 +33,23 @@ public class Setv extends Basez {
         render(sets,photos,page,pageSize,totalCount);
 	}
 
+	/**
+	 * 浏览相册中的照片
+	 * @param username
+	 * @param setsId
+	 * @param page
+	 */
+	public static void viewSetsWith(String username, Long setsId,long id) {
+		Sets sets = Sets.findById(setsId);
+		long totalCount = sets.countPhotos();
+		int pageSize = 12;
+		long pos = sets.positionOfPhoto(id);
+		System.out.println(pos);
+		int page = (int) (pos/pageSize+1);
+		List<Photo> photos = sets.listPhotos(pageSize, page-1);
+		render("Setv/viewSets.html",sets,photos,page,pageSize,totalCount);
+	}
+	
     /**
      * 浏览相册中的照片
      * @param username
@@ -59,7 +76,6 @@ public class Setv extends Basez {
         Photo next = sets.nextPhotoInSets(photo);
         render("Setv/_viewSetsOfPhoto.html",sets,photo,previous,next);
     }
-
     /**
      * 查询照片所在的所有相册
      * @param photoid
