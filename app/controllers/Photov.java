@@ -67,7 +67,6 @@ public class Photov extends Basez {
     }
    
    public static void streamInfo(String username,Long id) {
-	   System.out.println(username+","+id);
 	   Photo photo = Photo.findById(id);
 	   render(photo);
    }

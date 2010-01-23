@@ -38,7 +38,6 @@ public class Photoz extends Basez {
 	public static void sayHello(Long id, String content, int x, int y, int w, int h) throws IOException {
 		Photo photo = Photo.find("id = ? and author = ? ", id, getLoginUser()).first();
 		if (photo != null) {
-			System.out.println(content);
 			String path = photo.prefPath;
 			BalloonUtil.addEllipseBalloon(path, x, y, w, h, utils.BalloonUtil.EllipseBalloon.TYPE.LB, content);
 			PhotoUploaderUtil.updateThumbFrom(photo, photo.prefPath);
