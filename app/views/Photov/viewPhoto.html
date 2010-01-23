@@ -170,17 +170,20 @@ textarea{
 	<td valign="top">
         <div>
             <h4>提供图片的人</h4>
-            <div style="line-height:40px">
+            <div>
                 <table>
                     <tr><td>#{avatar user:photo.author,as:24/}</td><td>#{screenname photo.author/}上传于${photo.uploadAt.format('yyyy-MM-dd')}</td></tr>
                 </table>
+                <div id="sets-${sets?.id}" class="collapse">
+                	<img class=e rel="@{Photov.streamInfo(username,photo.id)}"/>
+	                <a href="@{Photov.home(currentuser)}" ><b>#{screenname photo.author/} 的所有图片 </b></a>
+                </div>
             </div>
         </div>
 
         <div id="sets-wrapper" style="display:none;">
             <h4>相片属于相册</h4>
             <div id="sets-div">
-               
             </div>
         </div>
         

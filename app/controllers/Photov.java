@@ -65,6 +65,13 @@ public class Photov extends Basez {
         List<Responses> responses = Responses.find(" photo = ? order by postedAt asc", photo).fetch();
         render("Photov/viewPhoto.html",photo, responses, setsid);
     }
+   
+   public static void streamInfo(String username,Long id) {
+	   System.out.println(username+","+id);
+	   Photo photo = Photo.findById(id);
+	   render(photo);
+   }
+   
 	public static void previousPicture(Long id) {
 		if (id == null)
 			id = 0L;

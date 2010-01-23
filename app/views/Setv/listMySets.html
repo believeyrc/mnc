@@ -26,6 +26,7 @@
     function updateSetsInfo(setid,isadd){
              $("#loading-div").load('@{Setv.setsInfoOfPhoto(photo.id)}',{},function( ret, status){
                if(isadd){
+               	   $("#sets-wrapper").show();
                    $("#sets-div").append($(ret).find("#sets-"+setid))
                    $("#sets-div").find("#sets-"+setid).collapse();
                }else{

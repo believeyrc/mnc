@@ -47,4 +47,15 @@ public class Photo extends Model {
 	public String toString(){
 		return this.caption + ":" +filePath;
 	}
+	
+    
+    public Photo previous() {
+    	return Photo .find(" author = ? and id > ? order by id asc", author, id).first();
+    }
+     
+    public Photo next() {
+    	return Photo .find(" author = ? and id < ? order by id desc", author, id).first();
+    }
+    
+	
 }
