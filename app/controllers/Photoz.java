@@ -2,22 +2,17 @@ package controllers;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.concurrent.ExecutionException;
 
+import jobs.GrabImageJob;
 import models.Photo;
 import models.Responses;
 import models.User;
 
 import org.apache.commons.io.FileUtils;
 
-import play.Play;
-import play.libs.Crypto;
 import play.mvc.With;
 import utils.BalloonUtil;
 import utils.ImageUtil;
@@ -28,15 +23,15 @@ public class Photoz extends Basez {
 
 	public static void rotateRight(Long id) throws IOException {
 		Photo photo = Photo.findById(id);
-		//ImageMagick.rotate(photo.prefPath, photo.prefPath, -90);
-        ImageUtil.saveJPEG(ImageUtil.roate(ImageUtil.load(photo.prefPath),(float)(Math.PI /2)),photo.prefPath);
+		// ImageMagick.rotate(photo.prefPath, photo.prefPath, -90);
+		ImageUtil.saveJPEG(ImageUtil.roate(ImageUtil.load(photo.prefPath), (float) (Math.PI / 2)), photo.prefPath);
 		PhotoUploaderUtil.updateThumbFrom(photo, photo.prefPath);
 	}
 
 	public static void rotateLeft(Long id) throws IOException {
 		Photo photo = Photo.findById(id);
-		//ImageMagick.rotate(photo.prefPath, photo.prefPath, 90);
-        ImageUtil.saveJPEG(ImageUtil.roate(ImageUtil.load(photo.prefPath),-(float)(Math.PI /2)), photo.prefPath);
+		// ImageMagick.rotate(photo.prefPath, photo.prefPath, 90);
+		ImageUtil.saveJPEG(ImageUtil.roate(ImageUtil.load(photo.prefPath), -(float) (Math.PI / 2)), photo.prefPath);
 		PhotoUploaderUtil.updateThumbFrom(photo, photo.prefPath);
 	}
 
@@ -55,9 +50,9 @@ public class Photoz extends Basez {
 		if (photo != null) {
 			photo.caption = val;
 			photo.save();
-//			Photo temp = new Photo();
-//			temp.caption = photo.caption;
-//			temp.id = photo.id;
+			// Photo temp = new Photo();
+			// temp.caption = photo.caption;
+			// temp.id = photo.id;
 			renderJSON(val);
 		}
 	}
@@ -67,26 +62,26 @@ public class Photoz extends Basez {
 		if (photo != null) {
 			photo.description = val;
 			photo.save();
-//			Photo temp = new Photo();
-//			temp.description = photo.description;
-//			temp.id = photo.id;
+			// Photo temp = new Photo();
+			// temp.description = photo.description;
+			// temp.id = photo.id;
 			renderJSON(val);
 		}
 	}
-	
+
 	public static void revert(Long id) {
 		Photo photo = Photo.find("id = ? and author = ? ", id, getLoginUser()).first();
 		if (photo != null) {
 			PhotoUploaderUtil.updateThumbFrom(photo, photo.filePath);
 		}
 	}
-	
+
 	public static void responses(Long id, String content) {
 		Photo photo = Photo.findById(id);
 		User user = getLoginUser();
 		Responses responses = new Responses(photo, user, content);
 		responses.save();
-		Photov.viewPhoto(getVisitedUser(),id);
+		Photov.viewPhoto(getVisitedUser(), id);
 	}
 
 	@Check("ROLE_ADMIN")
@@ -123,4 +118,29 @@ public class Photoz extends Basez {
 	public static void prepareUpload() {
 		render();
 	}
+
+	public static void grab(String urls) {
+		String[] aurls = urls.split("\n");
+		GrabImageJob grabImageJob = new GrabImageJob(aurls);
+		try {
+			List<Photo> photos;
+			photos = grabImageJob.now().get();
+			for (Iterator<Photo> iter = photos.iterator(); iter.hasNext();) {
+				Photo photo = (Photo) iter.next();
+				photo.author = User.find("byEmail", Security.connected()).first();
+				photo.save();
+				PhotoUploaderUtil.updateThumbnails(photo);
+			}
+			renderJSON(photos);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void prepareGrab() {
+		render();
+	}
+
 }

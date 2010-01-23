@@ -14,6 +14,7 @@ GET	/account/changepassword					Userz.changepassword
 GET	/account/changeavatar/{id}				Userz.changeAvatar
 
 GET	/photos/upload							Photoz.prepareUpload
+GET	/photos/grab							Photoz.prepareGrab
 GET	/people/{username}/relationship/		Relationshipz.relationship
 
 GET	/photos/{username}/page{<[0-9]+>page}	Photov.photos

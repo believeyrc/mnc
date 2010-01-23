@@ -21,6 +21,11 @@ application.secret=x9nwsufoov18w2kgwcjeiway0i7j60luiqz6wz51f8mqdz77l672m8t5gppmd
 # the application root.
 module.crud=${play.path}/modules/crud
 module.secure=${play.path}/modules/secure
+module.search=${play.path}/modules/search
+
+play.search.analyser=org.apache.lucene.analysis.cn.ChineseAnalyzer
+play.search.reindex=enabled
+
 
 # i18n
 # ~~~~~

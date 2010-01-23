@@ -1,3 +1,4 @@
 /tmp/**
+/data/**
 /gwt-public/**/*
 /public/upload/**

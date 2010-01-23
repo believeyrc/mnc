@@ -6,6 +6,11 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.io.FileUtils;
+
 import play.Logger;
 import play.Play;
 
@@ -15,6 +20,16 @@ import com.mortennobel.imagescaling.DimensionConstrain;
 import com.mortennobel.imagescaling.ResampleOp;
 
 public class ImageUtil {
+	public static void moveUploadTo(File upload, String to) {
+		try {
+			String staticpath = Play.configuration.getProperty("staticpath", "");
+			File ofile = new File(staticpath + to);
+			FileUtils.moveFile(upload, ofile);
+		} catch (IOException e) {
+			Logger.error("move file error ", e);
+		}
+	}
+
 	public static BufferedImage load(String file) {
 		String staticpath = Play.configuration.getProperty("staticpath", "");
 		BufferedImage bi;
@@ -31,7 +46,7 @@ public class ImageUtil {
 		String staticpath = Play.configuration.getProperty("staticpath", "");
 		try {
 			File ofile = new File(staticpath + file);
-			if(!ofile.getParentFile().exists())
+			if (!ofile.getParentFile().exists())
 				ofile.getParentFile().mkdirs();
 			ImageIO.write(img, "JPG", ofile);
 			return true;
@@ -71,9 +86,23 @@ public class ImageUtil {
 	}
 
 	public static BufferedImage crop(BufferedImage src, int x, int y, int w, int h) {
-		System.out.println(x+","+y+","+w+","+h);
 		CropFilter cropFilter = new CropFilter(x, y, w, h);
 		BufferedImage dst = cropFilter.filter(src, null);
 		return dst;
+	}
+
+	public static BufferedImage grab(String src) {
+		try {
+			HttpClient client = new HttpClient();
+			GetMethod get = new GetMethod(src);
+			client.executeMethod(get);
+			BufferedImage bi = ImageIO.read(get.getResponseBodyAsStream());
+			return bi;
+		} catch (HttpException e) {
+			Logger.error("grab image error", e);
+		} catch (IOException e) {
+			Logger.error("grab image error", e);
+		}
+		return null;
 	}
 }

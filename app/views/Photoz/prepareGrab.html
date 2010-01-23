@@ -1,0 +1,59 @@
+#{extends 'main.html' /}
+#{set title:'上传照片'/}
+<h1>收藏照片到 Jsxnc</h1>
+<style>
+	.upload #block{
+		margin: 10px 0 10px 0;
+	}
+	.upload #info{
+		font-weight: bold;
+		font-size: 18px;
+	}
+</style>
+<label id="info"></label>
+<script type="text/javascript">
+     $(document).ready(function(){
+        $('#submit-grab')['click'](function(){
+            $('#step1').hide();
+            $('#step2').show();
+            $.post('@{Photoz.grab()}',{urls:$('#grab-urls').val()},function(){
+                $('#step2').hide();
+                $('#step3').show();
+            })
+        });
+     });
+</script>
+<div style="background:#F7F7F7;padding:20px;font-size:20px;">
+	<div id="step1" class="upload">
+        <div id="block">
+            <form action="@{Photoz.grab()}">
+			<label id="info">步骤1:</label>
+			<div >
+				<textarea id="grab-urls" name='urls' style="width:90%;"></textarea>
+			</div>
+			<label  id="info">输入外部图片地址，每行一个地址</label><br/>
+            <input id="submit-grab" type="button" class='button' value="提交收藏">
+            </form>
+		</div>		
+		<div id="block">
+			<label id="info">步骤2:</label>
+			<div>
+				修改标题，标签，或是分类，或是加到相册中
+			</div>
+			<label style='clear:both'  id="info"></label>
+		</div>
+	</div>
+
+	<div id="step2" style="display:none" class="upload">
+		<div id="block">
+			Jsxnc 正在帮您收藏..
+		</div>
+	</div>
+	<div id="step3" style="display:none" class="upload">
+		<div id="block">
+			<div style='height:30px' id="upload-buttons">
+				到<a href="@{Photov.home(user.fullname)}">我的照片</a>中，给图片添加描述...
+			</div>
+		</div>
+	</div>
+</div>

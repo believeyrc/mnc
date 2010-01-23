@@ -11,11 +11,10 @@ import java.util.regex.Pattern;
 
 import models.Photo;
 import models.Responses;
-import models.Sets;
 import models.User;
-import org.apache.commons.io.FileUtils;
 import play.Play;
 import play.libs.Crypto;
+import utils.ImageUtil;
 import utils.PhotoUploaderUtil;
 
 public class Photov extends Basez {
@@ -80,9 +79,7 @@ public class Photov extends Basez {
 		try {
 			restroreSession();
 			String pathForPhoto = PhotoUploaderUtil.getPathForPhoto();
-			String staticpath = Play.configuration.getProperty("staticpath","");
-			File ofile = new File(staticpath+pathForPhoto);
-			FileUtils.moveFile(upload, ofile);
+			ImageUtil.moveUploadTo(upload, pathForPhoto);
 			Photo photo = new Photo(upload.getName(), new Date(), pathForPhoto);
 			photo.prefPath = PhotoUploaderUtil.getPathForLarge(pathForPhoto);
 			photo.thumbPath = PhotoUploaderUtil.getPathForSmall(pathForPhoto);
@@ -90,9 +87,6 @@ public class Photov extends Basez {
 			photo.author = User.find("byEmail", Security.connected()).first();
 			photo.save();
 			PhotoUploaderUtil.updateThumbnails(photo);
-			// new PostThingJob(Security.connected(),
-			// Messages.get("uploadNewImage", getCurrentUser().fullname,
-			// photo.id, getCurrentUser().family.code), TYPE.PHOTO).in(1);
 			renderText("{'err':'','msg':'/%s','original':'/%s','thumb':'/%s','pref':'/%s'}", photo.prefPath, photo.filePath, photo.thumbPath, photo.prefPath);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -116,5 +110,5 @@ public class Photov extends Basez {
 			}
 		}
 	}
-    static Pattern sessionParser = Pattern.compile("\u0000([^:]*):([^\u0000]*)\u0000");    
+    static Pattern sessionParser = Pattern.compile("\u0000([^:]*):([^\u0000]*)\u0000");
 }
