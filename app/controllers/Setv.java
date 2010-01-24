@@ -44,7 +44,6 @@ public class Setv extends Basez {
 		long totalCount = sets.countPhotos();
 		int pageSize = 12;
 		long pos = sets.positionOfPhoto(id);
-		System.out.println(pos);
 		int page = (int) (pos/pageSize+1);
 		List<Photo> photos = sets.listPhotos(pageSize, page-1);
 		render("Setv/viewSets.html",sets,photos,page,pageSize,totalCount);
