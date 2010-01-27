@@ -7,52 +7,41 @@ import java.awt.Frame;
 import com.threed.jpct.Config;
 import com.threed.jpct.FrameBuffer;
 import com.threed.jpct.IRenderer;
-import com.threed.jpct.Object3D;
-import com.threed.jpct.Primitives;
 import com.threed.jpct.SimpleVector;
 import com.threed.jpct.World;
+import com.threed.jpct.util.KeyMapper;
 
-public class JPCTGame {
-	public static void main(String[] args) {
-		JPCTGame game = new JPCTGame();
-		game.init();
-		game.start();
-	}
+public abstract class JPCTGame {
 
-	private Frame frame;
-	private int width = 400;
-	private int height = 300;
-	private FrameBuffer buffer = null;
-	private World world = null;
-	private Color backgroundColor;
-	private Canvas canvas;
-	private Timer timmer;
+	protected Frame frame;
+	protected int width = 400;
+	protected int height = 300;
+	protected FrameBuffer buffer = null;
+	protected World world = null;
+	protected Color backgroundColor;
+	protected Canvas canvas;
+	protected Timer timmer;
 
 	protected void init() {
 		initFrame();
-		initGame();
+		initWorld();
 	}
 
-	protected Object3D box;
-
-	protected void initGame() {
+	protected void initWorld() {
 		backgroundColor = Color.black;
 		world = new World();
 		world.setAmbientLight(0, 255, 0);
-		box = Primitives.getBox(5f, 1f);
-		box.build();
-		world.addObject(box);
 		world.getCamera().setPosition(new SimpleVector(0, -50, 0));
-		world.getCamera().lookAt(box.getTransformedCenter());
+		world.getCamera().lookAt(new SimpleVector(0,0,0));
+		initGame();
 	}
+
+	protected abstract void initGame();
 
 	protected void initFrame() {
 		frame = new Frame();
 		frame.setTitle("jPCT " + Config.getVersion());
 		frame.pack();
-		// Insets insets = frame.getInsets();
-		// int titleBarHeight = insets.top;
-		// int leftBorderWidth = insets.left;
 		frame.setSize(width, height);
 		frame.setResizable(false);
 		frame.setVisible(true);
@@ -62,40 +51,39 @@ public class JPCTGame {
 		canvas = buffer.enableGLCanvasRenderer();
 		frame.add(canvas);
 		frame.pack();
-
+		keyMapper = new KeyMapper(frame);
 		timmer = new Timer(1000 / speed);
-
 	}
 
 	protected int speed = 120;
 
 	public void start() {
+		init();
 		timmer.start();
 		mainloop();
 	}
 
 	protected void updateFrame() {
 		world.renderScene(buffer);
-		buffer.clear(backgroundColor);
+		if (backgroundColor != null)
+			buffer.clear(backgroundColor);
 		world.draw(buffer);
 		buffer.update();
 		buffer.displayGLOnly();
 		canvas.repaint();
 	}
 
-	private void update() {
-		long elapsedTicks = timmer.getElapsedTicks();
-		if (elapsedTicks > 0)
-			box.rotateY(0.01f * elapsedTicks);
-	}
+	protected abstract void update();
 
 	private boolean exit;
+	private KeyMapper keyMapper = null;
 
 	private void mainloop() {
 		while (!exit) {
 			update();
 			updateFrame();
 		}
+		keyMapper.destroy();
 		buffer.disableRenderer(IRenderer.RENDERER_OPENGL);
 		buffer.dispose();
 		frame.dispose();
