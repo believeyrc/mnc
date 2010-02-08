@@ -44,7 +44,13 @@
 				<div class="sub_menu">
 					<a href="@{Userz.account()}">你的帐户</a>
 				</div>
-				</li>				
+				</li>
+				<li><span class="head_menu"><a href="@{Channelz.list(user.fullname)}">频道</a>
+					<img src="@{'/public/images/site_nav_caret_split_default.png'}" class="arrow" alt="更多选项" height="15" width="18"></span>
+					<div class="sub_menu">
+						<a href="@{Channelz.newchannel()}">新建频道</a>
+					</div>
+				</li>
 			#{/isLogin}
 			#{notLogin}
 				<li><span class="head_menu"><a href="@{Userz.register()}" alt="注册">注册</a></span>

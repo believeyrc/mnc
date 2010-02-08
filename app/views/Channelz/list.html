@@ -1,0 +1,7 @@
+#{extends 'main.html' /}
+#{set title:'频道'/}
+#{include '_userbar.html'/}
+
+#{table items:channels,cols:5,as:'channel'}
+#{td}<a href="@{Channelv.channel(visitedUser.fullname,channel.id)}">${channel.name}</a>#{/td}
+#{/table}

@@ -43,6 +43,9 @@ GET     /posts/{username}	Postz.index
 GET     /posts/{username}/{offset}-{pageSize}       Postz.history
 
 
+GET /channels/{username}/{<[0-9]+>id}	Channelv.channel
+GET /channels/{username}/?	Channelz.list
+
 
 #GET /family/{family}/meme    				Memez.index
 

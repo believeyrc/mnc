@@ -1,0 +1,22 @@
+#{extends 'main.html' /}
+#{set title:'新建频道'/}
+#{include '_userbar.html'/}
+
+<table id="layout">
+	<tr><td>
+		<h1>新建频道</h1>
+		<table>
+		#{form @savechannel()}
+			<tr><td id="label"><label>频道名称</label></td></tr>
+			<tr><td><input type="text" name="name" value="${flash.name}"><span id='error'>#{error 'name' /}</span></td></tr>
+			<tr><td id="info">频道名称...</td></tr>
+			<tr><td id="label"><label></label></td></tr>	
+			<tr><td><input type="submit" class="button" name="submit" value="启动"></td></tr>	
+		#{/form}
+		</table>
+	</td>
+	<td id="info">
+		&nbsp;
+	</td>
+	</tr>
+</table>

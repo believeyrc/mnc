@@ -28,8 +28,11 @@ public abstract class Basez extends Controller {
 		return (User) renderArgs.get("user");
 	}
 
-	protected static String getVisitedUser() {
+	protected static String getVisitedUsername() {
 		return (String) renderArgs.get("currentuser");
+	}
+	protected static User getVisitedUser() {
+		return (User) renderArgs.get("visitedUser");
 	}
 
 }

@@ -80,7 +80,7 @@ public class Photoz extends Basez {
 		User user = getLoginUser();
 		Responses responses = new Responses(photo, user, content);
 		responses.save();
-		Photov.viewPhoto(getVisitedUser(), id);
+		Photov.viewPhoto(getVisitedUsername(), id);
 	}
 
 	@Check("ROLE_ADMIN")

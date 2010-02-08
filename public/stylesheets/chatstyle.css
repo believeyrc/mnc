@@ -1,0 +1,11 @@
+#chat-wrap                      { width:600px;border-width: 1px 0 0 1px; border-style:solid; border-color:#a0a0a0; margin: 10px 0 15px 0; }
+#chat-area                      { background:none repeat scroll 0 0 #FFFFD3;  height: 300px; overflow: auto;  padding: 4px; background: #FFFFD3; }
+#chat-area span                 { color: gray; padding: 4px 8px; text-decoration : underline; margin: 0 5px 0 0; }
+#chat-area p                    { padding: 8px 0; border-bottom: 0px solid #ccc; }
+#chat-area em					{color:#666;font:10px Georgia,Serif;float:right;top:5px;}
+
+#name-area                      { position: absolute; top: 12px; right: 0; font: bold 12px "Lucida Grande", Sans-Serif; text-align: right; }   
+#name-area span                 { color: #fa9f00; }
+
+#send-message-area p      { clear:both;padding: 4px 4px 4px 0; font-size: 14px; }
+#sendie                        	    { border-width: 1px 0 0 1px; background:none repeat scroll 0 0 #FFFFD3; width: 360px; padding: 10px; font: 12px "Lucida Grande", Sans-Serif; float: left; }
