@@ -21,7 +21,7 @@ public class Postz extends Basez {
 	}
 
 	private static void doPrepare(int offset, int pageSize, String username) {
-		Long totalCount = Post.count(" author.family.code = ?", username);
+		Long totalCount = Post.count(" author.fullname = ?", username);
 		Post frontPost = null;
 		List<Post> olderPosts = null;
 		if (offset == 0) {
@@ -30,12 +30,12 @@ public class Postz extends Basez {
 		} else {
 			olderPosts = Post.find(" author.fullname = ? order by postedAt desc", username).from(offset).fetch(pageSize);
 		}
-
+		System.out.println("totalCount"+totalCount);
 		render("Postz/index.html", frontPost, olderPosts, totalCount, offset, pageSize);
 	}
 
-	public static void history(int offset, int pageSize, String family) {
-		doPrepare(offset, pageSize, family);
+	public static void history(int offset, int pageSize, String username) {
+		doPrepare(offset, pageSize, username);
 	}
 
 	public static void show(String username,Long id) {

@@ -15,7 +15,6 @@
 #{if olderPosts.size() > 0 }
 	<div class="older-posts">    
 	   &{'OlderPosts'}
-	
 		#{list items:olderPosts, as:'oldPost'}
 			 #{display post:oldPost, as:'teaser' /}
 		#{/list}
@@ -31,5 +30,16 @@
 #{/if}
 <br/>
 
-#{pagination/}
+<ul id="pagination">
+#{if offset > 0}
+        <li id="previous">
+			<a href="@{history(((offset-pageSize) > 0 ? (offset-pageSize) : 0),pageSize,visitedUser.fullname)}">&{'btNewerPosts'}</a>
+        </li>
+    #{/if}
+#{if offset + pageSize < totalCount }
+	<li id="next">
+		<a href="@{history(offset + pageSize, pageSize,visitedUser.fullname)}">&{'btOlderPosts'}</a>
+    </li>
+#{/if}
+</ul>
  
