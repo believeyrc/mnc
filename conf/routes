@@ -36,7 +36,7 @@ POST	/services/rest/upload						Photov.upload
 GET	    /services/captcha/{id}						Postz.captcha
 GET	    /services/sets/{photoid}						Setsv.setsInfoOfPhoto
 
-
+POST 	/gamescore	Gamescore.submit
 
 GET     /posts/{username}/{<[0-9]+>id}	Postz.show
 GET     /posts/{username}	Postz.index
