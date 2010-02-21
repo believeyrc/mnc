@@ -23,7 +23,7 @@ public class Homez extends Basez {
             lastPhotos = Photo.find("order by uploadAt desc").fetch(15);
             renderArgs.put("lastPhotos",lastPhotos );
         }
-		List<Post> lastPosts = Post.find("order by id desc").from(0).fetch(15);
+		List<Post> lastPosts = Post.find("order by id desc").from(0).fetch(9);
 		renderArgs.put("lastPosts",lastPosts );
 		List<Responses> lastResponses = Responses.find("order by id desc").from(0).fetch(3);
 		renderArgs.put("lastResponses",lastResponses );
