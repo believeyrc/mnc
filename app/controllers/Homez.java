@@ -3,6 +3,8 @@ package controllers;
 import java.util.List;
 
 import models.Photo;
+import models.Post;
+import models.Responses;
 import models.User;
 
 /**
@@ -19,9 +21,13 @@ public class Homez extends Basez {
             renderArgs.put("lastPhotos",lastPhotos );
 		} else {
             lastPhotos = Photo.find("order by uploadAt desc").fetch(15);
-            renderArgs.put("lastPhotos",lastPhotos );    
+            renderArgs.put("lastPhotos",lastPhotos );
         }
-
+		List<Post> lastPosts = Post.find("order by id desc").from(0).fetch(15);
+		renderArgs.put("lastPosts",lastPosts );
+		List<Responses> lastResponses = Responses.find("order by id desc").from(0).fetch(3);
+		renderArgs.put("lastResponses",lastResponses );
+		
 		render();
 	}
 }
