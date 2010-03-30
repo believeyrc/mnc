@@ -1,0 +1,117 @@
+#header {
+	width: 820px;
+	text-align:center;
+	position: relative;
+	height: 65px;
+	background: #FFF;
+	padding: 0px;	
+	color: #000;
+	background:url(dotted.gif) repeat-x left bottom;
+	/* font-size: 14px; */
+	margin-bottom: 25px;
+}
+#header .Header,#header .NavBar{
+	padding: 0px;
+	border: 0px;
+	margin:auto;
+}
+#header .logo{
+	float:left;
+	padding:5px 0 0 5px;
+}
+#header .Status{
+	text-align:right;
+}
+.NavBar {
+	width: 820px;
+}
+.NavBar ul {	
+	list-style: none;
+	margin:0;
+	padding: 0;
+}
+.NavBar li {
+	float:left;
+	display: inline;
+	font-weight: bold;
+	/*margin-right: 16px;*/
+}
+.NavBar li span{
+	height:18px;
+}
+
+#header h1{
+	padding: 0px;
+}
+#header h1#logo-text {
+	position: absolute;
+	margin: 0; padding: 0;
+	font: bolder 44px 'Trebuchet MS', Arial, Sans-serif;
+	letter-spacing: -2px;
+	color: #000;
+	text-transform: none;
+	
+	/* change the values of top and left to adjust the position of the logo*/
+	top: 25px; left: 127px;	
+}
+#header h2#slogan {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	font: normal 12px 'Trebuchet MS', Arial, Sans-serif;
+	text-transform: none;
+	color: #000;
+	
+	/* change the values of top and left to adjust the position of the slogan
+	top: 70px; left: 135px;		*/
+}
+#header h1 img{
+	border: none;
+	background: none;
+	margin-left: 0px;
+	margin-top: 0px;
+	padding: 0px;
+	/*width: 50px;
+	height:60px;*/
+}
+
+/* header links */
+#header #header-links {
+	position: absolute;
+	top: 00px; right: 30px;	
+	color: #000;
+	font-size: 12px;	
+}
+#header #header-links a {	
+	color: #000;
+	text-decoration: none;	
+}
+#header #header-links a:hover {
+	color: #555	;	
+}
+
+/* Menu */
+
+
+#nicemenu { font-size:13px;  }
+#nicemenu a { color:#0066CC; text-decoration:none; text-align:left;}
+#nicemenu a:hover { text-decoration:underline; }	
+#nicemenu li { display:inline; position:relative; }
+#nicemenu li span { position:relative; z-index:10; padding:4px 4px 0px 6px;  border-bottom:none; line-height:18px; }	
+#nicemenu li span a { font-weight:bold; padding:0 6px 0px 2px;  }	
+#nicemenu li span.over { padding:4px 3px 0px 5px;  border-top:solid 1px #E5E5E5; border-left:solid 1px #E5E5E5;  border-right:solid 1px #999999; border-bottom:solid 1px #fff;  }
+*+html #nicemenu li span.over {  border-top:solid 2px #E5E5E5; padding-bottom:3px; } /* IE6 */
+#nicemenu li span.over a { }
+#nicemenu li span.over a:hover { text-decoration:none; }
+#nicemenu li span.active { padding:4px 3px 0px 5px;  border-top:solid 1px #E5E5E5; border-left:solid 1px #E5E5E5;  border-right:solid 1px #999999; border-bottom:solid 1px #fff;  }
+*+html #nicemenu li span.active {  border-top:solid 2px #E5E5E5; padding-bottom:3px; }
+#nicemenu li span.active a { }
+#nicemenu li span.active a:hover { text-decoration:none; }	
+#nicemenu img.arrow { /*margin-left:4px;*/ cursor:pointer; }
+#nicemenu div.sub_menu { z-index:200; display:none; position:absolute; left:0; top:0px; margin-top:18px; border-top:solid 0px #E5E5E5; border-left:solid 1px #E5E5E5; border-right:solid 1px #999999; border-bottom:solid 1px #999999; padding:4px; top:0px; width:160px; background:#FFFFFF; }
+* html #nicemenu div.sub_menu { margin-top:23px; } /* IE6 */
+*+html #nicemenu div.sub_menu { margin-top:23px; } /* IE7 */
+#nicemenu div.sub_menu a:link, 
+#nicemenu div.sub_menu a:visited, 
+#nicemenu div.sub_menu a:hover{ display:block; font-size:11px; padding:4px;}	
+#nicemenu a.item_line { border-top:solid 1px #E5E5E5; padding-top:6px !important; margin-top:3px; }
