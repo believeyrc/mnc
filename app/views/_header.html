@@ -5,7 +5,7 @@
 		<td>
 			<a href="/"><img src="@{'/public/images/logo.png'}" class="logo" alt="Jsxnc 标志。点击一下返回首页" height="30" width="180"></a>
 		</td>
-		<td class="Status" >
+		<td class='alignright'>
 			#{isLogin}
 				以 #{screenname user/} 登入
 			#{/isLogin}
@@ -30,21 +30,21 @@
 			<ul >
 				<li ><span class="head_menu"><a href="/">首页</a></span></li>
 			#{isLogin}
-				<li ><span class="head_menu"><a href="@{Photov.home(user.fullname)}">你的足迹</a> 
+				<li ><span class="head_menu"><a href="@{Photov.home(user.fullname)}">我的足迹</a> 
 				<img src="@{'/public/images/site_nav_caret_split_default.png'}" class="arrow" alt="更多选项" height="15" width="18"></span>
 				<div class="sub_menu">
-					<a href="@{Photov.photos(user.fullname,1)}">你的所有照片</a>
-					<a href="@{Setv.mySets(user.fullname)}">你的相册</a>										
+					<a href="@{Photov.photos(user.fullname,1)}">我的所有照片</a>
+					<a href="@{Setv.mySets(user.fullname)}">我的相册</a>										
 					<a href="@{Photoz.prepareUpload()}" class="item_line">上传照片</a>
 					<a href="@{Photoz.prepareGrab()}">收藏照片</a>
-					<a href="@{Postz.index(user.fullname)}" class="item_line">你的故事</a>
+					<a href="@{Postz.index(user.fullname)}" class="item_line">我的故事</a>
 					<a href="@{Postz.form()}" >开始新的故事</a>
 				</div>
 				</li>
 				<li ><span class="head_menu"><a href="@{Photov.home(user.fullname)}">管理和设置</a> 
 				<img src="@{'/public/images/site_nav_caret_split_default.png'}" class="arrow" alt="更多选项" height="15" width="18"></span>
 				<div class="sub_menu">
-					<a href="@{Userz.account()}">你的帐户</a>
+					<a href="@{Userz.account()}">我的帐户</a>
 				</div>
 				</li>
 				<li><span class="head_menu"><a href="@{Channelz.list(user.fullname)}">频道</a>

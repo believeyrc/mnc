@@ -6,9 +6,12 @@
 	background: #FFF;
 	padding: 0px;	
 	color: #000;
-	background:url(dotted.gif) repeat-x left bottom;
+	background:url(../images/dotted.gif) repeat-x left bottom;
 	/* font-size: 14px; */
 	margin-bottom: 25px;
+}
+.Header td{
+	padding:0px;
 }
 #header .Header,#header .NavBar{
 	padding: 0px;
@@ -90,6 +93,9 @@
 	color: #555	;	
 }
 
+.alignright{
+	text-align: right;
+}
 /* Menu */
 
 

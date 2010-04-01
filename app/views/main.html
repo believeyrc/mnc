@@ -2,7 +2,7 @@
  
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
-        <title>#{get 'title' /} Jsxnc 最好的图片共享网站</title>		
+        <title>#{get 'title' /} Jsxnc 做最好的图片共享网站</title>		
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<META NAME="Description"  CONTENT="来自中国的图片共享网站"/>
 		<link rel="stylesheet" href="@{'/public/css/nicemenu.css'}" type="text/css" media="screen, projection"/>
@@ -24,12 +24,21 @@
 	<div id="header">
 		#{include '_header.html' /}
 	</div>	
-	<div id="content-wrap">
-        #{doLayout /} 
-    </div> 
+    #{doLayout /} 
 	<hr/>
-    <div class="box">
-       <p>&{'SiteforyourFamily'}</p>
+	<div clas="box">
+	<div class="span-6">
+		<h6>&{'SiteforyourFamily'}</h6>
+	</div> 
+	<div class="span-6">
+		<h6>感谢</h6>
+		<p><a href="http://www.playframework.org/">www.playframework.org</a><br/>
+		<a href="http://blueprintcss.org">The Blueprint home page</a></p>
+	</div>       
+	<div class="last">
+		<h6>连接</h6>
+		<p><a href="http://www.mt2a.com">MT2A</a></p>
+	</div>       
     </div>
 </div>
     </body>
