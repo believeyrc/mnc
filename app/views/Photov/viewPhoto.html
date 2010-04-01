@@ -1,6 +1,6 @@
 #{extends 'main.html' /}
 #{set 'title'}
-	 图片 ${photo.caption}
+	照片 ${photo.caption}
 #{/set}
         
 #{script 'setsinfo.js'/}
@@ -125,49 +125,33 @@ textarea{
 <table >
 	<tr>
 	<td width="502px" style="padding-right:50px;" valign="top">
-		<table id="photo">
-			<tr>
-			<td>
-				<div id='${photo.id}' class='cap'>&{photo.caption}</div>
-			</td>
-			</tr>
-			<tr>
-				<td style='text-align:left'>
-					<div id="nicemenu" style="clear:both">		
-						<ul >
-					#{isMine}
-						<li><a onclick="addToSets(this)"><img class="arrow noswap" alt="添加到相册" src="@{'/public/images/addtosets.png'}"/></a>
-							<div class="sub_menu">
-								正在载入相册...
-							</div>
-						</li>
-						<li ><a  onclick="rotateRight((${photo.id}))"><img alt="&{'rotateRight'}" src="@{'/public/images/rotate_l.png'}"/></a></li>
-						<li ><a  onclick="rotateLeft((${photo.id}))"><img alt="&{'rotateLeft'}" src="@{'/public/images/rotate_r.png'}"/></a></li>
-						<li ><a  onclick="sayHello((${photo.id}))"><img alt="&{'sayHello'}" src="@{'/public/images/sayhello.gif'}"/></a></li>
-						<li ><a  onclick="revert((${photo.id}))"><img alt="&{'revert'}" src="@{'/public/images/revert.jpg'}"/></a></li>
-						<li ><a  onclick="delete((${photo.id}))"><img alt="&{'delete'}" src="@{'/public/images/delete.png'}"/></a></li>
-					#{/isMine}	
-					#{isLogin}
-                        <li ><a  href="@{Userz.changeAvatar(photo.id)}"><img alt="&{'delete'}" src="@{'/public/images/changeavatar.jpg'}"/></a></li>
-                    #{/isLogin}
-						</ul >
-					</div>
-				</td>
-			</tr>
-			<tr>
-			<td id='imgtd' style='width:500px;text-align:left'>
-				#{photo photo:photo,as:'500',id:'photo'/}
-			</td>
-			</tr>
-			<tr>
-			<td  style='width:500px;text-align:left;'>
-				<div id="${photo.id}" class='desc large'>&{photo.description}</div>
-			</td>
-			</tr>
-		</table>        
-		#{responses responses:responses/}
+			<h3><div id='${photo.id}' class='cap'>&{photo.caption}</div></h3>
+			<div id="nicemenu" style="clear:both">		
+				<ul >
+				#{isMine}
+					<li><a onclick="addToSets(this)"><img class="arrow noswap" alt="添加到相册" src="@{'/public/images/addtosets.png'}"/></a>
+						<div class="sub_menu">
+							正在载入相册...
+						</div>
+					</li>
+					<li ><a  onclick="rotateRight((${photo.id}))"><img alt="&{'rotateRight'}" src="@{'/public/images/rotate_l.png'}"/></a></li>
+					<li ><a  onclick="rotateLeft((${photo.id}))"><img alt="&{'rotateLeft'}" src="@{'/public/images/rotate_r.png'}"/></a></li>
+					<li ><a  onclick="sayHello((${photo.id}))"><img alt="&{'sayHello'}" src="@{'/public/images/sayhello.gif'}"/></a></li>
+					<li ><a  onclick="revert((${photo.id}))"><img alt="&{'revert'}" src="@{'/public/images/revert.jpg'}"/></a></li>
+					<li ><a  onclick="delete((${photo.id}))"><img alt="&{'delete'}" src="@{'/public/images/delete.png'}"/></a></li>
+				#{/isMine}	
+				#{isLogin}
+	                <li ><a  href="@{Userz.changeAvatar(photo.id)}"><img alt="&{'delete'}" src="@{'/public/images/changeavatar.jpg'}"/></a></li>
+	            #{/isLogin}
+				</ul >
+			</div>
+			#{photo photo:photo,as:'500',id:'photo'/}
+			<br/>
+			<div id="${photo.id}" class='desc large'>&{photo.description}</div>
+			<br/>
+			#{responses responses:responses/}
 	</td>
-	<td valign="top">
+	<td class="top">
         <div>
             <h4>提供图片的人</h4>
             <div>

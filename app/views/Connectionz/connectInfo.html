@@ -1,0 +1,6 @@
+#{if connections.size == 0}
+ <a>加为自己人</a>
+#{/if}
+#{list items: connections , as : 'con'}
+	${con.type}
+#{/list}

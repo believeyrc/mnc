@@ -55,8 +55,8 @@
 				</li>
 			#{/isLogin}
 			#{notLogin}
-				<li><span class="head_menu"><a href="@{Userz.register()}" alt="注册">注册</a></span>
-				</li>
+				<li><span class="head_menu"><a href="@{Userz.register()}" alt="注册">注册</a></span>	</li>
+				<li><span class="head_menu"><a href="@{Secure.login()}" alt="登入">登入</a></span>	</li>
 			#{/notLogin}
 				*{
 					<li><span class="head_menu"><a href="/explore/" alt="发掘 Jsxnc 奇趣事">发掘</a> <img src="@{'/public/images/site_nav_caret_split_default.png'}" class="nav_button_caret" alt="更多選項" height="15" width="18"></span>

@@ -2,7 +2,7 @@
 #{set title:'用户登录'/}
 <table id="layout">
 	<tr><td>
-		<h1>用户登录</h1>
+		<h3>用户登录</h3>
 		#{if flash.error}
 					<p class="error">
 						&{flash.error}
@@ -10,12 +10,13 @@
 		#{/if}
 		<table>
 		#{form @authenticate()}
-			<tr><td id="label"><label>你的Email地址</label></td></tr>
-			<tr><td><input type="text" name="username" value="${flash.email}"><span id='error'>#{error 'email' /}</span></td></tr>
-			<tr><td id="info">你的注册邮件地址。</td></tr>
-			<tr><td id="label"><label>你的登录密码</label></td></tr>	
-			<tr><td><input type="password" name="password" value="${flash.password}"><span id='error'>#{error 'password' /}</span></td></tr>
-			<tr><td id="info">你的登录密码</td></tr>
+			<tr><td id="label"><label>你的Email地址</label><br/>
+			<input type="text" name="username" value="${flash.email}"><span id='error'>#{error 'email' /}</span><br/>
+			你的注册邮件地址。</td></tr>
+			
+			<tr><td id="label"><label>你的登录密码</label><br/>
+			<input type="password" name="password" value="${flash.password}"><span id='error'>#{error 'password' /}</span><br/>
+			你的登录密码</td></tr>
 			<tr><td id="label"><label></label></td></tr>	
 			<tr><td><input class='button' type="submit" name="submit" value="&{'secure.signin'}"></td></tr>	
 		#{/form}	

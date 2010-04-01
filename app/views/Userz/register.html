@@ -2,30 +2,33 @@
 #{set title:'新用户注册'/}
 <table id="layout">
 	<tr><td>
-		<h1>新用户注册</h1>
+		<h3>新用户注册</h3>
 		<table>
 		#{form @save()}
-			<tr><td id="label"><label>你的Email地址</label></td></tr>
-			<tr><td><input type="text" name="email" value="${flash.email}"><span id='error'>#{error 'email' /}</span></td></tr>
-			<tr><td id="info">邮件地址，用于登录。</td></tr>
-			<tr><td id="label"><label>给自己起一个名字</label></td></tr>
-			<tr><td><input type="text" name="screenname" value="${flash.screenname}"><span id='error'>#{error 'screenname' /}</span></td></tr>
-			<tr><td id="info">给自己起一个名字吧，用于显示，可以是中文或是英文，或是数字</td></tr>
-			<tr><td id="label"><label>给自己设定一个密码</label></td></tr>	
-			<tr><td><input type="password" name="password" value="${flash.password}"><span id='error'>#{error 'password' /}</span></td></tr>
-			<tr><td id="info">给自己设定一个密码。</td></tr>
-			<tr><td id="label"><label>确认一下密码</label></td></tr>	
-			<tr><td><input type="password" name="password2" value="${flash.password2}"><span id='error'>#{error 'password2' /}</span></td></tr>
-			<tr><td id="info">确认一次，以防输入有误哦。</td></tr>	
-			<tr><td id="label"><label>给自己设定一个独一无二的网址</label></td></tr>
-			<tr><td>http://www.jsxnc.com/photos/<input type="text" name="fullname" value="${flash.fullname}"><span id='error'>#{error 'fullname' /}</span></td></tr>
-			<tr><td id="info">最少5个字符，可以使用英文字母a到z或数字。比如：happy2010</td></tr>
+			<tr><td id="label"><label>你的Email地址</label><br/>
+			<input type="text" name="email" value="${flash.email}"><span class='error'>#{error 'email' /}</span><br/>
+			邮件地址，用于登录。</td></tr>
+			<tr><td id="label"><label>给自己起一个名字</label><br/>
+			<input type="text" name="screenname" value="${flash.screenname}"><span class='error'>#{error 'screenname' /}</span><br/>
+			给自己起一个名字吧，用于显示，可以是中文或是英文，或是数字</td></tr>
+			
+			<tr><td id="label"><label>给自己设定一个密码</label><br/>
+			<input type="password" name="password" value="${flash.password}"><span class='error'>#{error 'password' /}</span><br/>
+			给自己设定一个密码。</td></tr>
+			
+			<tr><td id="label"><label>确认一下密码</label><br/>
+			<input type="password" name="password2" value="${flash.password2}"><span class='error'>#{error 'password2' /}</span><br/>
+			确认一次，以防输入有误哦。</td></tr>
+				
+			<tr><td id="label"><label>给自己设定一个独一无二的网址</label><br/>
+			http://www.jsxnc.com/photos/<input type="text" name="fullname" value="${flash.fullname}"><span class='error'>#{error 'fullname' /}</span><br/>
+			最少5个字符，可以使用英文字母a到z或数字。比如：happy2010</td></tr>
 			<tr><td id="label"><label></label></td></tr>	
 			<tr><td><input type="submit" class="button" name="submit" value="注册"></td></tr>	
 		#{/form}
 		</table>
 	</td>
-	<td id="info">
+	<td class="top">
 		已经注册？<br/><a href="@{Secure.login()}">登录</a>吧！
 	</td>
 	</tr>

@@ -8,6 +8,7 @@ public abstract class Basez extends Controller {
 	@Before
 	static void addDefaults() {
 		if (session.contains("username")) {
+			//当前登录用户
 			User user = User.find("byEmail", session.get("username")).first();
 			renderArgs.put("user", user);
 			// default set current

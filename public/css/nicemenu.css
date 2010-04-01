@@ -121,3 +121,17 @@
 #nicemenu div.sub_menu a:visited, 
 #nicemenu div.sub_menu a:hover{ display:block; font-size:11px; padding:4px;}	
 #nicemenu a.item_line { border-top:solid 1px #E5E5E5; padding-top:6px !important; margin-top:3px; }
+
+input.button { 
+	font: bold 16px Arial, Sans-serif; 
+	height: 24px;
+	margin: 0;
+	padding: 2px 3px; 
+	color: #FFF;
+	background: #0063DC ;
+	border: none;
+}
+
+.top{
+	vertical-align:top;
+}

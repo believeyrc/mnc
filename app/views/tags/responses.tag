@@ -14,13 +14,6 @@
 #{/if}
 
 #{isLogin}
-    <style>
-    form{
-        border:0px;
-        margin:0px;
-        padding:0px;
-    }
-    </style>
     <div style='width:400px'>
     <h4 style='color:#FF0084'>&{'addYourResponse'}</h4>
     #{form @Photoz.responses(_caller.photo.id)}

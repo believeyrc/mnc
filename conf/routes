@@ -12,6 +12,7 @@ GET	/signin									Secure.login
 GET	/account								Userz.account
 GET	/account/changepassword					Userz.changepassword
 GET	/account/changeavatar/{id}				Userz.changeAvatar
+GET	/account/connections					Connectionz.connectInfo
 
 GET	/photos/upload							Photoz.prepareUpload
 GET	/photos/grab							Photoz.prepareGrab
@@ -37,6 +38,7 @@ GET	    /services/captcha/{id}						Postz.captcha
 GET	    /services/sets/{photoid}						Setsv.setsInfoOfPhoto
 
 POST 	/gamescore	Gamescore.submit
+GET 	/honorroll	Gamescore.honorRoll
 
 GET     /posts/{username}/{<[0-9]+>id}	Postz.show
 GET     /posts/{username}	Postz.index

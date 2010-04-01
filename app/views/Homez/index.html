@@ -5,7 +5,7 @@
 
 <table><tr><td valign='top'>
 #{if yourlastPhotos}
-    <h3>»<a href="@{Photov.photos(user.fullname,1)}">你上传的所有内容</a></h3>
+    <h3>»<a href="@{Photov.photos(user.fullname,1)}">我上传的所有内容</a></h3>
     #{table items:yourlastPhotos,as:'photo',cols:5, style:'border-spacing:8px;'}
         #{td}<a href="@{Photov.viewPhoto(photo.author.fullname,photo.id)}">#{photo photo:photo,as:'75'/}</a>#{/td}
     #{/table}
@@ -17,18 +17,18 @@
         #{td}<a href="@{Photov.viewPhoto(photo.author.fullname,photo.id)}">#{photo photo:photo,as:'75'/}</a>#{/td}
     #{/table}
 #{/if}
-</td><td valign='top'>
+</td><td class='top'>
 #{if lastPosts}
-	<h2>»<a href="">最近的故事</a></h2>
-    #{table items: lastPosts, as: 'post',cols:1, style:'border-spacing:8px;'}
-        #{td}<a href="@{Postz.show(post.author.fullname,post.id)}">${post.title}</a>#{/td}
-    #{/table}
+	<h3>»<a href="">最近的故事</a></h3>
+	#{list items : lastPosts,as:'post'}
+    	<a href="@{Postz.show(post.author.fullname,post.id)}">${post.title}</a> <br/>
+    #{/list}
 #{/if}
 #{if lastPosts}
-	<h2>»<a href="">最近的评论</a></h2>
-    #{table items: lastResponses, as: 'res',cols:1, style:'border-spacing:8px;'}
-        #{td}<a href="@{Photov.viewPhoto(res.photo.author.fullname,res.photo.id)}">#{photo photo: res.photo,as:'75'/}</a>${res.content}#{/td}
-    #{/table}
+	<h3>»<a href="">最近的评论</a></h3>
+	#{list items: lastResponses, as: 'res'}
+        <a href="@{Photov.viewPhoto(res.photo.author.fullname,res.photo.id)}">#{photo photo: res.photo,as:'75'/}</a>${res.content}<br/>
+    #{/list}
 #{/if}
 
 </td></tr>
