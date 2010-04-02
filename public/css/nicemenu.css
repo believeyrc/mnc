@@ -124,9 +124,9 @@
 
 input.button { 
 	font: bold 16px Arial, Sans-serif; 
-	height: 24px;
+	height: 22px;
 	margin: 0;
-	padding: 2px 3px; 
+	padding: 2px 2px; 
 	color: #FFF;
 	background: #0063DC ;
 	border: none;
@@ -134,4 +134,13 @@ input.button {
 
 .top{
 	vertical-align:top;
+}
+.float-right{
+	float: right;
+}
+.post-metadata{
+	color: #666;
+}
+.post-content{
+	margin :  15px 5px 20px 5px;
 }

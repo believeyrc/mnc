@@ -1,6 +1,15 @@
-#{if connections.size == 0}
- <a>加为自己人</a>
-#{/if}
-#{list items: connections , as : 'con'}
-	${con.type}
-#{/list}
+<div id="nicemenu" class="connectionbts">
+	<ul>
+  	<li>#{if (my.type & 1) == 1} 已经是自己人#{/if}#{else}加为自己人#{/else}
+  		<img src="@{'/public/images/site_nav_caret_split_default.png'}" class="arrow" alt="更多选项" height="15" width="18"></span>
+	  	<div class="sub_menu" title="添加为自己人">
+	  		<h4><input type="checkbox" #{if my!=null && ((my.type & 1) == 1) }checked#{/if} id="connection_type1" value="1"/>加为自己人</h4>
+	  		同时添加为：<br/>
+	  		<input type="checkbox" #{if my!=null && ((my.type & 2) == 2) }checked#{/if} id="connection_type2" value="2"/>朋友
+	  		<input type="checkbox" #{if my!=null && ((my.type & 4) == 4) }checked#{/if} id="connection_type3" value="4"/>家人<br/>
+	  		<br/>
+	  		<input class="button" onclick="connect()" type="button" value="确定"/>
+	  	</div>
+  	</li>
+  </ul>
+  </div>

@@ -9,16 +9,39 @@
 		<a href="@{Photov.photos(currentuser,1)}">图片</a>
 		<a href="@{Setv.mySets(currentuser)}">相册</a>
         <a href="@{Postz.index(currentuser)}">故事</a>
+        <div id="connectionsInfo"></div>
 	  </td>
 	</tr>
   </tbody>
 </table>
 #{notMine}
 	<script>
-		$(document).ready(function(){
+		function updateConnectionsInfo(){
 			$.get('@{Connectionz.connectInfo(user.fullname , visitedUser.fullname)}',function(data){
-				$("#userbar").append(data);
-			});
+					$('#connectionsInfo').html(data);
+					o = {arrawpng : '@{'/public/images/arrow.png'}',
+						arrawselectpng :'@{'/public/images/arrow_select.png'}',
+						arrawhoverpng :'@{'/public/images/arrow_hover.png'}',
+						id: '.connectionbts'
+					}
+					$(".connectionbts").flickmenu(o)
+				});
+			
+		}
+		$(document).ready(function(){
+			updateConnectionsInfo();
 		});
+		function connect(){
+			var type=0;
+			if($('#connection_type1').attr('checked'))
+				type= type + 1
+			if($('#connection_type2').attr('checked'))
+				type =type + 2
+			if($('#connection_type3').attr('checked'))
+				type= type + 4
+			$.post('@{Connectionz.connect(user.fullname , visitedUser.fullname,)}',{type:type},function(data){
+				updateConnectionsInfo();
+			});
+		}
 	</script>
 #{/notMine}

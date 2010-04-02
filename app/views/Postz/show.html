@@ -38,32 +38,20 @@
         </p>
     #{/ifErrors}
         <table>
-    <tr><td id="label"><label>&{'YourName'}</label></td></tr>
-    <tr><td><input type="text" name="author" value="${flash.author}"><span id='error'>#{error 'email' /}</span></td></tr>
-    <tr><td id="label"><label>&{'YourMessage'} </label></td></tr>
-    <tr><td><textarea name="content" id="content">${flash.content}</textarea><span id='error'>#{error 'content' /}</span></td></tr>
-    <tr><td id="label"><label>&{'PleaseTypeTheCodeBelow'}</label></td></tr>
-    <tr><td id="label"><img src="@{Postz.captcha(randomID)}" /></td></tr>
-    <tr><td><input type="text" name="code" id="code" size="18" value="" /><span id='error'>#{error 'code' /}</span></td></tr>
-    <tr><td id="info">&nbsp;</td></tr>
-    <input type="hidden" name="randomID" value="${randomID}" />
+    <tr><td id="label"><label>&{'YourName'}</label><br/>
+    <input type="text" name="author" value="${flash.author}"><span id='error'>#{error 'email' /}</span></td></tr>
+    
+    <tr><td id="label"><label>&{'YourMessage'} </label><br/>
+    <textarea name="content" id="content">${flash.content}</textarea><span id='error'>#{error 'content' /}</span></td></tr>
+    
+    <tr><td id="label"><label>&{'PleaseTypeTheCodeBelow'}</label><br/>
+    <img src="@{Postz.captcha(randomID)}" />
+    <input type="hidden" name="randomID" value="${randomID}" /><br/>
+    <input type="text" name="code" id="code" size="18" value="" /><span id='error'>#{error 'code' /}</span></td></tr>
+    <tr><td><input class='button' type="submit" value="&{'SubmitYourComment'}" /></td></tr>
         </table>
-    <p>
-        <input class='button' type="submit" value="&{'SubmitYourComment'}" />
-    </p>
 #{/form}
 <script type="text/javascript" charset="utf-8">
-    $(function() {         
-        // Expose the form 
-        $('form').click(function() { 
-            $('form').expose({api: true}).load(); 
-        }); 
-        
-        // If there is an error, focus to form
-        if($('form .error').size()) {
-            $('form').expose({api: true, loadSpeed: 0}).load(); 
-            $('form input').get(0).focus();
-        }
-    });
+  
 </script>
 

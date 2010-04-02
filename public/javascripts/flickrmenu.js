@@ -2,6 +2,8 @@
 (function($) {
 	Flickmenu = function(uo){
 		id = "#nicemenu";
+		if(uo.id)
+			id = uo.id;	
 		var o = $.extend({
 			 arrawpng:'arraw.png',
 			 arrawselectpng :'arrow_select.png',

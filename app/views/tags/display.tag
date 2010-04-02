@@ -1,9 +1,9 @@
 *{ Display a post in one of these modes: 'full', 'home' or 'teaser' }*
  
 <div class="post ${_as == 'teaser' ? 'teaser' : ''}">
-    <h2 class="post-title">
+    <h3 class="post-title">
         <a href="@{Postz.show(_post.author.fullname,_post.id)}">${_post.title}</a>
-    </h2>
+    </h3>
     <div class="post-metadata">
         <span class="post-author"> <a href="@{Postz.index(_post.author.fullname)}"">#{screenname _post.author , href:@Postz.index(_post.author.fullname)/}</a></span> &{'postedAt'}
         <span class="post-date">${_post.postedAt.format('dd MMM yy')}</span>
