@@ -36,7 +36,7 @@
 
 #{if totalCount> page * pageSize}
   <div class="grid_3 omega float-right" style="display:inline;"  id="next">
-	<a href="@{Searchv.search().add('q',params.q).add('page',page+1).add('pageSize',params.pageSize)}">&{'NextPage'}</a>
+	<a href="@{Searchv.search().add('q',params.q).add('t',params.t).add('page',page+1).add('pageSize',params.pageSize)}">&{'NextPage'}</a>
   </div>
 #{/if}
 </div>
