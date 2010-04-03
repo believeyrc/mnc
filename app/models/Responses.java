@@ -10,11 +10,15 @@ import javax.persistence.ManyToOne;
 import play.data.validation.MaxSize;
 import play.data.validation.Required;
 import play.db.jpa.Model;
+import play.modules.search.Field;
+import play.modules.search.Indexed;
 
 @Entity
+@Indexed
 public class Responses extends Model {
     @Required
     @ManyToOne
+    @Field
     public User author;
     @Required
     public Date postedAt;
@@ -22,6 +26,7 @@ public class Responses extends Model {
     @Lob
     @Required
     @MaxSize(10000)
+    @Field
     public String content;
     
     @ManyToOne(cascade={CascadeType.ALL})

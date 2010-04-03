@@ -1,16 +1,30 @@
 #{extends 'main.html' /}
 #{set title:'所有照片'/}
-<h3>"${params.q}" 搜索结果</h3>
-#{table items:photos,as:'result',cols:3,style:'border-spacing:8px;'}    
-	#{td id:"captd"} <div id="${result.object.id}" class='cap' >${result.object.caption}</div>#{/td}
-	#{td id:"imgtd"}
-		<div class='imgbock'><a href='@{Photov.viewPhoto(result.object.author?.fullname,result.object.id)}'>#{photo photo:result.object,as:'240'/}</a></div>
-		<div id="${result.object.id}" class='desc mini' >${result.object.description}</div>
-		<div id='info' vpid='${result.object.id}'>#{screenname result.object.author/} 更新于${result.object.uploadAt.format('yyyy/mm/dd')}		
-	#{/td}
-    #{onNull}&nbsp;#{/onNull}
-#{/table}
-
+<div>
+<form action="@{Searchv.search()}" method="get" onsubmit="" id="headersearchform">
+	<input name="q" id="header_search_q" class="Box" value="${params.q}" type="text">
+	<input type="submit" class="button" value="搜索"/><br/>
+	<input type='radio' name="t" value="post" #{if params.t == 'post'} checked #{/if}>故事&nbsp;
+	<input type='radio' name="t" value="pic"  #{if params.t == 'pic'} checked #{/if}>照片
+</form>
+<br/>
+</div>
+#{if params.t == 'post'}
+	#{list items : result, as:'result'}
+        #{display post : result.object, as:'teaser' /}
+    #{/list}
+#{/if}
+#{else}
+	#{table items : result, as:'result',cols:3,style:'border-spacing:8px;'}    
+		#{td id:"captd"} <div id="${result.object.id}" class='cap' >${result.object.caption}</div>#{/td}
+		#{td id:"imgtd"}
+			<div class='imgbock'><a href='@{Photov.viewPhoto(result.object.author?.fullname,result.object.id)}'>#{photo photo:result.object,as:'240'/}</a></div>
+			<div id="${result.object.id}" class='desc mini' >${result.object.description}</div>
+			<div id='info' vpid='${result.object.id}'>#{screenname result.object.author/} 更新于${result.object.uploadAt.format('yyyy/mm/dd')}		
+		#{/td}
+	    #{onNull}&nbsp;#{/onNull}
+	#{/table}
+#{/else}
 
 
 <div style="clear:both">

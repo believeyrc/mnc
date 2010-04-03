@@ -1,14 +1,27 @@
 package models;
  
-import java.util.*;
-import javax.persistence.*;
- 
-import play.db.jpa.*;
-import play.data.validation.*;
-import play.mvc.Before;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+
+import play.data.validation.MaxSize;
+import play.data.validation.Required;
+import play.db.jpa.Model;
+import play.modules.search.Field;
+import play.modules.search.Indexed;
 @Entity
+@Indexed
 public class Post extends Model {
     @Required
+    @Field
     public String title;
     @Required
     public Date postedAt;
@@ -17,10 +30,12 @@ public class Post extends Model {
     @Lob
     @Required
     @MaxSize(10000)
+    @Field
     public String content;
     
     @Required
     @ManyToOne
+    @Field
     public User author;
     @ManyToMany(cascade=CascadeType.ALL)
     public List<Tag> tags;

@@ -24,6 +24,7 @@ public class Photo extends Model {
 	}
 	@Required
     @ManyToOne
+    @Field
     public User author;
 	public String filePath;
 	/**
