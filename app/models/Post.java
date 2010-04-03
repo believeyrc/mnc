@@ -5,12 +5,14 @@ import javax.persistence.*;
  
 import play.db.jpa.*;
 import play.data.validation.*;
+import play.mvc.Before;
 @Entity
 public class Post extends Model {
     @Required
     public String title;
     @Required
     public Date postedAt;
+    public Date updatedAt;
     
     @Lob
     @Required
@@ -25,6 +27,7 @@ public class Post extends Model {
 
     @OneToMany(mappedBy="post", cascade=CascadeType.ALL)
     public List<Comment> comments;
+    
 
     public Post(User author, String title, String content) {
         this.comments = new ArrayList<Comment>();
@@ -44,7 +47,7 @@ public class Post extends Model {
       tags.add(Tag.findOrCreateByName(name));
       return this;
     }
-        
+    
     public Post previous() {
         return Post.find(" author = ? and postedAt < ? order by postedAt desc", author, postedAt).first();
     }
@@ -64,8 +67,13 @@ public class Post extends Model {
             "select distinct p.id from Post p join p.tags as t where t.name in (:tags) group by p.id having count(t.id) = :size"
         ).bind("tags", tags).bind("size", tags.length).fetch();
     }
-
+    
     public String toString() {
             return this.title;
+    }
+    
+    @PrePersist	
+    public void onUpdate() {
+    	updatedAt = new Date();
     }
 }

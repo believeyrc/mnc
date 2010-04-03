@@ -121,10 +121,7 @@ textarea{
 	</div>
 </div>
 #{/isMine}
-
-<table >
-	<tr>
-	<td width="502px" style="padding-right:50px;" valign="top">
+<div class="span-13 prepend-0 colborder">
 			<h3><div id='${photo.id}' class='cap'>&{photo.caption}</div></h3>
 			<div id="nicemenu" style="clear:both">		
 				<ul >
@@ -141,7 +138,7 @@ textarea{
 					<li ><a  onclick="delete((${photo.id}))"><img alt="&{'delete'}" src="@{'/public/images/delete.png'}"/></a></li>
 				#{/isMine}	
 				#{isLogin}
-	                <li ><a  href="@{Userz.changeAvatar(photo.id)}"><img alt="&{'delete'}" src="@{'/public/images/changeavatar.jpg'}"/></a></li>
+	                <li ><a  href="@{Userz.changeAvatar(photo.id)}"><img alt="设置成我的头像" title="设置成我的头像" src="@{'/public/images/changeavatar.jpg'}"/></a></li>
 	            #{/isLogin}
 				</ul >
 			</div>
@@ -150,8 +147,10 @@ textarea{
 			<div id="${photo.id}" class='desc large'>&{photo.description}</div>
 			<br/>
 			#{responses responses:responses/}
-	</td>
-	<td class="top">
+</div>
+
+	<div class="span-6 last">
+			
         <div>
             <h4>提供图片的人</h4>
             <div>
@@ -164,34 +163,22 @@ textarea{
                 </div>
             </div>
         </div>
-
+        
         <div id="sets-wrapper" style="display:none;">
             <h4>相片属于相册</h4>
             <div id="sets-div">
             </div>
         </div>
-        
+ 
+	</div>
 
-        <!--
-		<div>
-			<h4>相片中的人</h4>
-		</div>
-		<div>
-			<h4>标签</h4>
-        </div>
-		<div>
-			<h4>其他信息</h4>
-		</div>
-		-->
-	</td></tr>
-</table>
 <div id="loading-div" style="display:none;"></div>
 #{isMine}
 	#{script 'jquery.jeditable.js'/}
 	<script>
 	$(document).ready(function(){
-			$('div.cap').editable('@{Photoz.caption()}',{placeholder:'点击这里修改',name:'val',onblur:'ignore', submit:'保存',cancel:'取消'});
-			$('div.desc').editable('@{Photoz.desc()}',{placeholder:'点击这里添加描述',name:'val',onblur:'ignore', submit:'保存',cancel:'取消',rows:10,type:'textarea'});
+			$('div.cap').editable('@{Photoz.caption()}',{cssclass:'inplace',placeholder:'点击这里修改',name:'val',onblur:'ignore', submit:'保存',cancel:'取消'});
+			$('div.desc').editable('@{Photoz.desc()}',{cssclass:'inplace', placeholder:'点击这里添加描述',name:'val',onblur:'ignore', submit:'保存',cancel:'取消',rows:10,type:'textarea'});
 	});
 	</script>
 #{/isMine}

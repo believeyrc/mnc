@@ -122,14 +122,13 @@
 #nicemenu div.sub_menu a:hover{ display:block; font-size:11px; padding:4px;}	
 #nicemenu a.item_line { border-top:solid 1px #E5E5E5; padding-top:6px !important; margin-top:3px; }
 
-input.button { 
-	font: bold 16px Arial, Sans-serif; 
-	height: 22px;
-	margin: 0;
-	padding: 2px 2px; 
+input.button,.inplace button { 
+	font-weight: bold ; 
+	padding: 4px; 
 	color: #FFF;
 	background: #0063DC ;
 	border: none;
+	margin-left:15px;
 }
 
 .top{
@@ -140,7 +139,15 @@ input.button {
 }
 .post-metadata{
 	color: #666;
+	margin-bottom: 5px;
 }
 .post-content{
 	margin :  15px 5px 20px 5px;
+}
+.inplace textarea{
+	height:60px;
+}
+
+.imgtd{
+	width: 250px;
 }

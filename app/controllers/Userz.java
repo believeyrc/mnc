@@ -93,4 +93,8 @@ public class Userz extends Basez {
 		user.save();
 		redirect("/");
 	}
+	
+	public static void connections() {
+		render();
+	}
 }

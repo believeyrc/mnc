@@ -3,16 +3,12 @@ package controllers;
 import java.util.List;
 
 import models.Post;
+import models.Responses;
 import models.Tag;
 import models.User;
-import play.Play;
 import play.cache.Cache;
 import play.data.validation.Required;
-import play.data.validation.Validation;
-import play.libs.Codec;
 import play.libs.Images;
-import play.mvc.After;
-import play.mvc.Before;
 
 public class Postz extends Basez {
 
@@ -30,7 +26,6 @@ public class Postz extends Basez {
 		} else {
 			olderPosts = Post.find(" author.fullname = ? order by postedAt desc", username).from(offset).fetch(pageSize);
 		}
-		System.out.println("totalCount"+totalCount);
 		render("Postz/index.html", frontPost, olderPosts, totalCount, offset, pageSize);
 	}
 
@@ -40,20 +35,15 @@ public class Postz extends Basez {
 
 	public static void show(String username,Long id) {
 		Post post = Post.findById(id);
-		String randomID = Codec.UUID();
-		render(post, randomID);
+		List<Responses> responses = Responses.find("byPost", post).fetch();
+		render(post,responses);
 	}
 
-	public static void postComment(Long postId, @Required(message = "Author is required") String author, @Required(message = "A message is required") String content,
-			@Required(message = "Please type the code") String code, String randomID) {
+	public static void postComment(Long postId, @Required(message = "A message is required") String content) {
 		Post post = Post.findById(postId);
-		validation.equals(code.toLowerCase(), ((String) Cache.get(randomID)).toLowerCase()).message("Invalid code. Please type it again");
-
-		if (Validation.hasErrors()) {
-			render("Postz/show.html", post, author, content, randomID);
-		}
-		post.addComment(author, content);
-		flash.success("Thanks for posting %s", author);
+		Responses responses = new Responses(null, getLoginUser(), content);
+		responses.post = post;
+		responses.save();
 		show(post.author.fullname,postId);
 	}
 

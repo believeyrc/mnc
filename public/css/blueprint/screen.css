@@ -25,7 +25,7 @@ a img {border:none; cursor  :pointer;}
 /* typography.css */
 html {font-size:100.01%;}
 body {font-size:75%;color:#222;background:#fff;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;}
-h1, h2, h3, h4, h5, h6 {font-weight:normal;color:#111;}
+h1, h2, h3, h4, h5, h6 {font-weight:bold;color:#111;}
 h1 {font-size:3em;line-height:1;margin-bottom:0.5em;}
 h2 {font-size:2em;margin-bottom:0.75em;}
 h3 {font-size:1.5em;line-height:1;margin-bottom:1em;}
@@ -173,6 +173,7 @@ input.span-24, textarea.span-24 {width:938px!important;}
 .append-21 {padding-right:840px;}
 .append-22 {padding-right:880px;}
 .append-23 {padding-right:920px;}
+.prepend-0 {padding-left:10px;}
 .prepend-1 {padding-left:40px;}
 .prepend-2 {padding-left:80px;}
 .prepend-3 {padding-left:120px;}

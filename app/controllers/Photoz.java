@@ -109,6 +109,7 @@ public class Photoz extends Basez {
 				FileUtils.deleteQuietly(new File(photo.thumb2Path));
 			if (photo.prefPath != null)
 				FileUtils.deleteQuietly(new File(photo.prefPath));
+			Responses.delete("photo = ?", photo);
 			photo.delete();
 			renderJSON("{msg:'ok'}");
 		}

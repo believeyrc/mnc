@@ -27,7 +27,12 @@
 #{if lastPosts}
 	<h3>»<a href="">最近的评论</a></h3>
 	#{list items: lastResponses, as: 'res'}
-        <a href="@{Photov.viewPhoto(res.photo.author.fullname,res.photo.id)}">#{photo photo: res.photo,as:'75'/}</a>${res.content}<br/>
+		#{if res.photo}
+			<a href="@{Photov.viewPhoto(res.photo.author.fullname,res.photo.id)}">#{photo photo: res.photo,as:'75'/}</a>${res.content}<br/>
+		#{/if}
+		#{if res.post}
+			<a href="@{Postz.show(res.post.author.fullname,res.post.id)}">${res.post.title}</a>${res.content}<br/>
+		#{/if}
     #{/list}
 #{/if}
 

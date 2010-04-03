@@ -22,7 +22,7 @@ secure.signin=登录
 Login=登录
 AboutThisBlog=这个跟金庸小说没有什么关系
 
-OlderPosts=<h3>历史 <span class="from">记录</span></h3>
+OlderPosts=<h3>历史记录</h3>
 NoPost=暂时没有文章
 
 AdminWelcome=<h3>欢迎回来 %s <span>你已经写了 %s 文章了，继续努力哦</span></h3>
