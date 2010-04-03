@@ -38,12 +38,4 @@ public class Searchv extends Basez {
 			render(null, 0, page, pageSize);
 		}
 	}
-	@Check("ROLE_ADMIN")
-	public static void reindexPost() {
-		List<Post> allPost = Post.all().fetch();
-		for (Post object : allPost) {
-			Search.index(object);
-			System.out.println(object+" indexed");
-		}
-	}
 }
