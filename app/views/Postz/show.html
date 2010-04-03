@@ -14,20 +14,27 @@
 #{display post:post, as:'full' /}
 
 <div class='box'>
-		#{if post.previous()}
+		
 	  <div id="prev" style="display: inline;" class="grid_3 alpha">
+		#{if post.previous()}
 		上一篇：<a href="@{Postz.show(post.author.fullname,post.previous().id)}">
 					${post.previous().title}
 		</a>
+		#{/if}
+		#{else}
+			&nbsp;
+		#{/else}
 	  </div>
-	  #{/if}
-		#{if post.next()}
 	  <div id="next" class="float-right" style="display: inline; ">
+		#{if post.next()}
 		下一篇：<a href="@{Postz.show(post.author.fullname,post.next().id)}">
 			${post.next().title}
 		</a>
-	  </div>
 		#{/if}
+		#{else}
+		&nbsp;
+		#{/else}
+	  </div>
 </div>
 
 

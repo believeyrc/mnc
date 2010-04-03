@@ -1,4 +1,18 @@
 #{extends 'main.html' /}
 #{set title:'个人信息'/}
 #{script 'jquery.jeditable.js'/}
+<div>
 <h3>自己人</h3>
+#{list items: connectionsMap, as: 'entity'}
+	<p>
+		<a href="@{Photov.photos(entity.key,1)}">#{avatar user: entity.key/}</a>
+		#{if entity.value[0] != null}			
+			我添加 #{screenname entity.key /}为 #{connectionType entity.value[0], as:'checkbox'/}			
+		#{/if}
+		#{if entity.value[1] != null}
+			#{screenname entity.key/} 添加我为 #{connectionType entity.value[1], as:'checkbox'/}					
+		#{/if}
+	
+	</p>
+#{/list}
+</div>

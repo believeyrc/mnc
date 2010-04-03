@@ -1,6 +1,6 @@
 <div id="nicemenu" class="connectionbts">
-	<ul>
-  	<li>#{if (my.type & 1) == 1} 已经是自己人#{/if}#{else}加为自己人#{/else}
+	<ul style="margin:0px;">
+  	<li>#{if my != null && ( my.type & 1) == 1} 已经是自己人#{/if}#{else}加为自己人#{/else}
   		<img src="@{'/public/images/site_nav_caret_split_default.png'}" class="arrow" alt="更多选项" height="15" width="18"></span>
 	  	<div class="sub_menu" title="添加为自己人">
 	  		<h4><input type="checkbox" #{if my!=null && ((my.type & 1) == 1) }checked#{/if} id="connection_type1" value="1"/>加为自己人</h4>

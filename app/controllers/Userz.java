@@ -1,5 +1,11 @@
 package controllers;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import models.Connection;
 import models.Photo;
 import models.User;
 import play.data.validation.Validation;
@@ -95,6 +101,23 @@ public class Userz extends Basez {
 	}
 	
 	public static void connections() {
-		render();
+		Map<User,Connection[]> connectionsMap = new HashMap<User,Connection[]>();
+		List<Connection> connections = Connection.find("one = ? or two = ?",getLoginUser(), getLoginUser()).fetch();
+		for (Connection con : connections) {
+			if(getLoginUser().equals(con.one)) {
+				if(!connectionsMap.containsKey(con.two)) {
+					connectionsMap.put(con.two, new Connection[2]);
+				}
+				Connection[] pair = connectionsMap.get(con.two);
+				pair[0] = con;
+			} else {
+				if(!connectionsMap.containsKey(con.one)) {
+					connectionsMap.put(con.one, new Connection[2]);
+				}
+				Connection[] pair = connectionsMap.get(con.one);
+				pair[1] = con;
+			}
+		}
+		render(connectionsMap);
 	}
 }

@@ -1,7 +1,10 @@
 package models;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import javax.persistence.PreUpdate;
 
 import play.db.jpa.Model;
 @Entity
@@ -18,4 +21,9 @@ public class Connection extends Model{
 	//5自己人+家人
 	//7自己人+朋友+家人
 	public int type = 0;
+	public Date updatedAt;
+	@PreUpdate
+	protected  void onUpdated() {
+		updatedAt = new Date();
+	}
 }
