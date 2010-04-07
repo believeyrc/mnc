@@ -77,11 +77,19 @@ public class RssUtil {
 			entry.setCategories(cates);
 		}
 		entry.setPublishedDate(publishedDate);
+		List contents = new ArrayList();
 		SyndContentImpl contentImpl = new SyndContentImpl();
 		contentImpl.setType("text/html");
 		contentImpl.setValue(content);
-		entry.setDescription(contentImpl);
+		contents.add(contentImpl);
+		entry.setContents(contents);
 		feed.getEntries().add(entry);
+		return this;
+	}
+	public RssUtil appendToLastItem(String content) {
+		SyndEntryImpl entry = (SyndEntryImpl) feed.getEntries().get(feed.getEntries().size()-1);
+		SyndContentImpl contentImpl = (SyndContentImpl) entry.getContents().get(0);
+		contentImpl.setValue(contentImpl.getValue()+""+content);
 		return this;
 	}
 

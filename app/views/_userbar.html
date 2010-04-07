@@ -9,7 +9,14 @@
 		<a href="@{Photov.photos(currentuser,1)}">图片</a>
 		<a href="@{Setv.mySets(currentuser)}">相册</a>
         <a href="@{Postz.index(currentuser)}">故事</a>
-        <div id="connectionsInfo"></div>
+        #{if request.controller=='Postz' }
+        	<a href="@{Rss.posts(currentuser)}"><img src="@{'public/images/rss.gif'}"></a>
+        #{/if}
+        #{if request.controller=='Photov' }
+        	<a href="@{Rss.photos(currentuser)}"><img src="@{'public/images/rss.gif'}"></a>
+        #{/if}
+        
+        <br/><div id="connectionsInfo"></div>
 	  </td>
 	</tr>
   </tbody>

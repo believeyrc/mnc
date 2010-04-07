@@ -1,6 +1,7 @@
 package models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Lob;
@@ -59,6 +60,8 @@ public class Photo extends Model {
     public Photo next() {
     	return Photo .find(" author = ? and id < ? order by id desc", author, id).first();
     }
-    
+	public static List<Photo> findByUser(String username) {
+		return Photo.find("author.fullname = ? order by uploadAt desc",username).fetch();
+	}
 	
 }

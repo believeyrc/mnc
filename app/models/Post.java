@@ -11,6 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 
 import play.data.validation.MaxSize;
 import play.data.validation.Required;
@@ -83,11 +84,15 @@ public class Post extends Model {
         ).bind("tags", tags).bind("size", tags.length).fetch();
     }
     
+    public static List<Post> findByUser(String username){
+    	return Post.find("author.fullname = ?",username).fetch();
+    }
+    
     public String toString() {
             return this.title;
     }
     
-    @PrePersist	
+    @PreUpdate	
     public void onUpdate() {
     	updatedAt = new Date();
     }

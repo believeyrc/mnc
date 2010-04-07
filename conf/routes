@@ -13,7 +13,8 @@ GET	/account								Userz.account
 GET	/account/changepassword					Userz.changepassword
 GET	/account/changeavatar/{id}				Userz.changeAvatar
 GET	/account/connections					Connectionz.connectInfo
-GET	/rss/{username}							Rss.all
+GET	/rss/posts/{username}							Rss.posts
+GET	/rss/photos/{username}							Rss.photos
 
 GET	/photos/upload							Photoz.prepareUpload
 GET	/photos/grab							Photoz.prepareGrab
