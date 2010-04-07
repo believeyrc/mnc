@@ -13,6 +13,7 @@ GET	/account								Userz.account
 GET	/account/changepassword					Userz.changepassword
 GET	/account/changeavatar/{id}				Userz.changeAvatar
 GET	/account/connections					Connectionz.connectInfo
+GET	/rss/{username}							Rss.all
 
 GET	/photos/upload							Photoz.prepareUpload
 GET	/photos/grab							Photoz.prepareGrab
@@ -49,6 +50,16 @@ GET /channels/{username}/{<[0-9]+>id}	Channelv.channel
 GET /channels/{username}/?	Channelz.list
 
 
+
+GET     /admin/?                            Admin.index
+GET     /admin/new/{id}                     Admin.form
+GET     /admin/new                          Admin.form
+GET     /admin/myPosts/{id}                 Admin.form
+POST    /admin/new                          Admin.save
+POST    /admin/myPosts/{id}                 Admin.save
+POST    /admin/new                          Admin.save
+
+
 #GET /family/{family}/meme    				Memez.index
 
 # Home page
@@ -70,15 +81,6 @@ GET /channels/{username}/?	Channelz.list
 #GET /family/{family}/neighbours	Familyz.neighbours
 
 
-
-
-GET     /admin/?                            Admin.index
-GET     /admin/new/{id}                     Admin.form
-GET     /admin/new                          Admin.form
-GET     /admin/myPosts/{id}                 Admin.form
-POST    /admin/new                          Admin.save
-POST    /admin/myPosts/{id}                 Admin.save
-POST    /admin/new                          Admin.save
 
 
 # Catch all
