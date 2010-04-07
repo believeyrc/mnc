@@ -85,7 +85,7 @@ public class Post extends Model {
     }
     
     public static List<Post> findByUser(String username){
-    	return Post.find("author.fullname = ?",username).fetch();
+    	return Post.find("author.fullname = ? order by postedAt desc",username).fetch();
     }
     
     public String toString() {
