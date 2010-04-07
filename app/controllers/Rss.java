@@ -50,12 +50,12 @@ public class Rss extends Basez {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		for (Photo photo : photos) {
 			if (last != null && DateUtils.isSameDay(last, photo.uploadAt)) {
-				String desc = String.format("<div ><h4>%s</h4><br/><a href='http://www.jsxnc.com/photos/%s/%s'><img src='http://localhost:9000/%s'/></a><br/>%s</div>", photo.caption,
+				String desc = String.format("<div ><h4>%s</h4><br/><a href='http://www.jsxnc.com/photos/%s/%s'><img src='http://static.jsxnc.com/%s'/></a><br/>%s</div>", photo.caption,
 						username, photo.id, photo.thumb2Path, StringUtils.defaultString(photo.description));
 				rss.appendToLastItem(desc);
 			} else {
 				String title = String.format("%s %s 上传", author, sdf.format(photo.uploadAt));
-				String desc = String.format("<div ><h4>%s</h4><br/><a href='http://www.jsxnc.com/photos/%s/%s'><img src='http://localhost:9000/%s'/></a><br/> %s </div>", photo.caption, username, photo.id,
+				String desc = String.format("<div ><h4>%s</h4><br/><a href='http://www.jsxnc.com/photos/%s/%s'><img src='http://static.jsxnc.com/%s'/></a><br/> %s </div>", photo.caption, username, photo.id,
 						photo.thumb2Path, StringUtils.defaultString(photo.description));
 				rss.addItem(title, String.format("http://www.jsxnc.com/photos/%s/%s", username, photo.id), photo.uploadAt, desc, null);
 			}
