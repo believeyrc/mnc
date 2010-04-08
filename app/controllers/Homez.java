@@ -2,9 +2,6 @@ package controllers;
 
 import java.util.List;
 
-import play.mvc.Catch;
-import plugins.Cachable;
-
 import models.Photo;
 import models.Post;
 import models.Responses;
@@ -14,7 +11,6 @@ import models.User;
  * User: Administrator Date: 2009-12-6 Time: 22:17:39
  */
 public class Homez extends Basez {
-	@Cachable
 	public static void index() {
 		User currentUser = getLoginUser();
         List<Photos> lastPhotos ;

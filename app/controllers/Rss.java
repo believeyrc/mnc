@@ -3,7 +3,6 @@ package controllers;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -12,16 +11,15 @@ import models.Post;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
-import org.hibernate.annotations.Cache;
 
-import play.mvc.Catch;
-
+import plugins.Cachable;
 import utils.RssUtil;
 
 import com.sun.syndication.io.FeedException;
 
 public class Rss extends Basez {
-	@Catch
+	
+	@Cachable("30mn")
 	public static void posts(String username) {
 		List<Post> posts = Post.findByUser(username);
 		RssUtil rss = RssUtil.start();
@@ -42,7 +40,7 @@ public class Rss extends Basez {
 		}
 		renderXml(new String(bos.toByteArray()));
 	}
-	@Catch
+	@Cachable("30mn")
 	public static void photos(String username) {
 		List<Photo> photos = Photo.findByUser(username);
 		RssUtil rss = RssUtil.start();

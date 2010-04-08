@@ -8,17 +8,12 @@ import play.mvc.Http.Request;
 import play.mvc.results.Result;
 
 public class CachePlugin extends PlayPlugin {
-	@Override
-	public void onApplicationStart() {
-		System.out.println("startup");
-	}
 
 	@Override
 	public void onActionInvocationResult(Result result) {
 		Cachable cachable = Request.current().invokedMethod.getAnnotation(Cachable.class);
 		if (cachable != null) {
-			Cache.add(Request.current().url, result, "30mn");
-			System.out.println(result + "cached");
+			Cache.add(Request.current().url, result, cachable.value());
 		}
 	}
 
