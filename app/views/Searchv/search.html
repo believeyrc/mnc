@@ -10,12 +10,12 @@
 <br/>
 </div>
 #{if params.t == 'post'}
-	#{list items : result, as:'result'}
-        #{display post : result.object, as:'teaser' /}
+	#{list items:result, as:'result'}
+        #{display post:result.object, as:'teaser' /}
     #{/list}
 #{/if}
 #{else}
-	#{table items : result, as:'result',cols:3,style:'border-spacing:8px;'}    
+	#{table items:result, as:'result',cols:3,style:'border-spacing:8px;'}    
 		#{td id:"captd"} <div id="${result.object.id}" class='cap' >${result.object.caption}</div>#{/td}
 		#{td id:"imgtd"}
 			<div class='imgbock'><a href='@{Photov.viewPhoto(result.object.author?.fullname,result.object.id)}'>#{photo photo:result.object,as:'240'/}</a></div>

@@ -1,4 +1,5 @@
 #{extends 'main.html' /}
+
 #{isLogin}
 	#{include '_userbar.html'/}
 #{/isLogin}
@@ -20,11 +21,11 @@
 </td><td class='top'>
 #{if lastPosts}
 	<h3>»<a href="">最近的故事</a></h3>
-	#{list items : lastPosts,as:'post'}
+	#{list items:lastPosts,as:'post'}
     	<a href="@{Postz.show(post.author.fullname,post.id)}">${post.title}</a> <br/>
     #{/list}
 #{/if}
-#{if lastPosts}
+#{if lastResponses}
 	<h3>»<a href="">最近的评论</a></h3>
 	#{list items: lastResponses, as: 'res'}
 		#{if res.photo}

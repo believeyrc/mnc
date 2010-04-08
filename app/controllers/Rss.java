@@ -12,12 +12,16 @@ import models.Post;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
+import org.hibernate.annotations.Cache;
+
+import play.mvc.Catch;
 
 import utils.RssUtil;
 
 import com.sun.syndication.io.FeedException;
 
 public class Rss extends Basez {
+	@Catch
 	public static void posts(String username) {
 		List<Post> posts = Post.findByUser(username);
 		RssUtil rss = RssUtil.start();
@@ -38,7 +42,7 @@ public class Rss extends Basez {
 		}
 		renderXml(new String(bos.toByteArray()));
 	}
-
+	@Catch
 	public static void photos(String username) {
 		List<Photo> photos = Photo.findByUser(username);
 		RssUtil rss = RssUtil.start();

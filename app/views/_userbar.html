@@ -2,18 +2,24 @@
   <tbody>
 	<tr>
 	  <td width=52>
-		<a href="@{Photov.photos(currentuser,1)}">#{avatar user : visitedUser/}</a>
+		<a href="@{Photov.photos(currentuser,1)}">#{avatar user:visitedUser/}</a>
 	  </td>
 	  <td id="userbar">
-		<h6>#{isMine}我#{/isMine} #{notMine}${visitedUser.screenname == null? visitedUser.fullname:visitedUser.screenname }#{/notMine}的所有內容<small></small></h6>
+		<h6>#{isMine}我#{/isMine} #{notMine}#{screenname visitedUser/}#{/notMine}的所有內容<small></small></h6>
 		<a href="@{Photov.photos(currentuser,1)}">图片</a>
 		<a href="@{Setv.mySets(currentuser)}">相册</a>
         <a href="@{Postz.index(currentuser)}">故事</a>
         #{if request.controller=='Postz' }
         	<a href="@{Rss.posts(currentuser)}"><img src="@{'public/images/rss.gif'}"></a>
-        #{/if}
+			#{set 'moremeta'}
+				<link rel="alternate" type="application/rss+xml" title="#{screenname visitedUser, plain:true/} 的故事" href="@{Rss.posts(currentuser)}">
+			#{/set}
+		#{/if}
         #{if request.controller=='Photov' }
         	<a href="@{Rss.photos(currentuser)}"><img src="@{'public/images/rss.gif'}"></a>
+			#{set 'moremeta'}
+				<link rel="alternate" type="application/rss+xml" title="#{screenname visitedUser, plain:true/} 的照片" href="@{Rss.photos(currentuser)}">
+			#{/set}
         #{/if}
         
         <br/><div id="connectionsInfo"></div>
