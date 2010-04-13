@@ -44,11 +44,11 @@ public class PdfFileUtil {
 				Graphics2D g = image.createGraphics();
 				document.paintPage(i, g, GraphicsRenderingHints.SCREEN, Page.BOUNDARY_CROPBOX, rotation, scale);
 				g.dispose();
-				String pageImage = String.format("%s%s.jpg", FileUtil.getPath(staticpath + file.originalFile), i);
+				String pageImage = String.format("%s%s.jpg", FileUtil.getPath(file.originalFile), i);
 				ImageUtil.saveJPEG(image, pageImage);
 				Logger.debug("Page File Path: %s", pageImage);
 				
-				String pageThumbnail = String.format("%s%s_thumbnail.jpg", FileUtil.getPath(staticpath + file.originalFile), i);
+				String pageThumbnail = String.format("%s%s_thumbnail.jpg", FileUtil.getPath(file.originalFile), i);
 				BufferedImage thumbnail = ImageUtil.thumbnail(image, 140,160, false, false);
 				ImageUtil.saveJPEG(thumbnail, pageThumbnail);
 				Logger.debug("Page Thumbnail Path: %s", pageThumbnail);
