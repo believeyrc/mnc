@@ -21,13 +21,7 @@ import com.mortennobel.imagescaling.ResampleOp;
 
 public class ImageUtil {
 	public static void moveUploadTo(File upload, String to) {
-		try {
-			String staticpath = Play.configuration.getProperty("staticpath", "");
-			File ofile = new File(staticpath + to);
-			FileUtils.moveFile(upload, ofile);
-		} catch (IOException e) {
-			Logger.error("move file error ", e);
-		}
+		FileUtil.moveUploadTo(upload, to);
 	}
 
 	public static BufferedImage load(String file) {
@@ -66,7 +60,15 @@ public class ImageUtil {
 		BufferedImage rescaledTomato = resampleOp.filter(img, null);
 		return rescaledTomato;
 	}
-
+	/**
+	 * 
+	 * @param img
+	 * @param width 宽度
+	 * @param height 高度
+	 * @param enlargeImage 假如原图片不够大的时候是否要增大图片 true会放大原图片
+	 * @param absolution 是否是绝对化，true，不保持原有比例，false会保持原有比例。
+	 * @return
+	 */
 	public static BufferedImage thumbnail(BufferedImage img, int width, int height, boolean enlargeImage, boolean absolution) {
 		ResampleOp resampleOp = null;
 		if (absolution) {

@@ -70,5 +70,6 @@
 	<classpathentry kind="lib" path="D:/opt/play-1.1-unstable-r698/framework/lib/WikiText.jar"/>
 	<classpathentry kind="lib" path="D:/opt/play-1.1-unstable-r698/framework/lib/ZDB.jar"/>
 	<classpathentry kind="lib" path="lib/rome-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/ice-pdf.jar"/>
 	<classpathentry kind="output" path="eclipse/classes"/>
 </classpath>

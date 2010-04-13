@@ -51,6 +51,10 @@ GET /channels/{username}/{<[0-9]+>id}	Channelv.channel
 GET /channels/{username}/?	Channelz.list
 
 
+POST /reader/upload	Reader.upload
+GET /reader	Reader.list
+GET /read/{id}	Reader.view
+
 
 GET     /admin/?                            Admin.index
 GET     /admin/new/{id}                     Admin.form
