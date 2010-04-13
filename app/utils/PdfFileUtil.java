@@ -24,7 +24,7 @@ public class PdfFileUtil {
 		String uuid = Codec.UUID();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		String tDate = sdf.format(new Date());
-		String filePath = "public/books/" + tDate + "/" + uuid;
+		String filePath = "public/books/" + tDate + "/" + uuid+"/file.pdf";
 		return filePath;
 	}
 	public static void processPdfFile(PdfFile file) {
