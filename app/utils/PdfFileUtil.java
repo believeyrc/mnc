@@ -31,8 +31,8 @@ public class PdfFileUtil {
 		try {
 			Document document = new Document();
 			String staticpath = Play.configuration.getProperty("staticpath", "");
-			document.setFile(staticpath + file.originalFile);
 			Logger.debug("process %s", staticpath + file.originalFile);
+			document.setFile(staticpath + file.originalFile);
 			Logger.debug("process %s which has pages %s", file.title,document.getNumberOfPages());
 			for (int i = 0; i < document.getNumberOfPages(); i++) {
 				float scale = 1.0f;
