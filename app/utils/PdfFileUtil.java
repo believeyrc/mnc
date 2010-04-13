@@ -32,6 +32,8 @@ public class PdfFileUtil {
 			Document document = new Document();
 			String staticpath = Play.configuration.getProperty("staticpath", "");
 			document.setFile(staticpath + file.originalFile);
+			Logger.debug("process %s", staticpath + file.originalFile);
+			Logger.debug("process %s which has pages %s", file.title,document.getNumberOfPages());
 			for (int i = 0; i < document.getNumberOfPages(); i++) {
 				float scale = 1.0f;
 				float rotation = 0f;
@@ -44,10 +46,12 @@ public class PdfFileUtil {
 				g.dispose();
 				String pageImage = String.format("%s%s.jpg", FileUtil.getPath(staticpath + file.originalFile), i);
 				ImageUtil.saveJPEG(image, pageImage);
-				String pageThumbnail = String.format("%s%s_tumbnail.jpg", FileUtil.getPath(staticpath + file.originalFile), i);
-				BufferedImage thumbnail = ImageUtil.thumbnail(image, 140,
-						160, false, false);
+				Logger.debug("Page File Path: %s", pageImage);
+				
+				String pageThumbnail = String.format("%s%s_thumbnail.jpg", FileUtil.getPath(staticpath + file.originalFile), i);
+				BufferedImage thumbnail = ImageUtil.thumbnail(image, 140,160, false, false);
 				ImageUtil.saveJPEG(thumbnail, pageThumbnail);
+				Logger.debug("Page Thumbnail Path: %s", pageThumbnail);
 				models.Page page = new models.Page();
 				page.content = document.getPageText(i).toString();
 				page.file = file;

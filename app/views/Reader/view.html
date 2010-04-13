@@ -26,8 +26,8 @@
 			<ul class="thumbs noscript">
 				#{list items: pages, as: 'page'}			
 				<li>
-					<a class="thumb" name="${page.page}" href="/${file.originalFile}/../${page.page}.jpg" title="${page.page}">
-						<img src="/${file.originalFile}/../${page.page}_tumbnail.jpg" alt="${page.page}" />
+					<a class="thumb" name="${page.page}" href="${play.configuration.staticserver}${file.originalFile}/../${page.page}.jpg" title="${page.page}">
+						<img src="${play.configuration.staticserver}${file.originalFile}/../${page.page}_thumbnail.jpg" alt="${page.page}" />
 					</a>
 					<div class="caption">
 						${page.page}
