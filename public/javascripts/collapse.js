@@ -34,5 +34,5 @@
 
 function updatesetsinfo(t,url){
     var dd = $(t).closest('.collapse').find('#container')
-    dd.load(url).fadeIn("slow");
+    dd.load(url);
 }
