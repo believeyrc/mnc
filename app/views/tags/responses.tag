@@ -1,5 +1,6 @@
-	#{if _responses.size() >0}
     <h4 style='color:#FF0084;'>&{'Responses'}</h4>
+
+#{if _responses.size() >0}
     <table style="border-spacing:0px;">
         #{list items:_responses, as:'resp'}
         <tr><td style='width:48px;padding-right:2px;' class = 'top'>#{avatar user:resp.author/}</td>
@@ -11,7 +12,7 @@
         </tr>
         #{/list}
     </table>
-	#{/if}
+#{/if}
 
 #{isLogin}
 	#{if _as == 'post'}
@@ -50,5 +51,7 @@
 	已经注册？<a href="@{Secure.login()}">登入</a>吧！
 	<br/>
 	还没有注册？<a href="@{Userz.register()}">现在加入</a>吧！
+	<br/>
+	<br/>
 #{/notLogin}
 

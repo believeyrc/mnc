@@ -74,10 +74,28 @@ public class Photov extends Basez {
         render("Photov/viewPhoto.html",photo, responses, setsid, nostream);
     }
    
+   public static void streamPrevious(String username,Long id) {
+	   Photo photo = Photo.findById(id);
+	   long totalCount = photo.countOfUser();
+	   Photo previous = photo.previous();
+	   Photo next = photo;
+	   render("Photov/streamInfo.html",photo, totalCount, previous, next);
+   }
+   
    public static void streamInfo(String username,Long id) {
 	   Photo photo = Photo.findById(id);
 	   long totalCount = photo.countOfUser();
-	   render(photo, totalCount);
+	   Photo previous = photo.previous();
+	   Photo next = photo.next();
+	   render("Photov/streamInfo.html",photo, totalCount, previous, next);
+   }
+   
+   public static void streamNext(String username,Long id) {
+	   Photo photo = Photo.findById(id);
+	   long totalCount = photo.countOfUser();
+	   Photo previous = photo;
+	   Photo next = photo.next();
+	   render("Photov/streamInfo.html",photo, totalCount, previous, next);
    }
    
 	public static void previousPicture(Long id) {

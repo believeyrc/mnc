@@ -1,15 +1,25 @@
-<table>    
-    <tr>
-    	#{set previous:photo.previous()/}
-    	#{set next:photo.next()/}
-    	<td width="77px" colspan="3">#{if previous == null }<small>第一张</small>#{/if}
-        	#{ifnot previous == null}<a href="@{Photov.viewPhoto(previous.author.fullname, previous.id)}">#{photo photo:previous,as:'75'/}</a>#{/ifnot}</td>
-        <td width="77px" colspan="3">#{if next == null }<small>最后一张</small>#{/if}
-        	#{ifnot next == null} <a href="@{Photov.viewPhoto(next.author.fullname, next.id)}">#{photo photo:next,as:'75'/}</a>#{/ifnot}</td>
-        <td rowspan="2" width="50px" valign="middle"><b>共有 ${totalCount} 张相片</b></td>
-    </tr>
-    <tr><td style="line-height:20px;" width="50px" colspan="2">#{if previous}<a onclick="updatesetsinfo(this,'@{Photov.streamInfo(previous.author.fullname,previous.id)}')">上一张</a>#{/if}#{ifnot previous}&nbsp;#{/ifnot}</td>
-    	<td colspan="2" width="50px" align="center"><a href="@{Photov.photosWith(photo.author.fullname, photo.id)}">浏览</a></td>
-        <td align="right" width="50px" colspan="2">#{if next}<a onclick="updatesetsinfo(this,'@{Photov.streamInfo(next.author.fullname,next.id)}')">下一张</a>#{/if}#{ifnot next}&nbsp;#{/ifnot}</td>
-    	<td>&nbsp;</td></tr>
-</table>
+<div class="span-6 last box">
+	<div class="span-75 ">
+		#{if previous == null }<small>第一张</small>#{/if}
+		#{ifnot previous == null}
+		<a href="@{Photov.viewPhoto(previous.author.fullname, previous.id)}">#{photo photo:previous,as:'75'/}</a>
+		#{/ifnot}
+	</div>
+	<div class="span-75 ">
+		#{if next == null }<small>最后一张</small>#{/if}
+		#{ifnot next == null}
+		<a href="@{Photov.viewPhoto(next.author.fullname, next.id)}">#{photo photo:next,as:'75'/}</a>
+		#{/ifnot}	
+	</div>
+	<div class="span-50 last">
+		<b>相册中共有 ${totalCount}张相片</b>
+	</div>
+	<div class="clear">
+		<span class="span-50 left last">#{if previous}<a onclick="updatesetsinfo(this,'@{Photov.streamPrevious(previous.author.fullname, previous.id)}')">上一张</a>#{/if}#{ifnot previous}&nbsp;#{/ifnot}
+		</span>
+		<span class="span-50 center last"><a href="@{Photov.photosWith(photo.author.fullname, photo.id)}">浏览</a>
+		</span>
+		<span class="span-50 right last">#{if next}<a onclick="updatesetsinfo(this,'@{Photov.streamNext(next.author.fullname, next.id)}')">下一张</a>#{/if}#{ifnot next}&nbsp;#{/ifnot}
+		</span>
+	</div>	
+</div>
