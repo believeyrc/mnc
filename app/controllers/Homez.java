@@ -2,6 +2,9 @@ package controllers;
 
 import java.util.List;
 
+import org.apache.commons.lang.math.RandomUtils;
+
+
 import models.Photo;
 import models.Post;
 import models.Responses;
@@ -20,8 +23,9 @@ public class Homez extends Basez {
             lastPhotos = Photo.find("author != ? order by uploadAt desc",currentUser).fetch(5);    
             renderArgs.put("lastPhotos",lastPhotos );
 		} else {
-            lastPhotos = Photo.find("order by uploadAt desc").fetch(5);
-            renderArgs.put("lastPhotos",lastPhotos );
+		   long randomId = RandomUtils.nextLong()%Photo.count();
+           Photo photo = Photo.findById(randomId);
+            renderArgs.put("photo",photo );
         }
 		List<Post> lastPosts = Post.find("order by id desc").from(0).fetch(5);
 		renderArgs.put("lastPosts",lastPosts );		
