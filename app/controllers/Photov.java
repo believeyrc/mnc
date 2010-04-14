@@ -110,7 +110,6 @@ public class Photov extends Basez {
 
 	private static void restroreSession() throws UnsupportedEncodingException {
 		String checkuser = params.get("checkuser");
-		System.out.println(checkuser);
 		if (checkuser == null)
 			return;
 		checkuser = checkuser.replaceAll("##", "\u0000");

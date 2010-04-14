@@ -1,0 +1,1 @@
+<img width="${_w==null?'15':_w}" height="${_h==null?'15':_h}" src="@{'/public/images/spaceout.gif'}">

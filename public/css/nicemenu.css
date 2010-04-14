@@ -1,5 +1,4 @@
 #header {
-	width: 820px;
 	text-align:center;
 	position: relative;
 	height: 65px;
@@ -10,20 +9,11 @@
 	/* font-size: 14px; */
 	margin-bottom: 25px;
 }
-.Header td{
-	padding:0px;
-}
 #header .Header,#header .NavBar{
 	padding: 0px;
 	border: 0px;
 	margin:auto;
-}
-#header .logo{
-	float:left;
-	padding:5px 0 0 5px;
-}
-#header .Status{
-	text-align:right;
+	width: 820px;
 }
 .NavBar {
 	width: 820px;
@@ -39,61 +29,18 @@
 	font-weight: bold;
 	/*margin-right: 16px;*/
 }
-.NavBar li span{
-	height:18px;
+#header td{
+	padding : 4px 2px 0px 0px;
 }
-
-#header h1{
-	padding: 0px;
+#header input[type='text']{	
+	margin : 0px;
+	margin-bottom: 2px;
 }
-#header h1#logo-text {
-	position: absolute;
-	margin: 0; padding: 0;
-	font: bolder 44px 'Trebuchet MS', Arial, Sans-serif;
-	letter-spacing: -2px;
-	color: #000;
-	text-transform: none;
-	
-	/* change the values of top and left to adjust the position of the logo*/
-	top: 25px; left: 127px;	
+#header #search_header_form_td{
+	padding-top: 0px;
+	text-align: right;
 }
-#header h2#slogan {
-	position: absolute;
-	margin: 0;
-	padding: 0;
-	font: normal 12px 'Trebuchet MS', Arial, Sans-serif;
-	text-transform: none;
-	color: #000;
-	
-	/* change the values of top and left to adjust the position of the slogan
-	top: 70px; left: 135px;		*/
-}
-#header h1 img{
-	border: none;
-	background: none;
-	margin-left: 0px;
-	margin-top: 0px;
-	padding: 0px;
-	/*width: 50px;
-	height:60px;*/
-}
-
-/* header links */
-#header #header-links {
-	position: absolute;
-	top: 00px; right: 30px;	
-	color: #000;
-	font-size: 12px;	
-}
-#header #header-links a {	
-	color: #000;
-	text-decoration: none;	
-}
-#header #header-links a:hover {
-	color: #555	;	
-}
-
-.alignright{
+.align-right{
 	text-align: right;
 }
 /* Menu */
@@ -121,6 +68,15 @@
 #nicemenu div.sub_menu a:visited, 
 #nicemenu div.sub_menu a:hover{ display:block; font-size:11px; padding:4px;}	
 #nicemenu a.item_line { border-top:solid 1px #E5E5E5; padding-top:6px !important; margin-top:3px; }
+#nicemenu ul{padding:0px;margin:0px;}
+
+#box_menu  li span{
+	padding: 6px 2px 1px 2px;
+}
+#box_menu  li span.over{
+	padding:5px 1px 0px 1px;
+	border-bottom:solid 1px #E5E5E5; 
+}
 
 input.button,.inplace button { 
 	font-weight: bold ; 

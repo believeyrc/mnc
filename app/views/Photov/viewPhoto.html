@@ -2,8 +2,7 @@
 #{set 'title'}
 	照片 ${photo.caption}
 #{/set}
-        
-#{script 'setsinfo.js'/}
+
 <script type="text/javascript">
     $(document).ready(function(){
         $("#loading-div").load('@{Setv.setsInfoOfPhoto(photo.id,setsid)}',{},function(ret){
@@ -105,7 +104,9 @@ textarea{
 		});
 	}
 	function addToSets(a){
-		$(a).parent().find(".sub_menu").load('@{Setv.listMySets(currentuser,photo.id)}');		
+		var submenu = $(a).closest('li').find(".sub_menu");
+		submenu.show();
+		submenu.load('@{Setv.listMySets(currentuser,photo.id)}');		
 	}
 </script>
 
@@ -122,21 +123,23 @@ textarea{
 <div class="span-13 prepend-0 colborder">
 			<h3><div id='${photo.id}' class='cap'>&{photo.caption}</div></h3>
 			<div id="nicemenu" style="clear:both">		
-				<ul >
+				<ul id="box_menu">
 				#{isMine}
-					<li><a onclick="addToSets(this)"><img class="arrow noswap" alt="添加到相册" src="@{'/public/images/addtosets.png'}"/></a>
+					<li><span class="head_menu"><a onclick="addToSets(this)"><img class="arrow noswap" alt="添加到相册" src="@{'/public/images/addtosets.png'}"/></a></span>
 						<div class="sub_menu">
 							正在载入相册...
 						</div>
 					</li>
-					<li ><a  onclick="rotateRight((${photo.id}))"><img alt="&{'rotateRight'}" src="@{'/public/images/rotate_l.png'}"/></a></li>
-					<li ><a  onclick="rotateLeft((${photo.id}))"><img alt="&{'rotateLeft'}" src="@{'/public/images/rotate_r.png'}"/></a></li>
-					<li ><a  onclick="sayHello((${photo.id}))"><img alt="&{'sayHello'}" src="@{'/public/images/sayhello.gif'}"/></a></li>
-					<li ><a  onclick="revert((${photo.id}))"><img alt="&{'revert'}" src="@{'/public/images/revert.jpg'}"/></a></li>
-					<li ><a  onclick="delete((${photo.id}))"><img alt="&{'delete'}" src="@{'/public/images/delete.png'}"/></a></li>
+					<li ><span class="head_menu"><a  onclick="rotateRight((${photo.id}))"><img alt="&{'rotateRight'}" src="@{'/public/images/rotate_l.png'}"/></a></span></li>
+					<li ><span class="head_menu"><a  onclick="rotateLeft((${photo.id}))"><img alt="&{'rotateLeft'}" src="@{'/public/images/rotate_r.png'}"/></a></span></li>
+					<!--
+					<li ><span class="head_menu"><a  onclick="sayHello((${photo.id}))"><img alt="&{'sayHello'}" src="@{'/public/images/sayhello.gif'}"/></a></span></li>
+					-->
+					<li ><span class="head_menu"><a  onclick="revert((${photo.id}))"><img alt="&{'revert'}" src="@{'/public/images/revert.jpg'}"/></a></span></li>
+					<li ><span class="head_menu"><a  onclick="delete((${photo.id}))"><img alt="&{'delete'}" src="@{'/public/images/delete.png'}"/></a></span></li>
 				#{/isMine}	
 				#{isLogin}
-	                <li ><a  href="@{Userz.changeAvatar(photo.id)}"><img alt="设置成我的头像" title="设置成我的头像" src="@{'/public/images/changeavatar.jpg'}"/></a></li>
+	                <li ><span class="head_menu"><a  href="@{Userz.changeAvatar(photo.id)}"><img alt="设置成我的头像" title="设置成我的头像" src="@{'/public/images/changeavatar.jpg'}"/></a></span></li>
 	            #{/isLogin}
 				</ul >
 			</div>
@@ -166,6 +169,13 @@ textarea{
             <h4>相片属于相册</h4>
             <div id="sets-div">
             </div>
+        </div>
+        
+        <div>
+        <!--
+            <h4>附加信息</h4>
+            <span class="icon private-public">#{spaceout/}</span><a href="@{Private.edit(photo.id)}">编辑</a>
+        -->
         </div>
  
 	</div>

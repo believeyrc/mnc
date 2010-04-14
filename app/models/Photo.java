@@ -46,6 +46,19 @@ public class Photo extends Model {
 	 * 240x240
 	 */
 	public String thumb2Path;
+	/**
+	 * 查看权限
+	 */
+	public int privView = 7;
+	/**
+	 * 查看权限
+	 */
+	public int privComment = 7;
+	/**
+	 * 查看权限
+	 */
+	public int privMeta = 7;
+	
 	public String toString(){
 		return this.caption + ":" +filePath;
 	}

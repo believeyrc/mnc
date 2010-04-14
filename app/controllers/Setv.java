@@ -76,6 +76,30 @@ public class Setv extends Basez {
         render("Setv/_viewSetsOfPhoto.html",sets,photo,previous,next);
     }
     /**
+     * 上一个图
+     * @param setsid
+     * @param photoid
+     */
+    public static void previous(Long setsid, Long photoid){
+        Sets sets = Sets.findById(setsid);
+        Photo photo = Photo.findById(photoid);
+        Photo previous = sets.previousPhotoInSets(photo);
+        Photo next = photo;
+        render("Setv/_viewSetsOfPhoto.html",sets,photo,previous,next);
+    }
+    /**
+     * 下一个图片
+     * @param setsid
+     * @param photoid
+     */
+    public static void next(Long setsid, Long photoid){
+    	Sets sets = Sets.findById(setsid);
+    	Photo photo = Photo.findById(photoid);
+    	Photo next = sets.nextPhotoInSets(photo);
+    	Photo previous = photo;
+    	render("Setv/_viewSetsOfPhoto.html",sets,photo,previous,next);
+    }
+    /**
      * 查询照片所在的所有相册
      * @param photoid
      */

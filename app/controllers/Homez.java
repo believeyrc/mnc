@@ -15,15 +15,15 @@ public class Homez extends Basez {
 		User currentUser = getLoginUser();
         List<Photos> lastPhotos ;
 		if (currentUser != null) {
-			List<Photos>  yourlastPhotos = Photo.find("author = ? order by uploadAt desc", currentUser).fetch(15);
+			List<Photos>  yourlastPhotos = Photo.find("author = ? order by uploadAt desc", currentUser).fetch(5);
             renderArgs.put("yourlastPhotos",yourlastPhotos);
-            lastPhotos = Photo.find("author != ? order by uploadAt desc",currentUser).fetch(15);    
+            lastPhotos = Photo.find("author != ? order by uploadAt desc",currentUser).fetch(5);    
             renderArgs.put("lastPhotos",lastPhotos );
 		} else {
-            lastPhotos = Photo.find("order by uploadAt desc").fetch(15);
+            lastPhotos = Photo.find("order by uploadAt desc").fetch(5);
             renderArgs.put("lastPhotos",lastPhotos );
         }
-		List<Post> lastPosts = Post.find("order by id desc").from(0).fetch(9);
+		List<Post> lastPosts = Post.find("order by id desc").from(0).fetch(5);
 		renderArgs.put("lastPosts",lastPosts );		
 		List<Responses> lastResponses = Responses.find("order by postedAt desc").from(0).fetch(3);
 		renderArgs.put("lastResponses",lastResponses );

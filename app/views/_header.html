@@ -3,7 +3,7 @@
 		<td>
 			<a href="/"><img src="@{'/public/images/logo.png'}" class="logo" alt="Jsxnc 标志。点击一下返回首页" height="30" width="180"></a>
 		</td>
-		<td class='alignright'>
+		<td class='align-right'>
 			#{isLogin}
 				以 #{screenname user/} 登入
 			#{/isLogin}
@@ -64,16 +64,16 @@
 			</ul>
 		</div>
 		</td>
-		<td style="padding-bottom: 2px;text-align:right;" id="search_header_form_td">
+		<td id="search_header_form_td">
 			<form action="@{Searchv.search()}" method="get" onsubmit="" id="headersearchform">
-				<input onfocus="this.value=''" style="color: rgb(153, 153, 153);" name="q" id="header_search_q" class="Box" value="照片搜索" type="text">
+				<input onfocus="this.value=''" style="color: rgb(153, 153, 153);" name="q" id="header_search_q" value="" type="text">
 				<input name="t" id="search_type" type="hidden">
 			</form>
 		</td>
 		<td style='text-align:right' width="82">
 			<div id="nicemenu">
 				<ul >
-				<li class="menu_li" id="candy_nav_button_search"><span><a onclick="$('#headersearchform').submit()">搜索</a></span>	
+				<li class="menu_li" id="candy_nav_button_search"><span class="head_menu"><a onclick="$('#headersearchform').submit()">搜索</a>
 					<img src="@{'/public/images/site_nav_caret_split_default.png'}" class="arrow" alt="更多选项" height="15" width="18"></span>
 					<div class="sub_menu">
 						<a href="" onclick="$('#search_type').val('pic');$('#headersearchform').submit();return false;">搜索照片</a>

@@ -17,7 +17,8 @@ public class Connection extends Model{
 	//1 自己人
 	//2 朋友
 	//4 家人
-	//2自己人+朋友
+	//8 家人
+	//3自己人+朋友
 	//5自己人+家人
 	//7自己人+朋友+家人
 	public int type = 0;

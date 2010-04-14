@@ -1,11 +1,25 @@
-<table>    
-    <tr><td width="77px" colspan="3">#{if previous == null }<small>第一张</small>#{/if}
-        	#{ifnot previous == null}<a href="@{Photov.viewPhotoInSets(previous.author.fullname, previous.id, sets.id)}">#{photo photo:previous,as:'75'/}</a>#{/ifnot}</td>
-        <td width="77px" colspan="3">#{if next == null }<small>最后一张</small>#{/if}
-            #{ifnot next == null}<a href="@{Photov.viewPhotoInSets(next.author.fullname, next.id, sets.id)}">#{photo photo:next,as:'75'/}</a>#{/ifnot}</td>
-        <td rowspan="2" width="50px" valign="middle"><b>相册中共有 ${sets.countPhotos()}张相片</b></td></tr>
-    <tr><td style="line-height:20px;" width="50px" colspan="2">#{if previous}<a onclick="updatesetsinfo(this,'@{Setv.viewSetsOfPhoto(sets.id, previous?.id)}')">上一张</a>#{/if}#{ifnot previous}&nbsp;#{/ifnot}</td>
-    	<td colspan="2" width="50px" align="center"><a href="@{Setv.viewSetsWith(photo.author.fullname,sets.id, photo.id)}">浏览</a></td>
-        <td align="right" width="50px" colspan="2">#{if next}<a onclick="updatesetsinfo(this,'@{Setv.viewSetsOfPhoto(sets.id, next?.id)}')">下一张</a>#{/if}#{ifnot next}&nbsp;#{/ifnot}</td>
-        <td>&nbsp;</td></tr>
-</table>
+<div class="span-6 last box">
+	<div class="span-75 ">
+		#{if previous == null }<small>第一张</small>#{/if}
+		#{ifnot previous == null}
+		<a href="@{Photov.viewPhotoInSets(previous.author.fullname, previous.id, sets.id)}">#{photo photo:previous,as:'75'/}</a>
+		#{/ifnot}
+	</div>
+	<div class="span-75 ">
+		#{if next == null }<small>最后一张</small>#{/if}
+		#{ifnot next == null}
+		<a href="@{Photov.viewPhotoInSets(next.author.fullname, next.id, sets.id)}">#{photo photo:next,as:'75'/}</a>
+		#{/ifnot}	
+	</div>
+	<div class="span-50 last">
+		<b>相册中共有 ${sets.countPhotos()}张相片</b>
+	</div>
+	<div class="clear">
+		<span class="span-50 left last">#{if previous}<a onclick="updatesetsinfo(this,'@{Setv.previous(sets.id, previous?.id)}')">上一张</a>#{/if}#{ifnot previous}&nbsp;#{/ifnot}
+		</span>
+		<span class="span-50 center last"><a href="@{Setv.viewSetsWith(photo.author.fullname,sets.id, photo.id)}">浏览</a>
+		</span>
+		<span class="span-50 right last">#{if next}<a onclick="updatesetsinfo(this,'@{Setv.next(sets.id, next?.id)}')">下一张</a>#{/if}#{ifnot next}&nbsp;#{/ifnot}
+		</span>
+	</div>	
+</div>

@@ -1,0 +1,86 @@
+#{extends 'main.html' /}
+#{set 'title'}
+	编辑 ${photo.caption}权限 
+#{/set}
+
+<form method="post" action="#">
+	<h3>谁可以查看此相片？</h3>
+	<div class='box'>
+		<input type="radio" value="4" id="perm_view_4" name="perm_view" onclick="_privacy_specific_change()" onchange="_privacy_specific_change()"><label id="perm_view_4_label" for="perm_view_4"">仅本人 </label><br>
+		<input type="radio" value="3" id="perm_view_3" name="perm_view" onclick="_privacy_specific_change()" onchange="_privacy_specific_change()"><label id="perm_view_3_label" for="perm_view_3">我的朋友和 / 或家人 </label><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" value="1" id="is_friend" name="is_friend" ><label id="is_friend_label" for="is_friend">我的朋友</label>
+								<input type="checkbox" value="2" id="is_family" name="is_family" ><label id="is_family_label" for="is_family">我的家人</label><br/>
+		<input type="radio" value="2" id="perm_view_2" name="perm_view" onclick="_privacy_specific_change()" onchange="_privacy_specific_change()"><label id="perm_view_2_label" for="perm_view_2">我的自己人 </label><br>
+		<input type="radio" value="1" id="perm_view_1" name="perm_view" onclick="_privacy_specific_change()" onchange="_privacy_specific_change()"><label id="perm_view_1_label" for="perm_view_1">任何 Jsxnc 使用者</label><br/>
+		<input type="radio" value="0" id="perm_view_0" name="perm_view" onclick="_privacy_specific_change()" onchange="_privacy_specific_change()"><label id="perm_view_0_label" for="perm_view_0">公开的（建议）</label>
+	</div>
+	<h3>谁可以回应此相片？</h3>
+	<div class='box'>
+		<input type="radio" value="4" id="perm_comment_4" name="perm_comment"><label id="perm_comment_4_label" for="perm_comment_4">仅本人 </label><br>
+		<input type="radio" value="3" id="perm_comment_3" name="perm_comment"><label id="perm_comment_3_label" for="perm_comment_3">我的朋友和 / 或家人 </label><br>
+		<input type="radio" value="2" id="perm_comment_2" name="perm_comment"><label id="perm_comment_2_label" for="perm_comment_2">我的自己人 </label><br>
+		<input type="radio" value="1" id="perm_comment_1" name="perm_comment"><label id="perm_comment_1_label" for="perm_comment_1">任何 Jsxnc 使用者（建议）</label>
+	</div>
+	<h3>谁可以添加标注？</h3>
+	<div class='box'>
+		<input type="radio" value="4" id="perm_addmeta_4" name="perm_addmeta"> <label id="perm_addmeta_4_label" for="perm_addmeta_4">仅本人 </label><br>
+		<input type="radio" value="3" id="perm_addmeta_3" name="perm_addmeta"> <label id="perm_addmeta_3_label" for="perm_addmeta_3">我的朋友和 / 或家人 </label><br>
+		<input type="radio" value="2" id="perm_addmeta_2" name="perm_addmeta"> <label id="perm_addmeta_2_label" for="perm_addmeta_2">我的自己人（建议） </label><br>
+		<input type="radio" value="1" id="perm_addmeta_1" name="perm_addmeta"> <label id="perm_addmeta_1_label" for="perm_addmeta_1">任何 Jsxnc 使用者</label>
+	</div>
+	
+	<input value="确定" class="button" name="Submit" onclick="dosubmit();">
+</form>
+
+<script>
+	function dosubmit(){
+		var privView=0;
+		if($('#is_private').attr('checked'))
+			type= type + 0
+		if($('#is_friend').attr('checked'))
+			type= type + 1
+		if($('#is_family').attr('checked'))
+			type= type + 2
+		$.post('@{Private.updateSetting(photo.id)}',{privView:privView,privComment:privComment,privAddmeta:privAddmeta},function(){
+			
+		});
+		
+	}
+	function en(id){
+		$("#"+id).removeAttr('disabled');
+		$('#'+id+'_label').css('color','black');
+	}
+	function dis(id){
+		$("#"+id).attr('disabled','true');
+		$('#'+id+'_label').css('color','gray');
+	}
+	function check(id){
+		$("#"+id).attr('checked','true');
+	}
+	function _privacy_specific_change(){
+		if($('#perm_view_4').attr('checked')){
+			check('perm_comment_4');
+			check('perm_addmeta_4');
+			dis('is_friend');
+			dis('is_family');
+			dis('perm_addmeta_3');
+			dis('perm_addmeta_2');
+			dis('perm_addmeta_1');
+			dis('perm_comment_3');
+			dis('perm_comment_2');
+			dis('perm_comment_1');
+		}
+		if($('#perm_view_3').attr('checked')){
+			check('perm_comment_3');
+			check('perm_addmeta_3');
+			en('is_friend');
+			en('is_family');
+			en('perm_addmeta_3');
+			dis('perm_addmeta_2');
+			dis('perm_addmeta_1');
+			en('perm_comment_3');
+			dis('perm_comment_2');
+			dis('perm_comment_1');
+		}
+	}
+</script>
