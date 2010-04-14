@@ -4,4 +4,4 @@ _attrs.each { a->
 	out << " " << a.key << "=" << a.value << " "
 }
 %}
- src="#{if _user.avatar==null}${play.configuration.staticserver}public/images/avatar.jpg#{/if}#{ifnot _user.avatar==null}${play.configuration.staticserver}${_user.avatar}#{/ifnot}">
+ src="#{if _user?.avatar==null}${play.configuration.staticserver}public/images/avatar.jpg#{/if}#{ifnot _user?.avatar==null}${play.configuration.staticserver}${_user.avatar}#{/ifnot}">
