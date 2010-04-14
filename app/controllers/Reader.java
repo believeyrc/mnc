@@ -20,19 +20,31 @@ public class Reader extends Basez {
 		pdfFile.save();
 		new Job<Void>() {
 			public void doJob() throws Exception {
-				PdfFileUtil.processPdfFile(pdfFile);
+				PdfFileUtil.processPdfFile(pdfFile, 100);
 			};
 		}.in(0);
 		list();
+	}
+
+	public static void page(Long id, int page, int scale) {
+		PdfFile file = PdfFile.findById(id);
+		File imgFile = PdfFileUtil.getPageFile(file, page, scale);
+		renderBinary(imgFile);
 	}
 
 	public static void list() {
 		List<PdfFile> files = PdfFile.all().fetch();
 		render(files);
 	}
+
+	public static void reprocess(Long id) {
+		PdfFile file = PdfFile.findById(id);
+		PdfFileUtil.processPdfFile(file, 100);
+	}
+	
 	public static void view(Long id) {
 		PdfFile file = PdfFile.findById(id);
-		List<Page> pages = Page.find("file = ? order by page asc",file).fetch();
-		render(file,pages);
+		List<Page> pages = Page.find("file = ? order by page asc", file).fetch();
+		render(file, pages);
 	}
 }

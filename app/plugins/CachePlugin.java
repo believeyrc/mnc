@@ -11,19 +11,23 @@ public class CachePlugin extends PlayPlugin {
 
 	@Override
 	public void onActionInvocationResult(Result result) {
-		Cachable cachable = Request.current().invokedMethod.getAnnotation(Cachable.class);
-		if (cachable != null) {
-			Cache.add(Request.current().url, result, cachable.value());
+		if (Request.current().invokedMethod != null) {
+			Cachable cachable = Request.current().invokedMethod.getAnnotation(Cachable.class);
+			if (cachable != null) {
+				Cache.add(Request.current().url, result, cachable.value());
+			}
 		}
 	}
 
 	@Override
 	public void beforeActionInvocation(Method actionMethod) {
-		Cachable cachable = actionMethod.getAnnotation(Cachable.class);
-		if (cachable != null) {
-			Result result = (Result) Cache.get(Request.current().url);
-			if (result != null)
-				throw result;
+		if (actionMethod != null) {
+			Cachable cachable = actionMethod.getAnnotation(Cachable.class);
+			if (cachable != null) {
+				Result result = (Result) Cache.get(Request.current().url);
+				if (result != null)
+					throw result;
+			}
 		}
 	}
 }

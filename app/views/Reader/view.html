@@ -1,16 +1,4 @@
-<html>
-<head>
-    <link rel="stylesheet" href="${'/public/css/galleriffic/basic.css'}" type="text/css" />
-	<link rel="stylesheet" href="${'/public/css/galleriffic/galleriffic-3.css'}" type="text/css" />
-
-    <script type="text/javascript" src="@{'/public/javascripts/jquery-1.3.2.min.js'}"></script>
-    <script type="text/javascript" src="@{'/public/javascripts/jquery.galleriffic.js'}"></script>
-    <!-- Optionally include jquery.history.js for history support 
-    <script type="text/javascript" src="js/jquery.history.js"></script>
-    <script type="text/javascript" src="js/jquery.opacityrollover.js"></script>
-    -->
-</head>
-<body>
+#{extends 'Reader/reader.template' /}
 <a href="@{Reader.list()}">Home</a><br/>
 <div id="page">
 			<div id="container">
@@ -26,7 +14,7 @@
 			<ul class="thumbs noscript">
 				#{list items: pages, as: 'page'}			
 				<li>
-					<a class="thumb" name="${page.page}" href="${play.configuration.staticserver}${file.originalFile}/../${page.page}.jpg" title="${page.page}">
+					<a class="thumb" name="${page.page}" href="@{Reader.page(file.id,page.page,100)}" title="${page.page}">
 						<img src="${play.configuration.staticserver}${file.originalFile}/../${page.page}_thumbnail.jpg" alt="${page.page}" />
 					</a>
 					<div class="caption">
@@ -51,5 +39,3 @@ $(document).ready(function() {
 				});
 			});
 </script>
-</body>
-</html>

@@ -1,8 +1,11 @@
+#{extends 'Reader/reader.template' /}
+
 <form action="@{Reader.upload()}" method="POST" enctype="multipart/form-data">
 	<input type="file" name="upload"/>
 	<input type="submit" value="Start"/>
 </form>
 
 #{list items: files, as: 'file'}
- <a href="@{Reader.view(file.id)}">${file.title}</a><br/>
+ <a href="@{Reader.view(file.id)}">${file.title}</a>&nbsp;
+ <a onclick="javascript:$.post('@{Reader.reprocess(file.id)}');return false">更新</a><br/>
 #{/list}

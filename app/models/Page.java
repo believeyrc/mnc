@@ -13,4 +13,6 @@ public class Page extends Model {
 	@Lob
 	public String content;
 	public int page;
+	public int width;
+	public int height;
 }

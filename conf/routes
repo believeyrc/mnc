@@ -54,6 +54,7 @@ GET /channels/{username}/?	Channelz.list
 POST /reader/upload	Reader.upload
 GET /reader	Reader.list
 GET /read/{id}	Reader.view
+POST /reader/process/{id}	Reader.reprocess
 
 
 GET     /admin/?                            Admin.index

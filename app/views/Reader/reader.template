@@ -1,0 +1,16 @@
+<html>
+<head>
+    <link rel="stylesheet" href="${'/public/css/galleriffic/basic.css'}" type="text/css" />
+	<link rel="stylesheet" href="${'/public/css/galleriffic/galleriffic-3.css'}" type="text/css" />
+
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-1.3.2.min.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.galleriffic.js'}"></script>
+    <!-- Optionally include jquery.history.js for history support 
+    <script type="text/javascript" src="js/jquery.history.js"></script>
+    <script type="text/javascript" src="js/jquery.opacityrollover.js"></script>
+    -->
+</head>
+<body>
+#{doLayout/}
+</body>
+</html>

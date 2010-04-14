@@ -12,7 +12,8 @@ public class PdfFile extends Model {
 	public String title;
 	public Date uploadDate;
 	public String originalFile;
-
+	public int numPages;
+	
 	@PrePersist
 	public void onCreate() {
 		if (uploadDate == null) {
