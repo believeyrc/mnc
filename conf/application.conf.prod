@@ -72,11 +72,11 @@ http.address=127.0.0.1
 #db=mysql:mnc:mnc@mnc
 #
 # If you need a full JDBC configuration use the following :
-db.url=jdbc:mysql://72.14.190.20:3306/mnc?useUnicode=true&characterEncoding=utf-8
+db.url=jdbc:mysql://127.0.0.1:3306/mnc?useUnicode=true&characterEncoding=utf-8
 db.driver=com.mysql.jdbc.Driver
 #org.postgresql.Driver
-db.user=mnc
-db.pass=mnc
+db.user=root
+db.pass=root
 #
 # Connections pool configuration :
 # db.pool.timeout=1000
