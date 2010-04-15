@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.List;
 
+import models.Photo;
 import models.Post;
 import models.User;
 import play.modules.search.Search;
@@ -37,6 +38,14 @@ public class Admin extends Controller {
 	public static void reindexPost() {
 		List<Post> allPost = Post.all().fetch();
 		for (Post object : allPost) {
+			Search.index(object);
+			System.out.println(object + " indexed");
+		}
+	}
+	@Check("ROLE_ADMIN")
+	public static void reindexPhoto() {
+		List<Photo> allPost = Photo.all().fetch();
+		for (Photo object : allPost) {
 			Search.index(object);
 			System.out.println(object + " indexed");
 		}
