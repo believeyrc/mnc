@@ -4,13 +4,55 @@
 <div class="span-13 prepend-0">
 
 #{isMine}
+<script type="text/javascript" src="@{'/public/javascripts/nicedit/nicEdit.js'}"></script>
+<script type="text/javascript" src="@{'/public/javascripts/tageditor/jquery.tag.editor.js'}"></script>
+<script type="text/javascript">
+var contentArea,titleArea,tagArea;
+function startEdit(){	
+	if(!contentArea) {
+		$('#editbutton').unbind('click');
+		$('#editbutton').html('<span>+</span>保存');
+		$('#editbutton').click(stopedit);
+		editor = new nicEditor({
+			iconsPath:'@{'/public/javascripts/nicedit/nicEditorIcons.gif'}',
+			buttonList : ['fontSize','bold','italic','underline','strikeThrough','forecolor','bgcolor','link','unlink','html','image']
+		});
+		contentArea = editor.panelInstance('post-content',{hasPanel : true});	
+		titleArea = new nicEditor().addInstance('post-title');
+		$('#post-title').css('background-color','lightyellow');
+		tagArea = new nicEditor().addInstance('post-tags');
+		$('#post-tags').css('background-color','lightyellow');
+	}
+}
+function stopedit(){	
+	alert($('#post-tags').text().split(',').length);
+	/*
+	$.post('@{Postz.save(post?.id)}',{
+		title: $('#post-title').text().trim(),
+		content: $('#post-content').html().trim(),
+		tags: $('#post-tags').text()},		
+		function(){			
+			contentArea.removeInstance('post-content');
+			titleArea.removeInstance('post-title');
+			tagArea.removeInstance('post-tags');
+			$('#editbutton').html('<span>+</span>修改故事');
+			$('#editbutton').unbind('click');
+			$('#editbutton').click(startEdit);
+			$('#post-title').css('background-color','');
+			contentArea = null;
+			titleArea = null;
+			tagArea = null;			
+		});*/
+}
+$(document).ready(function(){
+	$('#editbutton').click(startEdit);	
+});
+</script>
 <p id="newPost" class='float-right'>
-    <a href="@{Postz.form(post.author.fullname,post.id)}"><span>+</span>&{'EditPost'}</a>
+    <a id="editbutton" ><span>+</span>&{'EditPost'}</a>
 </p>
 #{/isMine}
 
-
- 
 #{display post:post, as:'full' /}
 
 <div class='box'>

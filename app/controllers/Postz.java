@@ -70,7 +70,7 @@ public class Postz extends Basez {
 			post.tags.clear();
 		}
 		// Set tags list
-		for (String tag : tags.split("\\s+")) {
+		for (String tag : tags.split("[\\s,:：-]+")) {
 			if (tag.trim().length() > 0) {
 				post.tags.add(Tag.findOrCreateByName(tag));
 			}
@@ -86,7 +86,7 @@ public class Postz extends Basez {
 		if (newPost) {
 			// new PostThingJob(new Thing(Security.connected(),)).in(5);
 		}
-		show(post.author.fullname,post.id);
+		//show(post.author.fullname,post.id);
 	}
 
 	private static boolean isNewPost(Post post) {

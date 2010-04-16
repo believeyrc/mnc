@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>jQuery Tag Editor</title>
+    <link href="demo.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.tag.editor.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#Tags").tagEditor(
+            {
+                items: ["First tag", "Second tag"],
+                confirmRemoval: true
+            });
+            $("#Tags2").tagEditor(
+            {
+                items: ["First", "Second"],
+                confirmRemoval: true,
+                separator: ' ',
+                completeOnSeparator: true,
+                completeOnBlur: true
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div id="content">
+        <h1>
+            jQuery Tag Editor</h1>
+            <h2>About</h2>
+            <p>A simple jQuery-plugin for transforming a textbox into a Wordpress-style tag editor.</p>
+            <h2>Sample code</h2>
+<pre style='color:#000020;background:#f6f8ff;'><span style='color:#308080; '>&lt;</span>script type<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"text/javascript"</span> src<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"jquery.tag.editor.js"</span><span style='color:#308080; '>></span><span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>script<span style='color:#308080; '>></span>
+<span style='color:#308080; '>&lt;</span>script type<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"text/javascript"</span><span style='color:#308080; '>></span>
+    $<span style='color:#308080; '>(</span>document<span style='color:#308080; '>)</span><span style='color:#308080; '>.</span>ready<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>function</span><span style='color:#308080; '>(</span><span style='color:#308080; '>)</span> <span style='color:#406080; '>{</span>
+        $<span style='color:#308080; '>(</span><span style='color:#1060b6; '>"#Tags"</span><span style='color:#308080; '>)</span><span style='color:#308080; '>.</span>tagEditor<span style='color:#308080; '>(</span>
+        <span style='color:#406080; '>{</span>
+            items<span style='color:#406080; '>:</span> <span style='color:#308080; '>[</span><span style='color:#1060b6; '>"First tag"</span><span style='color:#308080; '>,</span> <span style='color:#1060b6; '>"Second tag"</span><span style='color:#308080; '>]</span><span style='color:#308080; '>,</span>
+            confirmRemoval<span style='color:#406080; '>:</span> <span style='color:#0f4d75; '>true</span>
+        <span style='color:#406080; '>}</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+    <span style='color:#406080; '>}</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+<span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>script<span style='color:#308080; '>></span>
+</pre>
+            <h2>Options</h2>
+            <p>These are the options available to customize the tag editor.</p>
+            <dl>
+                <dt>separator (char, defaults to comma (","))</dt>
+                <dd>The char used as separator for tags.</dd>
+                <dt>items (string array, defaults to an empty array)</dt>
+                <dd>Any items that is to be added at the start.</dd>
+                <dt>className (string, defaults to tagEditor)</dt>
+                <dd>Classname used on the tag list.</dd>
+                <dt>confirmRemoval (bool, defaults to false)</dt>
+                <dd>Set to true to have the user confirm removal of a tag.</dd>
+                <dt>completeOnSeparator (bool, defaults to false)</dt>
+                <dd>Set to true to parse tags as soon as a separator is added.</dd>
+                <dt>completeOnBlur (bool, defaults to false)</dt>
+                <dd>Set to true to parse tags as soon as the editor loses focus.</dd>
+            </dl>
+            <h2>Demo 1</h2>
+            <p>Write your tags separated by commas and hit return to add them to the tag list.</p>
+            <p>
+                <label for="Tags">Tags:</label><br />
+                <input id="Tags" name="Tags" type="text" value="" />
+            </p>
+            <h2>Demo 2</h2>
+            <p>Write your tags separated by spaces and they will automaticly be added to the tag list. If this editor loses focus it will also add the current text as a tag.</p>
+            <p>
+                <label for="Tags2">Tags:</label><br />
+                <input id="Tags2" name="Tags2" type="text" value="" />
+            </p>
+            <h2>Download</h2>
+            <p>All releases of jQuery Tag Editor can be found at <a href="http://plugins.jquery.com/project/jQueryTagEditor" title="Visit the download page">http://plugins.jquery.com/project/jQueryTagEditor</a>.</p>
+    </div>
+</body>
+</html>
