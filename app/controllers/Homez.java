@@ -23,10 +23,13 @@ public class Homez extends Basez {
             lastPhotos = Photo.find("author != ? order by uploadAt desc",currentUser).fetch(5);    
             renderArgs.put("lastPhotos",lastPhotos );
 		} else {
-		   long randomId = RandomUtils.nextLong()%Photo.count();
-           Photo photo = Photo.findById(randomId);
+		   long count = Photo.count();
+		   if(count>0) {
+		   int randomId = (int) (RandomUtils.nextInt()%count);
+           Photo photo = Photo.all().from(randomId).first();
             renderArgs.put("photo",photo );
-        }
+       }
+		}
 		List<Post> lastPosts = Post.find("order by id desc").from(0).fetch(5);
 		renderArgs.put("lastPosts",lastPosts );		
 		List<Responses> lastResponses = Responses.find("order by postedAt desc").from(0).fetch(3);

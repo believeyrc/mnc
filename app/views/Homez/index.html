@@ -52,8 +52,10 @@
 #{/isLogin}
 
 #{notLogin}
-	<a href='@{Photov.viewPhoto(photo?.author?.fullname,photo.id)}'>#{photo photo:photo,as:'500'/}</a>
+#{if photo}
+	<a href='@{Photov.viewPhoto(photo?.author?.fullname,photo.id)}'>#{photo photo:photo,as:'500'/}</a><br/>
 	#{screenname photo?.author/} 上传于 ${photo.uploadAt.format('yyyy-MM-dd')}
+#{/if}
 #{/notLogin}
 	<br/>
 	<br/>
