@@ -5,7 +5,7 @@
 
 #{isMine}
 <script type="text/javascript" src="@{'/public/javascripts/nicedit/nicEdit.js'}"></script>
-<script type="text/javascript" src="@{'/public/javascripts/tageditor/jquery.tag.editor.js'}"></script>
+
 <script type="text/javascript">
 var contentArea,titleArea,tagArea;
 function startEdit(){	
@@ -20,13 +20,14 @@ function startEdit(){
 		contentArea = editor.panelInstance('post-content',{hasPanel : true});	
 		titleArea = new nicEditor().addInstance('post-title');
 		$('#post-title').css('background-color','lightyellow');
+		$('#post-tags').html($('#post-tags').text());
 		tagArea = new nicEditor().addInstance('post-tags');
 		$('#post-tags').css('background-color','lightyellow');
 	}
 }
 function stopedit(){	
-	alert($('#post-tags').text().split(',').length);
-	/*
+	var url = "@{Postz.listTagged('notag',post.author.fullname)}"
+
 	$.post('@{Postz.save(post?.id)}',{
 		title: $('#post-title').text().trim(),
 		content: $('#post-content').html().trim(),
@@ -39,10 +40,18 @@ function stopedit(){
 			$('#editbutton').unbind('click');
 			$('#editbutton').click(startEdit);
 			$('#post-title').css('background-color','');
+			
+			tags = $('#post-tags').text().split(',');
+			$('#post-tags').empty();
+			$.each(tags,function(idx,val){
+				if(val.trim().length>0)
+					$('#post-tags').append("<a href='"+url.replace('notag',val.trim()) + "' >" + val +"</a>," );
+			});
+			
 			contentArea = null;
 			titleArea = null;
 			tagArea = null;			
-		});*/
+		});
 }
 $(document).ready(function(){
 	$('#editbutton').click(startEdit);	

@@ -45,7 +45,7 @@ GET 	/honorroll	Gamescore.honorRoll
 GET     /posts/{username}/{<[0-9]+>id}	Postz.show
 GET     /posts/{username}	Postz.index
 GET     /posts/{username}/{offset}-{pageSize}       Postz.history
-
+GET		/posts/{fullname}/tag/{tag}					Postz.listTagged
 
 GET /channels/{username}/{<[0-9]+>id}	Channelv.channel
 GET /channels/{username}/?	Channelz.list
