@@ -17,7 +17,9 @@ import play.Play;
 import com.jhlabs.image.CropFilter;
 import com.jhlabs.image.RotateFilter;
 import com.mortennobel.imagescaling.DimensionConstrain;
+import com.mortennobel.imagescaling.ResampleFilters;
 import com.mortennobel.imagescaling.ResampleOp;
+import com.mortennobel.imagescaling.AdvancedResizeOp.UnsharpenMask;
 
 public class ImageUtil {
 	public static void moveUploadTo(File upload, String to) {
@@ -40,7 +42,7 @@ public class ImageUtil {
 		String staticpath = Play.configuration.getProperty("staticpath", "");
 		try {
 			File ofile = new File(staticpath + file);
-			if (!ofile.getParentFile().exists())
+			if (!new File(ofile.getAbsolutePath()).getParentFile().exists())
 				ofile.getParentFile().mkdirs();
 			ImageIO.write(img, "JPG", ofile);
 			return true;
@@ -76,6 +78,8 @@ public class ImageUtil {
 		} else {
 			resampleOp = new ResampleOp(DimensionConstrain.createMaxDimension(width, height, !enlargeImage));
 		}
+		resampleOp.setUnsharpenMask(UnsharpenMask.Oversharpened);
+
 		BufferedImage rescaledTomato = resampleOp.filter(img, null);
 		return rescaledTomato;
 	}
