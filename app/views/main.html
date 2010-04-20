@@ -27,11 +27,16 @@
     </head>
     <body>	
 	<div id="header">
+	#{include '_header.html'/}
 	</div>	
 	<div class="container">      
 		#{doLayout /}
 	<br/> 
 	<hr/>
+	#{include '_footer.html'/}
+	*{ 
+		include '_google_analytics.html'
+	}*
 	</div>
     </body>
 </html>

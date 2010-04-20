@@ -16,7 +16,7 @@ import models.User;
 public class Homez extends Basez {
 	public static void index() {
 		User currentUser = getLoginUser();
-        List<Photos> lastPhotos ;
+    List<Photos> lastPhotos ;
 		if (currentUser != null) {
 			List<Photos>  yourlastPhotos = Photo.find("author = ? order by uploadAt desc", currentUser).fetch(5);
             renderArgs.put("yourlastPhotos",yourlastPhotos);
@@ -35,6 +35,15 @@ public class Homez extends Basez {
 		List<Responses> lastResponses = Responses.find("order by postedAt desc").from(0).fetch(3);
 		renderArgs.put("lastResponses",lastResponses );
 		
+		render();
+	}
+	public static void home(String username) {
+		User currentUser = getVisitedUser();
+		List<Photos> lastPhotos ;
+		List<Photos>  yourlastPhotos = Photo.find("author = ? order by uploadAt desc", currentUser).fetch(5);
+    renderArgs.put("yourlastPhotos",yourlastPhotos);
+    lastPhotos = Photo.find("author != ? order by uploadAt desc",currentUser).fetch(5);    
+    renderArgs.put("lastPhotos",lastPhotos );
 		render();
 	}
 }

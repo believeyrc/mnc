@@ -66,7 +66,7 @@
 *+html #nicemenu div.sub_menu { margin-top:23px; } /* IE7 */
 #nicemenu div.sub_menu a:link, 
 #nicemenu div.sub_menu a:visited, 
-#nicemenu div.sub_menu a:hover{ display:block; font-size:11px; padding:4px;}	
+#nicemenu div.sub_menu a:hover{ display:block; font-size:12px; padding:4px;}	
 #nicemenu a.item_line { border-top:solid 1px #E5E5E5; padding-top:6px !important; margin-top:3px; }
 #nicemenu ul{padding:0px;margin:0px;}
 
@@ -132,4 +132,15 @@ input.button,.inplace button {
 .tagEditor li:hover
 {
 	background-color: #eee;
+}
+
+div.section_bar h4 {
+	background:url("../images/c.gif") no-repeat scroll 100% 0 transparent;
+	color:#222222;
+	text-indent:5px;
+	width:100%;
+	background-color:#E5ECF9;
+}
+div.section_bar h4.collapse {
+	background:url("../images/e.gif") no-repeat scroll 100% 0px #DAE4ED;
 }

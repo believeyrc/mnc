@@ -1,0 +1,93 @@
+#{extends 'main.html' /}
+
+#{include '_userbar.html'/}
+
+<div class="span-13 prepend-0">
+
+	<div>
+		<div class="section_bar" collapsable="false">
+			<h6>我的内容</h6>
+		</div>
+		<div>			
+			<div>
+	#{if yourlastPhotos}
+		#{list items:yourlastPhotos,as:'photo'}
+			<span><a href="@{Photov.viewPhoto(photo.author.fullname,photo.id)}">#{photo photo:photo,as:'75'/}</a></span>
+		#{/list}
+	#{/if}
+			</div>
+		</div>
+	</div>
+<br/>
+	<div>
+		<div class="section_bar" collapsable="false">
+			<h6>自己人</h6>
+		</div>
+		<div>			
+			<div>
+	#{if yourlastPhotos}
+		#{list items:yourlastPhotos,as:'photo'}
+			<span><a href="@{Photov.viewPhoto(photo.author.fullname,photo.id)}">#{photo photo:photo,as:'75'/}</a></span>
+		#{/list}
+	#{/if}
+			</div>
+		</div>
+	</div>
+<br/>
+	<div>
+		<div class="section_bar" collapsable="false">
+			<h6>大家</h6>
+		</div>
+		<div>			
+			<div>
+	#{if lastPhotos}		
+		#{list items:lastPhotos,as:'photo'}
+			<span><a href="@{Photov.viewPhoto(photo.author.fullname,photo.id)}">#{photo photo:photo,as:'75'/}</a></span>
+		#{/list}
+	#{/if}
+			</div>
+		</div>
+	</div>
+	
+
+	<br/>
+	<br/>
+</div>
+
+
+<div class="span-6 last">
+	
+	<div>
+		<h3><a href="">最近的故事</a></h3>
+		#{if lastPosts}	
+			#{list items:lastPosts,as:'post'}
+				<a href="@{Postz.show(post.author.fullname,post.id)}">${post.title}</a> <br/>
+			#{/list}
+		#{/if}
+	</div>
+<br/>
+	<div>
+		<h3><a href="">最近的评论</a></h4>
+#{if lastResponses}
+		#{list items: lastResponses, as: 'res'}
+			#{if res.photo}
+				<a href="@{Photov.viewPhoto(res.photo.author.fullname,res.photo.id)}">${res.content}</a><br/>
+			#{/if}
+			#{if res.post}
+				<a href="@{Postz.show(res.post.author.fullname,res.post.id)}">${res.content}</a><br/>
+			#{/if}
+		#{/list}	
+#{/if}
+	</div>
+
+</div>
+
+<script>
+$(document).ready(function(){  
+  $(".msg_body").hide();
+  $(".msg_head").click(function()
+  {
+    $(this).next(".msg_body").slideToggle(600);
+  });
+});
+</script>

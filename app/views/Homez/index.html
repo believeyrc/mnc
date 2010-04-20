@@ -6,57 +6,10 @@
 
 
 <div class="span-13 prepend-0">
-#{isLogin}
-	<div>
-		<h6>»我的内容</h6>
-		<div>
-			<h6 class='msg_head'>最新的图片</h6>
-			<div class='msg_body'>
-	#{if yourlastPhotos}
-		#{list items:yourlastPhotos,as:'photo'}
-			<span><a href="@{Photov.viewPhoto(photo.author.fullname,photo.id)}">#{photo photo:photo,as:'75'/}</a></span>
-		#{/list}
-	#{/if}
-			</div>
-		</div>
-	</div>
-<br/>
-	<div>
-		<h6>»自己人</h6>
-		<div>
-			<h6 class='msg_head'>最新的图片</h6>
-			<div class='msg_body'>
-	#{if yourlastPhotos}
-		#{list items:yourlastPhotos,as:'photo'}
-			<span><a href="@{Photov.viewPhoto(photo.author.fullname,photo.id)}">#{photo photo:photo,as:'75'/}</a></span>
-		#{/list}
-	#{/if}
-			</div>
-		</div>
-	</div>
-<br/>
-	<div>
-		<h6>»大家</h6>
-		<div>
-			<h6 class='msg_head'>最新的图片</h6>
-			<div class='msg_body'>
-	#{if lastPhotos}		
-		#{list items:lastPhotos,as:'photo'}
-			<span><a href="@{Photov.viewPhoto(photo.author.fullname,photo.id)}">#{photo photo:photo,as:'75'/}</a></span>
-		#{/list}
-	#{/if}
-			</div>
-		</div>
-	</div>
-	
-#{/isLogin}
-
-#{notLogin}
 #{if photo}
 	<a href='@{Photov.viewPhoto(photo?.author?.fullname,photo.id)}'>#{photo photo:photo,as:'500'/}</a><br/>
 	#{screenname photo?.author/} 上传于 ${photo.uploadAt.format('yyyy-MM-dd')}
 #{/if}
-#{/notLogin}
 	<br/>
 	<br/>
 </div>
@@ -64,28 +17,6 @@
 
 <div class="span-6 last">
 	
-	<div>
-		<h3>»<a href="">最近的故事</a></h3>
-		#{if lastPosts}	
-			#{list items:lastPosts,as:'post'}
-				<a href="@{Postz.show(post.author.fullname,post.id)}">${post.title}</a> <br/>
-			#{/list}
-		#{/if}
-	</div>
-<br/>
-	<div>
-		<h3>»<a href="">最近的评论</a></h4>
-#{if lastResponses}
-		#{list items: lastResponses, as: 'res'}
-			#{if res.photo}
-				<a href="@{Photov.viewPhoto(res.photo.author.fullname,res.photo.id)}">${res.content}</a><br/>
-			#{/if}
-			#{if res.post}
-				<a href="@{Postz.show(res.post.author.fullname,res.post.id)}">${res.content}</a><br/>
-			#{/if}
-		#{/list}	
-#{/if}
-	</div>
 
 </div>
 
