@@ -1,6 +1,7 @@
 import play.*;
 import play.jobs.*;
 import play.test.*;
+import utils.RobotMessager;
  
 import models.*;
  
@@ -12,6 +13,8 @@ public class Bootstrap extends Job {
         if(User.count() == 0) {
             Fixtures.load("initial-data.yml");
         }
+        RobotMessager.init("zhu.shou@hotmail.com", "4l9c6m1");
+        RobotMessager.login();
     }
  
 }

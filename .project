@@ -13,6 +13,14 @@
 	</buildSpec>
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>org.playframework.playclipse.playNature</nature>
 	</natures>
-	<linkedResources><link><name>crud</name><type>2</type><location>D:/opt/play-1.1-unstable-r698/modules/crud/app</location></link><link><name>secure</name><type>2</type><location>D:/opt/play-1.1-unstable-r698/modules/secure/app</location></link><link><name>search</name><type>2</type><location>D:/opt/play-1.1-unstable-r698/modules/search/app</location></link></linkedResources>
+	<linkedResources><link><name>search-1.2</name><type>2</type><location>F:/opt/play-1.1-unstable-r884/modules/search-1.2/app</location></link>
+<link><name>secure</name><type>2</type><location>F:/opt/play-1.1-unstable-r884/modules/secure/app</location></link>
+<link><name>conf/secure</name><type>2</type><location>F:/opt/play-1.1-unstable-r884/modules/secure/conf</location></link>
+<link><name>public/secure</name><type>2</type><location>F:/opt/play-1.1-unstable-r884/modules/secure/public</location></link>
+<link><name>crud</name><type>2</type><location>F:/opt/play-1.1-unstable-r884/modules/crud/app</location></link>
+<link><name>conf/crud</name><type>2</type><location>F:/opt/play-1.1-unstable-r884/modules/crud/conf</location></link>
+<link><name>public/crud</name><type>2</type><location>F:/opt/play-1.1-unstable-r884/modules/crud/public</location></link>
+</linkedResources>
 </projectDescription>
