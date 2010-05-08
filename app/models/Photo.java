@@ -76,5 +76,15 @@ public class Photo extends Model {
 	public static List<Photo> findByUser(String username) {
 		return Photo.find("author.fullname = ? order by uploadAt desc",username).fetch();
 	}
-	
+	public void remove() {
+		List<Sets> sets = Sets.listSetsOfPhoto(this.id);
+		for (Sets set : sets) {
+			Sets.removePhotoFromSets(set.id, this.id);
+		}
+		this.delete();
+		Responses.delete("photo = ?", this);
+	}
+	public static long countOfUser(String user) {
+		return Photo.count(" author.fullname = ? ", user);
+	}
 }

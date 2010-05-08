@@ -1,6 +1,7 @@
 package models;
  
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -39,5 +40,8 @@ public class Responses extends Model {
         this.content = content;
         this.postedAt = new Date();
     }
- 
+
+    public static List<Responses> loadPhotoResponses(Photo photo){
+    	return Responses.find(" photo = ? order by postedAt asc", photo).fetch();
+    }
 }

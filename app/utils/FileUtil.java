@@ -22,7 +22,12 @@ public class FileUtil {
 	public static String getPath(String file) {
 		return new File(file).getParent()+File.separator;
 	}
+	public static String getExtend(File file) {
+		String fn = file.getName();
+		return fn.substring(fn.lastIndexOf("."));
+	}
 	public static void main(String[] args) {
+		System.out.println(getPath("c:/test/a"));
 		System.out.println(getPath("c:/test/a"));
 	}
 }

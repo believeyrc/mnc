@@ -17,6 +17,7 @@
 </script>
 
 #{isMine}
+<script src="@{'/public/javascripts/jquery-impromptu.3.1.js'}"></script>
 #{script 'jquery.imgareaselect.comments.js'/}
 #{script 'ui.core.js'/}
 #{script 'ui.draggable.js'/}
@@ -47,6 +48,66 @@ textarea{
 #sayHello a:hover{
 	background:#0ff;
 }
+
+.jqifade{
+      position: absolute;
+      background-color: #aaaaaa;
+}
+div.jqi{
+      width: 240px;
+      font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+      position: absolute;
+      background-color: #ffffff;
+      font-size: 11px;
+      text-align: left;
+      border: solid 1px #eeeeee;
+      border-radius: 10px;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      padding: 7px;
+}
+div.jqi .jqicontainer{
+      font-weight: bold;
+}
+div.jqi .jqiclose{
+      position: absolute;
+      top: 4px; right: -2px;
+      width: 18px;
+      cursor: default;
+      color: #bbbbbb;
+      font-weight: bold;
+      display: none;
+}
+div.jqi .jqimessage{
+      padding: 10px;
+      line-height: 20px;
+      color: #444444;
+}
+div.jqi .jqibuttons{
+      text-align: right;
+      padding: 5px 0 5px 0;
+      border: solid 1px #eeeeee;
+      background-color: #f4f4f4;
+}
+div.jqi button{
+      padding: 3px 10px;
+      margin: 0 10px;
+      background-color: #2F6073;
+      border: solid 1px #f4f4f4;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 12px;
+}
+div.jqi button:hover{
+      background-color: #728A8C;
+}
+div.jqi button.jqidefaultbutton{
+      background-color: #BF5E26;
+}
+.jqiwarning .jqi .jqibuttons{
+      background-color: #BF5E26;
+}
+
 </style>
 
 <script>
@@ -105,6 +166,17 @@ textarea{
 		submenu.show();
 		submenu.load('@{Setv.listMySets(currentuser,photo.id)}');		
 	}
+	function deletePhoto(id){
+		$.prompt('确定删除照片?',{
+			callback:function(v,m,f){
+				if(v){
+					$.post('@{Photoz.remove()}',{id:id},function(){
+						window.location.reload();
+					});
+				}
+			},
+			buttons: { 确定: true, 取消: false }, focus: 1,persistent:false,opacity:0,top:200,left:($("#image-div").position().left + 160) });
+	}
 </script>
 
 <div id='hiddendiv' style='display:none'>
@@ -127,20 +199,22 @@ textarea{
 							正在载入相册...
 						</div>
 					</li>
-					<li ><span class="head_menu"><a  onclick="rotateRight((${photo.id}))"><img alt="&{'rotateRight'}" src="@{'/public/images/rotate_l.png'}"/></a></span></li>
-					<li ><span class="head_menu"><a  onclick="rotateLeft((${photo.id}))"><img alt="&{'rotateLeft'}" src="@{'/public/images/rotate_r.png'}"/></a></span></li>
+					<li ><span class="head_menu"><a onclick="rotateRight(${photo.id})"><img alt="&{'rotateRight'}" src="@{'/public/images/rotate_l.png'}"/></a></span></li>
+					<li ><span class="head_menu"><a onclick="rotateLeft(${photo.id})"><img alt="&{'rotateLeft'}" src="@{'/public/images/rotate_r.png'}"/></a></span></li>
 					<!--
-					<li ><span class="head_menu"><a  onclick="sayHello((${photo.id}))"><img alt="&{'sayHello'}" src="@{'/public/images/sayhello.gif'}"/></a></span></li>
+					<li ><span class="head_menu"><a onclick="sayHello(${photo.id})"><img alt="&{'sayHello'}" src="@{'/public/images/sayhello.gif'}"/></a></span></li>
 					-->
-					<li ><span class="head_menu"><a  onclick="revert((${photo.id}))"><img alt="&{'revert'}" src="@{'/public/images/revert.jpg'}"/></a></span></li>
-					<li ><span class="head_menu"><a  onclick="delete((${photo.id}))"><img alt="&{'delete'}" src="@{'/public/images/delete.png'}"/></a></span></li>
+					<li ><span class="head_menu"><a onclick="revert(${photo.id})"><img alt="&{'revert'}" src="@{'/public/images/revert.jpg'}"/></a></span></li>
+					<li ><span class="head_menu"><a onclick="deletePhoto(${photo.id})"><img alt="&{'delete'}" src="@{'/public/images/delete.png'}"/></a></span></li>
 				#{/isMine}	
 				#{isLogin}
 	                <li ><span class="head_menu"><a  href="@{Userz.changeAvatar(photo.id)}"><img alt="设置成我的头像" title="设置成我的头像" src="@{'/public/images/changeavatar.jpg'}"/></a></span></li>
 	            #{/isLogin}
 				</ul >
 			</div>
+			<div id="image-div">
 			#{photo photo:photo,as:'500',id:'photo'/}
+			</div>
 			<br/>
 			<div id="${photo.id}" class='desc large'>&{photo.description}</div>
 			<br/>

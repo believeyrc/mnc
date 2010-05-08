@@ -104,7 +104,7 @@ public class Setv extends Basez {
      * @param photoid
      */
     public static void setsInfoOfPhoto(Long photoid, Long setsid){
-        List<Sets> insets = Sets.find("select DISTINCT sets from Sets sets ,in( sets.photos) p where p.id = ?", photoid).fetch();
+        List<Sets> insets = Sets.listSetsOfPhoto(photoid);
         Photo photo = Photo.findById(photoid);
         render("Setv/_setsInfoOfPhoto.html",insets,photo, setsid);
     }

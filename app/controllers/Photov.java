@@ -14,6 +14,7 @@ import models.Responses;
 import models.User;
 import play.Play;
 import play.libs.Crypto;
+import utils.FileUtil;
 import utils.ImageUtil;
 import utils.PhotoUploaderUtil;
 
@@ -21,7 +22,7 @@ public class Photov extends Basez {
     public static void home(String username) {
 	    int	 page = 1;
 		int pageSize = 12;
-		long totalCount = Photo.count(" author.fullname = ? ", username);
+		long totalCount = Photo.countOfUser(username);
 		List<Photo> photos = Photo.find(" author.fullname = ? order by id desc", username).from(pageSize * (page - 1)).fetch(pageSize);
 		render("Photov/photos.html",photos, page, totalCount, pageSize);
     }
@@ -29,13 +30,13 @@ public class Photov extends Basez {
 		if (page <= 1)
 			page = 1;
 		int pageSize = 12;
-		long totalCount = Photo.count(" author.fullname = ? ", username);
+		long totalCount = Photo.countOfUser(username);
 		List<Photo> photos = Photo.find(" author.fullname = ? order by id desc", username).from(pageSize * (page - 1)).fetch(pageSize);
 		render(photos, page, totalCount, pageSize);
 	}
 	public static void photosWith(String username, Long id) {
 		int pageSize = 12;
-		long totalCount = Photo.count(" author.fullname = ? ", username);
+		long totalCount = Photo.countOfUser(username);
 		long position = Photo.count(" author.fullname = ? and id > ? order by id desc ",username, id);
 		int page = (int) (position/pageSize)+1;
 		List<Photo> photos = Photo.find(" author.fullname = ? order by id desc", username).from(pageSize * (page - 1)).fetch(pageSize);
@@ -64,12 +65,12 @@ public class Photov extends Basez {
 
     public static void viewPhoto(String username, Long id) {
         Photo photo = Photo.findById(id);
-        List<Responses> responses = Responses.find(" photo = ? order by postedAt asc", photo).fetch();
+        List<Responses> responses = Responses.loadPhotoResponses(photo);
         render(photo, responses);
     }
    public static void viewPhotoInSets(String username, Long photoid, Long setsid) {
         Photo photo = Photo.findById(photoid);       
-        List<Responses> responses = Responses.find(" photo = ? order by postedAt asc", photo).fetch();
+        List<Responses> responses = Responses.loadPhotoResponses(photo);
         boolean nostream = true;
         render("Photov/viewPhoto.html",photo, responses, setsid, nostream);
     }
@@ -111,7 +112,7 @@ public class Photov extends Basez {
 	public static void upload(File upload) {
 		try {
 			restroreSession();
-			String pathForPhoto = PhotoUploaderUtil.getPathForPhoto();
+			String pathForPhoto = PhotoUploaderUtil.getPathForPhoto() + FileUtil.getExtend(upload);
 			ImageUtil.moveUploadTo(upload, pathForPhoto);
 			Photo photo = new Photo(upload.getName(), new Date(), pathForPhoto);
 			photo.prefPath = PhotoUploaderUtil.getPathForLarge(pathForPhoto);

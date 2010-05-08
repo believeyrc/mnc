@@ -98,7 +98,7 @@ public class Photoz extends Basez {
 	}
 
 	@Check("ROLE_USER")
-	public static void remove(String family, Long id) {
+	public static void remove(Long id) {
 		Photo photo = Photo.find("id = ? and author = ? ", id, getLoginUser()).first();
 		if (photo != null) {
 			if (photo.filePath != null)
@@ -109,8 +109,7 @@ public class Photoz extends Basez {
 				FileUtils.deleteQuietly(new File(photo.thumb2Path));
 			if (photo.prefPath != null)
 				FileUtils.deleteQuietly(new File(photo.prefPath));
-			Responses.delete("photo = ?", photo);
-			photo.delete();
+			photo.remove();
 			renderJSON("{msg:'ok'}");
 		}
 	}
